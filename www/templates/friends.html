@@ -1,14 +1,16 @@
 <ion-view view-title="O">
     <ion-content padding="false" scroll="false" has-bouncing="false">
+
         <div class="tabs tabs-balanced static">
           <a class="tab-item" ng-class="(predicate == 'distance') ? 'selected' : ''" ng-click="predicate = 'distance'"><span>NearBy</span></a>
           <a class="tab-item" ng-class="(predicate == 'name') ? 'selected' : ''" ng-click="predicate = 'name'"><span>By Name</span></a>
-          <a class="tab-item"><span>Map</span></a>
+          <a class="tab-item" ng-class="(predicate == 'map') ? 'selected' : ''" ng-click="showMap()"><span>Map</span></a>
         </div>
-        <ion-scroll>    
+
+        <ion-scroll ng-show="predicate === 'name' || predicate === 'distance'">  
           <ion-list id="friend-list" class="animate-fade-slide-in-right">
             <ion-item class="item-avatar item-icon-right" ng-repeat="friend in friends | orderBy:predicate">
-                  <img ng-src="/img/default-user.png">
+                  <img ng-src="img/default-user.png">
                   <h2>{{friend.name | uppercase}}</h2>
                   <h3>{{friend.digicode[0].value | digicode}}</h3>
                   <p ng-show="more" class="animate-show">{{friend.comments}}</p>
@@ -18,6 +20,15 @@
             </ion-item>
           </ion-list>
         </ion-scroll>
+
+          <ui-gmap-google-map ng-cloak ng-show="predicate === 'map'" center='map.center' zoom='map.zoom' options='map.options' control='map.control'>
+            <ui-gmap-markers models="friends" coords="'location'" icon="'icon'">
+            </ui-gmap-markers>
+            <ui-gmap-marker coords="myMarker.coords" idKey="myMarker.id">
+            </ui-gmap-marker>
+          </ui-gmap-google-map>
+
+
     </ion-content>
     <button id="fab" class="button button-balanced button-fab button-fab-bottom-right"><i class="icon ion-android-add"></i></button>
 </ion-view>

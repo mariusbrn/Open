@@ -1,14 +1,14 @@
 'use strict';
 
-angular.module('Open.controllers', ['ionic'])
+angular.module('Open.controllers', ['ionic', 'uiGmapgoogle-maps'])
 
-/*.config(function(uiGmapGoogleMapApiProvider) {
+.config(['uiGmapGoogleMapApiProvider', function(uiGmapGoogleMapApiProvider) {
     uiGmapGoogleMapApiProvider.configure({
         //    key: 'your api key',
         v: '3.17',
         libraries: 'weather,geometry,visualization,places'
       });
-  })*/
+  }])
 
 .controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', function($scope, $ionicModal, $timeout) {
 
@@ -59,16 +59,11 @@ angular.module('Open.controllers', ['ionic'])
     $scope.radiusEnabled = config.radiusEnabled;
 
     $scope.$on('$ionicView.enter', function(e) {
-
       locationFactory.getCurrentPosition(20000).then( function(position){
-          $scope.position = position;
-          $log.log(position);
           FriendsFactory.calculateDistance(position.coords);
-          $log.log(FriendsFactory.friends);
           $state.go('app.friends');  
 
         }, function (msg) {
-          $log.log(msg);
           $scope.error = msg;
         });
     });
@@ -76,7 +71,11 @@ angular.module('Open.controllers', ['ionic'])
   }])
 
 
-.controller('FriendsCtrl', ['$scope', '$timeout', 'ionicMaterialInk', 'ionicMaterialMotion', 'FriendsFactory', function($scope, $timeout, ionicMaterialInk, ionicMaterialMotion, FriendsFactory) {
+.controller('FriendsCtrl', ['$scope', '$state', '$timeout', 'ionicMaterialInk', 'ionicMaterialMotion', 'locationFactory', 'FriendsFactory', 'uiGmapGoogleMapApi', function($scope, $state, $timeout, ionicMaterialInk, ionicMaterialMotion, locationFactory, FriendsFactory, uiGmapGoogleMapApi) {
+
+  if(locationFactory.currentPosition === null) {
+    $state.go('search'); 
+  }
 
   $scope.predicate = 'distance';
 
@@ -89,6 +88,37 @@ angular.module('Open.controllers', ['ionic'])
   ionicMaterialInk.displayEffect();
 
   $scope.friends = FriendsFactory.friends;
+  $scope.friends.forEach(function(f) { f.icon = 'img/contacts.png';});
+
+  var mapAPI;
+  uiGmapGoogleMapApi.then(function(maps) { 
+      mapAPI = maps;        
+  });
+
+  var myLocation = locationFactory.currentPosition;
+  $scope.myMarker = {
+    coords: { latitude: myLocation.coords.latitude , longitude: myLocation.coords.longitude },
+    id: "me"
+  };
+
+  $scope.map = { 
+      center: { latitude: myLocation.coords.latitude , longitude: myLocation.coords.longitude }, 
+      zoom: 14,
+      control: {}, 
+      options: {
+            disableDefaultUI: true
+      }
+  };
+
+  $scope.showMap = function() {
+    this.predicate = 'map';
+    var controlGmap = $scope.map.control.getGMap();
+    $timeout(function(){    
+      mapAPI.event.trigger(controlGmap, 'resize');
+      controlGmap.setCenter(new mapAPI.LatLng(myLocation.coords.latitude, myLocation.coords.longitude));   
+    },400);  
+  };
+                                     
 }])
 
 .controller('FriendCtrl', ['$scope', '$stateParams', function($scope, $stateParams) {
