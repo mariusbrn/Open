@@ -1,0 +1,23 @@
+<ion-view view-title="O">
+    <ion-content padding="false" scroll="false" has-bouncing="false">
+        <div class="tabs tabs-balanced static">
+          <a class="tab-item" ng-class="(predicate == 'distance') ? 'selected' : ''" ng-click="predicate = 'distance'"><span>NearBy</span></a>
+          <a class="tab-item" ng-class="(predicate == 'name') ? 'selected' : ''" ng-click="predicate = 'name'"><span>By Name</span></a>
+          <a class="tab-item"><span>Map</span></a>
+        </div>
+        <ion-scroll>    
+          <ion-list id="friend-list" class="animate-fade-slide-in-right">
+            <ion-item class="item-avatar item-icon-right" ng-repeat="friend in friends | orderBy:predicate">
+                  <img ng-src="/img/default-user.png">
+                  <h2>{{friend.name | uppercase}}</h2>
+                  <h3>{{friend.digicode[0].value | digicode}}</h3>
+                  <p ng-show="more" class="animate-show">{{friend.comments}}</p>
+                  <span class="distance">{{friend.distance | distance}}</span>
+                  <i class="icon more-details" ng-click="more = !more" ng-show="friend.comments" ng-class="(more) ? 'ion-chevron-up' : 'ion-chevron-down'"></i>
+                  <i class="icon ion-location muted"></i>
+            </ion-item>
+          </ion-list>
+        </ion-scroll>
+    </ion-content>
+    <button id="fab" class="button button-balanced button-fab button-fab-bottom-right"><i class="icon ion-android-add"></i></button>
+</ion-view>

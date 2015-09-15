@@ -1,0 +1,259 @@
+/*
+To customize the look and feel of Ionic, you can override the variables
+in ionic's _variables.scss file.
+
+For example, you might change some of the default colors:
+
+$light:                           #fff !default;
+$stable:                          #f8f8f8 !default;
+$positive:                        #387ef5 !default;
+$calm:                            #11c1f3 !default;
+$balanced:                        #33cd5f !default;
+$energized:                       #ffc900 !default;
+$assertive:                       #ef473a !default;
+$royal:                           #886aea !default;
+$dark:                            #444 !default;
+*/
+
+$balanced:                        #2bd35a !default;
+$stable:                          #9d9d9d !default;
+
+
+// The path for our ionicons font files, relative to the built CSS in www/css
+$ionicons-font-path: "../lib/ionic/fonts" !default;
+
+// Include all of Ionic
+@import "www/lib/ionic/scss/ionic";
+
+$RobotoDraftFontPath: "../lib/robotodraft/fonts" !default;
+$RobotoDraftFontName: "RobotoDraft";
+$RobotoDraftFontVersion: "1.0.0";
+
+@import "www/lib/robotodraft/sass/robotodraft.scss";
+
+.bar.bar-balanced {
+  background-color: saturate( $balanced, 10% )
+}
+
+.bar {
+  border: none;  
+  box-shadow: none !important;
+}
+
+.scroll-content {
+  padding-top: 0px;
+}
+
+/***************
+    LOAD VIEW
+****************/
+
+.load-view {
+    height: 100%;
+    background-color: $balanced;
+
+    .row {
+        height: 100%;
+        text-align: center;
+        font-family: 'RobotoDraft';
+        color: $light;
+
+        h1 {
+            color: $light;
+            font-size: 3em;
+            font-weight: 700;
+        }
+    }
+}
+
+/* LOGO */
+
+.open-logo {
+    border: 4px solid $light;
+    border-radius: 50%;
+    margin: auto;
+}
+
+.open-logo-md {
+    width: 75px;
+    height: 75px;
+}
+
+
+/* DANCING DOTS */
+
+@-webkit-keyframes dancing-dots-jump {
+  0% { top: 0;}
+  30% { top: -20px;}
+  50% { top: 0; }
+  100% { top: 0; }
+}
+@-moz-keyframes dancing-dots-jump {
+  0% { top: 0;}
+  30% { top: -20px;}
+  50% { top: 0; }
+  100% { top: 0; }
+}
+
+.dancing-dots {
+    position: absolute;
+    bottom: 120px;
+    width:136px;    
+    left: 50%;
+    margin-left: (-136px / 2 );
+}
+
+.dancing-dots span {
+    color: $light;
+    font-size: 100px; 
+    line-height: 10px;
+    text-shadow: 0px 0px 0px rgba(0,0,0,0.5);
+}
+
+.dancing-dots span span {
+-webkit-animation-duration: 1600ms;
+-webkit-animation-iteration-count: infinite;
+-webkit-animation-name: dancing-dots-jump;
+-moz-animation-duration: 1600ms;
+-moz-animation-iteration-count: infinite;
+-moz-animation-name: dancing-dots-jump;
+  padding: 1px;
+  position: relative;
+}
+
+.dancing-dots span span:nth-child(1) {
+  -webkit-animation-delay: 0ms; -moz-animation-delay: 0ms;
+}
+
+.dancing-dots span span:nth-child(2) {
+  -webkit-animation-delay: 400ms; -moz-animation-delay: 300ms;
+}
+
+.dancing-dots span span:nth-child(3) {
+  -webkit-animation-delay: 800ms; -moz-animation-delay: 600ms;
+}
+
+/***********
+    TABS
+************/
+.tabs {
+  border: 0px solid transparent;
+  height: 70px;
+}
+
+.tab-item {
+  font-family: 'RobotoDraft';
+  padding-top: 10px;
+
+  span {
+    border-width: 1px;
+    border-style: solid;
+    border-color: transparent;
+    padding: 5px 20px;
+    border-radius: 30px;
+  }
+}
+
+.tab-item.selected {
+  opacity: 1;
+
+  span {
+    border-color: rgba( $light, .7 );
+  }
+}
+
+
+
+/*****************
+    FRIEND LIST
+******************/
+
+#friend-list {
+  .item-icon-right .icon {
+      right: 0px;
+      font-size: 26px;
+      color: $stable;
+  }
+
+  .icon.more-details {
+    color: $balanced;
+    font-size: 22px;
+    position: relative;
+    margin: auto;
+    width: 30px; 
+  }
+
+  .item {
+    font-family: 'RobotoDraft';
+    font-weight: 700;
+    border-bottom: 1px solid #ededed;
+    padding-bottom: 5px;
+
+    h2 {
+      margin-top: 8px;
+      margin-bottom: 14px;
+      font-size: 18px;
+    }
+
+    h2, h3 {
+      color: #000;
+      font-weight: 700;
+      font-family: 'RobotoDraft'; 
+    }
+
+    p {
+      color: $stable;
+    }
+
+    .distance {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -moz-box;
+      display: -moz-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      -moz-align-items: center;
+      align-items: center;
+      position: absolute;
+      top: 0;
+      right: 28px;
+      height: 100%;
+      font-size: 11px;
+      color: $stable;
+
+    }
+  }
+
+  .item-avatar {
+    padding-left: 74px;
+  }
+
+  .item-avatar>img:first-child {
+    max-height: 30px;
+    max-width: 30px;
+    -moz-box-shadow: 2px 2px 2px 0px rgba( #999, .3 );
+    -webkit-box-shadow: 2px 2px 2px 0px rgba( #999, .3 );
+    -o-box-shadow: 2px 2px 2px 0px rgba( #999, .3 );
+    box-shadow: 2px 2px 2px 0px rgba( #999, .3 );
+
+  }
+}
+
+.animate-show {
+  margin: 8px 0;
+  line-height: 14px;
+  opacity: 1;
+}
+
+.animate-show.ng-hide-add, .animate-show.ng-hide-remove {
+  transition: all linear 0.15s;
+}
+
+.animate-show.ng-hide {
+  line-height: 0;
+  opacity: 0;
+  margin: 0;
+}

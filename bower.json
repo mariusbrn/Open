@@ -1,0 +1,12 @@
+{
+  "name": "Open",
+  "private": "true",
+  "devDependencies": {
+    "ionic": "driftyco/ionic-bower#1.1.0"
+  },
+  "dependencies": {
+    "angular-google-maps": "~2.2.0",
+    "ionic-material": "~0.4.2",
+    "robotodraft": "~1.1.0"
+  }
+}
