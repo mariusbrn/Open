@@ -79,6 +79,8 @@ angular.module('Open.controllers', ['ionic', 'uiGmapgoogle-maps'])
 
   $scope.predicate = 'distance';
 
+  $scope.$parent.dragContent = false;
+
   // Set Motion
   $timeout(function () {
       ionicMaterialMotion.fadeSlideInRight();
@@ -88,18 +90,24 @@ angular.module('Open.controllers', ['ionic', 'uiGmapgoogle-maps'])
   ionicMaterialInk.displayEffect();
 
   $scope.friends = FriendsFactory.friends;
-  $scope.friends.forEach(function(f) { f.icon = 'img/contacts.png';});
+  $scope.friends.forEach(function(f) { f.icon = 'img/flo.png';});
+
 
   var mapAPI;
   uiGmapGoogleMapApi.then(function(maps) { 
       mapAPI = maps;        
   });
 
+
   var myLocation = locationFactory.currentPosition;
   $scope.myMarker = {
     coords: { latitude: myLocation.coords.latitude , longitude: myLocation.coords.longitude },
-    id: "me"
+    id: "me",
+    options: {
+      icon: 'img/dick.png'
+    }
   };
+
 
   $scope.map = { 
       center: { latitude: myLocation.coords.latitude , longitude: myLocation.coords.longitude }, 
@@ -111,12 +119,16 @@ angular.module('Open.controllers', ['ionic', 'uiGmapgoogle-maps'])
   };
 
   $scope.showMap = function() {
+
     this.predicate = 'map';
+
     var controlGmap = $scope.map.control.getGMap();
+
     $timeout(function(){    
       mapAPI.event.trigger(controlGmap, 'resize');
       controlGmap.setCenter(new mapAPI.LatLng(myLocation.coords.latitude, myLocation.coords.longitude));   
     },400);  
+
   };
                                      
 }])

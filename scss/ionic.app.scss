@@ -15,8 +15,9 @@ $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
 
-$balanced:                        #2bd35a !default;
-$stable:                          #9d9d9d !default;
+$balanced:                        #31e461 !default;
+$calm:                      #2bd35a !default;
+$stable:                          #6e6e6e !default;
 
 
 // The path for our ionicons font files, relative to the built CSS in www/css
@@ -31,8 +32,10 @@ $RobotoDraftFontVersion: "1.0.0";
 
 @import "www/lib/robotodraft/sass/robotodraft.scss";
 
+$PrimaryFont: "Montserrat";
+
 .bar.bar-balanced {
-  background-color: saturate( $balanced, 10% )
+  background-color: $balanced;
 }
 
 .bar {
@@ -55,7 +58,7 @@ $RobotoDraftFontVersion: "1.0.0";
     .row {
         height: 100%;
         text-align: center;
-        font-family: 'RobotoDraft';
+        font-family: $PrimaryFont;
         color: $light;
 
         h1 {
@@ -67,6 +70,10 @@ $RobotoDraftFontVersion: "1.0.0";
 }
 
 /* LOGO */
+.nav-bar-title img {
+  height:40%;
+  margin-top: 6%;
+}
 
 .open-logo {
     border: 4px solid $light;
@@ -142,7 +149,7 @@ $RobotoDraftFontVersion: "1.0.0";
 }
 
 .tab-item {
-  font-family: 'RobotoDraft';
+  font-family: $PrimaryFont;
   padding-top: 10px;
 
   span {
@@ -184,7 +191,7 @@ $RobotoDraftFontVersion: "1.0.0";
   }
 
   .item {
-    font-family: 'RobotoDraft';
+    font-family: $PrimaryFont;
     font-weight: 700;
     border-bottom: 1px solid #ededed;
     padding-bottom: 5px;
@@ -198,7 +205,7 @@ $RobotoDraftFontVersion: "1.0.0";
     h2, h3 {
       color: #000;
       font-weight: 700;
-      font-family: 'RobotoDraft'; 
+      font-family: $PrimaryFont; 
     }
 
     p {
@@ -259,6 +266,7 @@ $RobotoDraftFontVersion: "1.0.0";
 }
 
 .scroll,
+#friendMap,
 .angular-google-map,
 .angular-google-map-container { 
   height: 100%;

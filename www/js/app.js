@@ -31,6 +31,9 @@ angular.module('Open', ['ionic', 'ionic-material', 'Open.controllers', 'Open.ser
 
   $ionicConfigProvider.navBar.alignTitle('center');
 
+  if (ionic.Platform.isAndroid())
+         $ionicConfigProvider.scrolling.jsScrolling(false);
+
   $stateProvider
 
   .state('app', {

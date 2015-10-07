@@ -1,7 +1,10 @@
-<ion-view view-title="O">
+<ion-view class="bubble-background">
+    <ion-nav-title>
+      <img src="img/logo.svg">
+    </ion-nav-title>
     <ion-content padding="false" scroll="false" has-bouncing="false">
 
-        <div class="tabs tabs-balanced static">
+        <div class="tabs tabs-calm static">
           <a class="tab-item" ng-class="(predicate == 'distance') ? 'selected' : ''" ng-click="predicate = 'distance'"><span>NearBy</span></a>
           <a class="tab-item" ng-class="(predicate == 'name') ? 'selected' : ''" ng-click="predicate = 'name'"><span>By Name</span></a>
           <a class="tab-item" ng-class="(predicate == 'map') ? 'selected' : ''" ng-click="showMap()"><span>Map</span></a>
@@ -9,25 +12,26 @@
 
         <ion-scroll ng-show="predicate === 'name' || predicate === 'distance'">  
           <ion-list id="friend-list" class="animate-fade-slide-in-right">
-            <ion-item class="item-avatar item-icon-right" ng-repeat="friend in friends | orderBy:predicate">
+            <ion-item class="item-avatar item-icon-right" ng-click="more = !more" ng-repeat="friend in friends | orderBy:predicate">
                   <img ng-src="img/default-user.png">
                   <h2>{{friend.name | uppercase}}</h2>
                   <h3>{{friend.digicode[0].value | digicode}}</h3>
-                  <p ng-show="more" class="animate-show">{{friend.comments}}</p>
+                  <p ng-if="friend.comments" ng-show="more" class="animate-show">{{friend.comments}}</p>
                   <span class="distance">{{friend.distance | distance}}</span>
-                  <i class="icon more-details" ng-click="more = !more" ng-show="friend.comments" ng-class="(more) ? 'ion-chevron-up' : 'ion-chevron-down'"></i>
+                  <i class="icon more-details" ng-show="friend.comments" ng-class="(more) ? 'ion-chevron-up' : 'ion-chevron-down'"></i>
                   <i class="icon ion-location muted"></i>
             </ion-item>
           </ion-list>
         </ion-scroll>
 
+        <div id="friendMap" data-tap-disabled="true">
           <ui-gmap-google-map ng-cloak ng-show="predicate === 'map'" center='map.center' zoom='map.zoom' options='map.options' control='map.control'>
             <ui-gmap-markers models="friends" coords="'location'" icon="'icon'">
             </ui-gmap-markers>
-            <ui-gmap-marker coords="myMarker.coords" idKey="myMarker.id">
+            <ui-gmap-marker coords="myMarker.coords" idKey="myMarker.id" options="myMarker.options">
             </ui-gmap-marker>
           </ui-gmap-google-map>
-
+        </div>
 
     </ion-content>
     <button id="fab" class="button button-balanced button-fab button-fab-bottom-right"><i class="icon ion-android-add"></i></button>
