@@ -24,15 +24,6 @@
 			templateUrl: 'templates/search.html',
 			controller: 'SearchController as vm'
 		})
-
-		.state('app.browse', {
-			url: '/browse',
-			views: {
-				'menuContent': {
-			  		templateUrl: 'templates/browse.html'
-				}
-			}
-		})
 		.state('app.friends', {
 			url: '/friends',
 			resolve: {
@@ -57,7 +48,17 @@
 					controller: 'FriendController as vm'
 				}
 			}
-		});
+		})
+
+		.state('app.new', {
+			url: '/new',
+			views: {
+				'menuContent': {
+					templateUrl: 'templates/new.html',
+					controller: 'NewFriendController as vm'
+				}
+			}
+		});		
 		// if none of the above states are matched, use this as the fallback
 		$urlRouterProvider.otherwise('/search');
 	});

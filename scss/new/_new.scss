@@ -1,0 +1,72 @@
+.new-view {
+	height: 100%;
+	background-color: $calm;
+
+	.avatar-logo {	
+		color: $light;
+		text-align: center;
+		margin-top: 20px;
+
+		.icon-avatar {
+			font-size: 90px;
+		}
+
+		h4 {
+			color: $light;
+			margin-top: 0;
+		}
+	}
+
+	.form-control {
+		background-color: darken($calm, 5%);
+		color: $light;
+		@include border-radius(35px);
+		@include display-flex;
+  		@include flex-direction(row);
+  		margin: 20px;
+		padding: 10px 20px;
+
+  		&:first-child {
+  			margin-top: 0;
+  		}
+
+  		&:last-child {
+  			margin-bottom: 10px;
+  		}
+
+  		.open-icon {
+  			font-size: 22px;
+  			align-self: center;
+  			&.untouched {
+  				opacity: 0.5;
+  			}
+  		}
+
+  		.icon-minus,
+  		.icon-plus {
+  			font-size: 14px;
+  		}
+
+  		button {
+  			border: none;
+  			background: none;
+  			color: $light;
+  		}
+
+		input, textarea {		
+			background-color: darken($calm, 5%);
+			@include display-flex;
+			@include flex-grow(1);
+			@include placeholder($light, 0.5);
+			align-self: center;
+  			color: $light;
+  			margin: 0 10px;
+		}
+
+		textarea {
+			resize: none;
+			vertical-align:middle;
+		}
+	}
+
+}

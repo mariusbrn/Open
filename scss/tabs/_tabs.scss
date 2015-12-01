@@ -1,0 +1,28 @@
+/***********
+    TABS
+************/
+.tabs {
+  border: 0px solid transparent;
+  height: 70px;
+}
+
+.tab-item {
+  font-family: $PrimaryFont;
+  padding-top: 10px;
+
+  span {
+    border-width: 1px;
+    border-style: solid;
+    border-color: transparent;
+    padding: 5px 20px;
+    @include border-radius(30px);
+  }
+}
+
+.tab-item.selected {
+  opacity: 1;
+
+  span {
+    border-color: rgba( $light, .7 );
+  }
+}

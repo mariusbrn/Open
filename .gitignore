@@ -9,6 +9,7 @@ Icon?
 ehthumbs.db
 Thumbs.db
 logs/
+.sass-cache/
 
 # external dependencies #
 #########################
@@ -19,7 +20,6 @@ public/
 platforms/
 plugins/
 www/lib/
-
 
 # version files #
 #################

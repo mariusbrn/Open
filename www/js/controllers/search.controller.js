@@ -5,13 +5,14 @@
         .module('Open.controllers')
         .controller('SearchController', SearchController);
 
-    SearchController.$inject = ['$scope', '$state', 'locationFactory', 'FriendsFactory', 'SettingsFactory'];
+    SearchController.$inject = ['$scope', '$state', '$timeout', 'locationFactory', 'FriendsFactory', 'SettingsFactory'];
     /* @ngInject */
-    function SearchController($scope, $state, locationFactory, FriendsFactory, SettingsFactory) {
+    function SearchController($scope, $state, $timeout, locationFactory, FriendsFactory, SettingsFactory) {
         var vm = this;
 
         vm.radius = 50;
         vm.radiusEnabled = true;
+        vm.loaded = false;
 
         activate();
 
@@ -24,8 +25,11 @@
                 locationFactory.getCurrentPosition(20000).then( function(position){
 
                     FriendsFactory.calculateDistance(position.coords);
-
-                    $state.go('app.friends'); 
+                    vm.loaded = true;
+                    $timeout(function(){
+                        console.log("gogo");
+                        $state.go('app.friends'); 
+                    },1200);  
 
                 }, function (msg) {
                     vm.error = msg;

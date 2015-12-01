@@ -2,7 +2,7 @@
   "name": "Open",
   "private": "true",
   "dependencies": {
-    "ionic": "driftyco/ionic-bower#1.1.0",
+    "ionic": "driftyco/ionic-bower#~1.1.0",
     "ionic-material": "~0.4.2",
     "angular-google-maps": "~2.2.0",
     "robotodraft": "~1.1.0",

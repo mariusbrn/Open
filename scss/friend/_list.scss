@@ -1,0 +1,101 @@
+
+/*****************
+    FRIEND LIST
+******************/
+@include keyframes(bg-gradient) {
+  0% { background-color: $balanced;} 
+  100% { background-color: $light;} 
+}
+
+.friends-view {
+  background-color: $light;
+  @include animation-name(bg-gradient);
+  @include animation-duration(500ms);
+}
+
+#friend-list {
+  .item-icon-right .icon {
+      right: 0px;
+      font-size: 26px;
+      color: $stable;
+  }
+
+  .icon.more-details {
+    color: $balanced;
+    font-size: 22px;
+    position: relative;
+    margin: auto;
+    width: 30px; 
+  }
+
+  .item {
+    font-family: $PrimaryFont;
+    font-weight: 700;
+    border-bottom: 1px solid #ededed;
+    padding-bottom: 5px;
+
+    h2 {
+      margin-top: 8px;
+      margin-bottom: 14px;
+      font-size: 18px;
+    }
+
+    h2, h3 {
+      color: #000;
+      font-weight: 700;
+      font-family: $PrimaryFont; 
+    }
+
+    p {
+      color: $stable;
+    }
+
+    .distance {
+      @include display-flex();
+      @include align-items(center);
+      position: absolute;
+      top: 0;
+      right: 28px;
+      height: 100%;
+      font-size: 11px;
+      color: $stable;
+
+    }
+  }
+
+  .item-avatar {
+    padding-left: 74px;
+    >img:first-child {
+      max-height: 30px;
+      max-width: 30px;
+      @include box-shadow(2px 2px 2px 0px rgba( #999, .3 ))
+    }
+  }
+}
+
+.animate-show {
+  margin: 8px 0;
+  line-height: 14px;
+  opacity: 1;
+
+  &.ng-hide-add,
+  &.ng-hide-remove {
+    transition: all linear 0.15s;
+  }
+  &.ng-hide {
+    line-height: 0;
+    opacity: 0;
+    margin: 0;
+  }
+}
+
+.scroll,
+#friendMap,
+.angular-google-map,
+.angular-google-map-container { 
+  height: 100%;
+}
+
+.hidden {
+  visibility: hidden
+}

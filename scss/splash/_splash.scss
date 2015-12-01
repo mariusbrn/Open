@@ -1,0 +1,105 @@
+
+/***************
+    LOAD VIEW
+****************/
+
+@include keyframes(fade) {
+  0% { @include opacity(100);}
+  100% { @include opacity(0); } 
+}
+
+@include keyframes(inflate) {
+  0% { @include scale(1)} 
+  100% { @include scale(15)} 
+}
+
+@include keyframes(dancing-dots-jump) {
+  0% { top: 0;}
+  30% { top: -20px;}
+  50% { top: 0; }
+  100% { top: 0; } 
+}
+
+.load-view {
+  height: 100%;
+  background-color: $balanced;
+
+  .row {
+    height: 100%;
+    text-align: center;
+    font-family: $PrimaryFont;
+    color: $light;
+
+    h1 {
+      color: $light;
+      font-size: 3em;
+      font-weight: 700;     
+    }
+  }
+}
+
+.load-view.anim {
+  h1,
+  .dancing-dots {
+    @include animation-name(fade);
+    @include animation-duration(2000ms);
+    @include opacity(0); 
+  }
+
+  .open-logo {
+    @include animation-name(inflate);
+    @include animation-duration(3000ms);
+    @include scale(15);   
+  }
+}
+
+/* LOGO */
+.nav-bar-title img {
+  height:40%;
+  margin-top: 6%;
+}
+
+.open-logo {
+  width: 100px;
+  height: 100px;
+}
+
+.open-logo-md {
+  width: 75px;
+  height: 75px;
+}
+
+
+/* DANCING DOTS */
+.dancing-dots {
+    position: absolute;
+    bottom: 120px;
+    width:156px;    
+    left: 50%;
+    margin-left: (-156px / 2);
+
+    span {
+        color: $light;
+        font-size: 100px; 
+        line-height: 10px;
+        text-shadow: 0px 0px 0px rgba(0,0,0,0.5);
+
+        span {
+          @include animation-name(dancing-dots-jump);
+          @include animation-duration(1600ms);
+          @include animation-iteration-count(infinite);
+          padding: 1px;
+          position: relative;
+
+          &:nth-child(1) {
+            @include animation-delay(0ms);
+          }
+          &:nth-child(2) {
+            @include animation-delay(300ms);
+          } 
+          &:nth-child(3) {
+            @include animation-delay(600ms); 
+          }   
+        }
+    }
+}

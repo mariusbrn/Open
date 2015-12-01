@@ -61,7 +61,7 @@
             //Set Motion
             $timeout(function () {
               ionicMaterialMotion.fadeSlideInRight();
-            }, 300);
+            }, 400);
 
             // Set Ink
             ionicMaterialInk.displayEffect();
@@ -69,19 +69,19 @@
             vm.friends = FriendsFactory.friends;
             vm.friends.forEach(function(f) { f.icon = 'img/flo.png';});
 
-            uiGmapGoogleMapApi.then(function(maps) { 
-                mapAPI = maps;        
-            });
+            // uiGmapGoogleMapApi.then(function(maps) { 
+            //     mapAPI = maps;        
+            // });
 
-            myLocation = locationFactory.currentPosition;
+            // myLocation = locationFactory.currentPosition;
 
-            if(!_.isNull(myLocation) ) {
-                vm.myMarker.coords.latitude = myLocation.coords.latitude;                       
-                vm.myMarker.coords.longitude = myLocation.coords.longitude;
+            // if(!_.isNull(myLocation) ) {
+            //     vm.myMarker.coords.latitude = myLocation.coords.latitude;                       
+            //     vm.myMarker.coords.longitude = myLocation.coords.longitude;
 
-                vm.map.center.latitude = myLocation.coords.latitude;                       
-                vm.map.center.longitude = myLocation.coords.longitude;
-            }                                     
+            //     vm.map.center.latitude = myLocation.coords.latitude;                       
+            //     vm.map.center.longitude = myLocation.coords.longitude;
+            // }                                     
         } 
 
 
