@@ -5,9 +5,9 @@
         .module('Open.controllers')
         .controller('NewFriendController', NewFriendController);
 
-    NewFriendController.$inject = ['$scope'];
+    NewFriendController.$inject = ['$scope', '$ionicHistory'];
     /* @ngInject */
-    function NewFriendController($scope) {
+    function NewFriendController($scope, $ionicHistory) {
         var vm = this;
         vm.user = {
             name: '',
@@ -19,6 +19,8 @@
         vm.locateMe   = locateMe;
         vm.addCode    = addCode;
         vm.removeCode = removeCode;
+        vm.save       = save;
+        vm.cancel     = cancel;
 
         activate();
 
@@ -36,6 +38,16 @@
 
         function removeCode (index) {
             vm.user.codes.splice(index, 1);
-        }           
+        }  
+
+        function save () {
+            console.log("save");
+
+        } 
+
+        function cancel (index) {
+            console.log("cancel");
+            $ionicHistory.goBack();
+        }                          
     }
 })();

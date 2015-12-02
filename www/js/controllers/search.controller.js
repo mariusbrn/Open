@@ -23,12 +23,12 @@
 
             $scope.$on('$ionicView.enter', function(e) {
                 locationFactory.getCurrentPosition(20000).then( function(position){
-
+                    console.log("location found");
                     FriendsFactory.calculateDistance(position.coords);
                     vm.loaded = true;
                     $timeout(function(){
                         console.log("gogo");
-                        $state.go('app.friends'); 
+                        $state.go('friends'); 
                     },1200);  
 
                 }, function (msg) {
