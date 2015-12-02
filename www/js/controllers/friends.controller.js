@@ -89,12 +89,12 @@
 
             vm.predicate = 'map';
 
-            var controlGmap = vm.map.control.getGMap();
+            // var controlGmap = vm.map.control.getGMap();
 
-            $timeout(function(){    
-              mapAPI.event.trigger(controlGmap, 'resize');
-              controlGmap.setCenter(new mapAPI.LatLng(myLocation.coords.latitude, myLocation.coords.longitude));   
-            },400);  
+            // $timeout(function(){    
+            //   mapAPI.event.trigger(controlGmap, 'resize');
+            //   controlGmap.setCenter(new mapAPI.LatLng(myLocation.coords.latitude, myLocation.coords.longitude));   
+            // },400);  
 
         }            
     }

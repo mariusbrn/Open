@@ -1,4 +1,5 @@
 <ion-view class="bubble-background">
+
     <ion-nav-buttons side="left">
       <button class="button button-icon button-clear" ng-click="vm.cancel()">
         <i class="open-icon icon-cancel"></i>
@@ -8,23 +9,25 @@
       NEW CONTACT
     </ion-nav-title>
     <ion-nav-buttons side="right">
-      <button class="button button-icon button-clear" ng-click="vm.save()">
+      <button class="button button-icon button-clear" ng-show="vm.isFormValid()" ng-click="vm.save()">
         <i class="open-icon icon-validate"></i>
       </button>      
-    </ion-nav-buttons>    
+    </ion-nav-buttons>
+        
     <ion-content class="new-view" padding="false" scroll="true" has-bouncing="false">
       <div class="avatar-logo">
           <i class="open-icon icon-avatar"></i>
           <h4>EDIT</h4>        
       </div>
-      <form>
+      <form novalidate name="vm.newForm">
         <div class="form-control">
           <i class="open-icon icon-name" ng-class="!vm.user.name ? 'untouched' : ''"></i>
           <input 
           type="text" 
           name="username" 
           id="username" 
-          placeholder="Name" 
+          placeholder="Name"
+          required
           ng-model="vm.user.name">            
         </div>
         <div class="form-control">
@@ -33,7 +36,8 @@
           type="text" 
           name="address" 
           id="address" 
-          placeholder="Address" 
+          placeholder="Address"
+          required
           ng-model="vm.user.address">
           <button type="button" ng-click="vm.locateMe()">
             <i class="open-icon icon-locate-me"></i>
@@ -45,7 +49,8 @@
           type="text" 
           name="code" 
           id="code" 
-          placeholder="Code" 
+          placeholder="Code"
+          required
           ng-model="code.label">
           <button type="button ng-cloak" ng-show="code.label && !$last" ng-click="vm.removeCode($index)">
             <i class="open-icon icon-minus"></i>

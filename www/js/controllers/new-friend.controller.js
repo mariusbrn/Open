@@ -9,26 +9,28 @@
     /* @ngInject */
     function NewFriendController($scope, $ionicHistory) {
         var vm = this;
-        vm.user = {
+        var emptyUser = {
             name: '',
             address: '', 
             codes: [{label: ''}],
             notes: ''
         };
 
-        vm.locateMe   = locateMe;
-        vm.addCode    = addCode;
-        vm.removeCode = removeCode;
-        vm.save       = save;
-        vm.cancel     = cancel;
+        vm.locateMe    = locateMe;
+        vm.addCode     = addCode;
+        vm.removeCode  = removeCode;
+        vm.isFormValid = isFormValid;
+        vm.save        = save;
+        vm.cancel      = cancel;
 
         activate();
 
         function activate () {
-            console.log(vm.user);
+            vm.user = emptyUser;
         } 
 
         function locateMe () {
+
 
         } 
 
@@ -40,6 +42,10 @@
             vm.user.codes.splice(index, 1);
         }  
 
+        function isFormValid () {
+           return vm.newForm.$valid;
+        } 
+
         function save () {
             console.log("save");
 
@@ -47,6 +53,7 @@
 
         function cancel (index) {
             console.log("cancel");
+            vm.user = emptyUser; 
             $ionicHistory.goBack();
         }                          
     }

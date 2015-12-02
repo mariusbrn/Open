@@ -42,16 +42,24 @@ $RobotoDraftFontVersion: "1.0.0";
 $PrimaryFont: "Montserrat";
 
 .bar.bar-balanced {
-  background-color: $balanced;
+ 	background-color: $balanced;
 }
 
 .bar {
-  border: none;  
-  box-shadow: none !important;
+ 	border: none;  
+ 	box-shadow: none !important;
+}
+
+.bar-subheader {
+	height: 70px;
+}
+
+.has-subheader {
+	top: 114px;
 }
 
 .scroll-content {
-  padding-top: 0px;
+ 	padding-top: 0px;
 }
 
 @mixin placeholder ($color, $opacity) {
