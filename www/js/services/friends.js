@@ -23,8 +23,9 @@
         // ====================================
 
         function loadFriends() {
-        /*      var storageFriends = $localstorage.getObject('friends');
-          this.friends = (_.isEmpty(storageFriends)) ? [] : storageFriends;*/
+          
+          // var storageFriends = $localstorage.getObject('friends');
+          // service.friends = (_.isEmpty(storageFriends)) ? [] : storageFriends;
 
           service.friends = [
             { id: 1, name: 'Ludo',  digicode: [{value: '12B34'}],  location: {latitude: 48.876695, longitude: 2.3528297}, comments: "43 rue Bidon 75010 Paris" },

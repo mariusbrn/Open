@@ -11245,10 +11245,10 @@ a.button .icon:before, a.button.icon:before, a.button.icon-left:before, a.button
   border-radius: 30px;
 }
 
-.tab-item.selected {
+.tab-item.active {
   opacity: 1;
 }
-.tab-item.selected span {
+.tab-item.active span {
   border-color: rgba(255, 255, 255, 0.7);
 }
 

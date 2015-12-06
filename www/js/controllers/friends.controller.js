@@ -6,7 +6,8 @@
         .controller('FriendsController', FriendsController);
 
     FriendsController.$inject = [
-        '$scope', 
+        '$scope',
+        '$rootScope', 
         '$state', 
         '$timeout',
         '_',
@@ -19,6 +20,7 @@
     /* @ngInject */
     function FriendsController(
         $scope,
+        $rootScope,
         $state,
         $timeout,
         _,
@@ -31,15 +33,13 @@
         var vm = this;     
         var mapAPI, myLocation, myMarker, map;
 
+        vm.$state = $state;
         vm.predicate = 'distance';
         vm.friends = [];
         vm.showMap = showMap;
         vm.myMarker = {
             coords: {},
-            id: "me",
-            options: {
-              icon: 'img/dick.png'
-            }
+            id: "me"
         };
         vm.map = { 
           center: {}, 
@@ -60,7 +60,7 @@
 
             //Set Motion
             $timeout(function () {
-              ionicMaterialMotion.fadeSlideInRight();
+              //if(!_.isEmpty(vm.friends)) ionicMaterialMotion.fadeSlideInRight();
             }, 400);
 
             // Set Ink
@@ -68,6 +68,18 @@
 
             vm.friends = FriendsFactory.friends;
             vm.friends.forEach(function(f) { f.icon = 'img/flo.png';});
+
+            $rootScope.$on('$stateChangeStart', 
+                function(event, toState, toParams, fromState, fromParams){ 
+                    switch (toState.name) {
+                        case 'friends.nearby': 
+                            vm.predicate = 'distance';
+                            break;
+                        case 'friends.byname':
+                            vm.predicate = 'name';
+                            break;
+                    }
+            });
 
             // uiGmapGoogleMapApi.then(function(maps) { 
             //     mapAPI = maps;        

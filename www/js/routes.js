@@ -9,12 +9,9 @@
 		if (ionic.Platform.isAndroid())
 		    $ionicConfigProvider.scrolling.jsScrolling(false);
 
-		$stateProvider
+		$urlRouterProvider.when('/friends', '/friends/nearby');
 
-		.state('app', {
-			url: '/app',
-			abstract: true,
-		})
+		$stateProvider
 
 		.state('search', {
 			url: '/search',
@@ -33,8 +30,20 @@
 		 	controller: 'FriendsController as vm'
 		})
 
+		.state('friends.nearby', {
+			url: '/nearby'
+		})
+
+		.state('friends.byname', {
+			url: '/byname'
+		})
+
+		.state('friends.map', {
+			url: '/map'
+		})
+
 		.state('single', {
-			url: '/friends/:friendId',
+			url: '/friend/:friendId',
 			templateUrl: 'templates/friend.html',
 			controller: 'FriendController as vm'
 		})

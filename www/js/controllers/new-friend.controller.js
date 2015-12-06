@@ -5,18 +5,17 @@
         .module('Open.controllers')
         .controller('NewFriendController', NewFriendController);
 
-    NewFriendController.$inject = ['$scope', '$ionicHistory'];
+    NewFriendController.$inject = ['$scope', '$ionicHistory', 'FriendsFactory'];
     /* @ngInject */
-    function NewFriendController($scope, $ionicHistory) {
+    function NewFriendController($scope, $ionicHistory, FriendsFactory) {
         var vm = this;
-        var emptyUser = {
+        var emptyFriend = {
             name: '',
-            address: '', 
-            codes: [{label: ''}],
+            address: '',
+            codes: [{id: 1, label: ''}],
             notes: ''
         };
 
-        vm.locateMe    = locateMe;
         vm.addCode     = addCode;
         vm.removeCode  = removeCode;
         vm.isFormValid = isFormValid;
@@ -26,20 +25,16 @@
         activate();
 
         function activate () {
-            vm.user = emptyUser;
-        } 
-
-        function locateMe () {
-
-
+            vm.newFriend = emptyFriend;
         } 
 
         function addCode () {
-            vm.user.codes.push({label: ''});
+            vm.newFriend.codes.push({id: vm.newFriend.codes.length+1,label: ''});
         } 
 
         function removeCode (index) {
-            vm.user.codes.splice(index, 1);
+            vm.newFriend.codes.splice(index, 1);
+            vm.newFriend.codes.forEach(function(c, i) {c.id = i+1;});
         }  
 
         function isFormValid () {
@@ -47,13 +42,13 @@
         } 
 
         function save () {
-            console.log("save");
-
+            FriendsFactory.createFriend(vm.newFriend);
+            $ionicHistory.goBack();
         } 
 
         function cancel (index) {
             console.log("cancel");
-            vm.user = emptyUser; 
+            vm.newFriend = emptyFriend; 
             $ionicHistory.goBack();
         }                          
     }

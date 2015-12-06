@@ -21,29 +21,17 @@
       </div>
       <form novalidate name="vm.newForm">
         <div class="form-control">
-          <i class="open-icon icon-name" ng-class="!vm.user.name ? 'untouched' : ''"></i>
+          <i class="open-icon icon-name" ng-class="!vm.newFriend.name ? 'untouched' : ''"></i>
           <input 
           type="text" 
           name="username" 
           id="username" 
           placeholder="Name"
           required
-          ng-model="vm.user.name">            
+          ng-model="vm.newFriend.name">            
         </div>
-        <div class="form-control">
-          <i class="open-icon icon-address" ng-class="!vm.user.address ? 'untouched' : ''"></i>
-          <input 
-          type="text" 
-          name="address" 
-          id="address" 
-          placeholder="Address"
-          required
-          ng-model="vm.user.address">
-          <button type="button" ng-click="vm.locateMe()">
-            <i class="open-icon icon-locate-me"></i>
-          </button>         
-        </div>    
-        <div class="form-control" ng-repeat="code in vm.user.codes track by $index">
+        <address-input></address-input>    
+        <div class="form-control" ng-repeat="code in vm.newFriend.codes track by $index">
           <i class="open-icon icon-code" ng-class="!code.label ? 'untouched' : ''"></i>
           <input 
           type="text" 
@@ -60,7 +48,7 @@
           </button>          
         </div>
         <div class="form-control">
-          <i class="open-icon icon-notes" ng-class="!vm.user.notes ? 'untouched' : ''"></i>
+          <i class="open-icon icon-notes" ng-class="!vm.newFriend.notes ? 'untouched' : ''"></i>
           <textarea 
           name="moreinfo" 
           id="moreinfo" 
