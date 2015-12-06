@@ -48,6 +48,14 @@ $PrimaryFont: "Montserrat";
 .bar {
  	border: none;  
  	box-shadow: none !important;
+	.button i {
+		margin-top: 10px;
+	}
+}
+
+.nav-bar-title img {
+	height: 20px;
+	margin-top: 13px;
 }
 
 .bar-subheader {
@@ -56,10 +64,6 @@ $PrimaryFont: "Montserrat";
 
 .has-subheader {
 	top: 114px;
-}
-
-.scroll-content {
- 	padding-top: 0px;
 }
 
 @mixin placeholder ($color, $opacity) {

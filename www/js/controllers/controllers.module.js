@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('Open.controllers', ['ionic', 'uiGmapgoogle-maps'])
+        .module('Open.controllers', ['ionic', 'uiGmapgoogle-maps', 'Open.directives'])
         .config(configAppCtrl);
 
     configAppCtrl.$inject = ['uiGmapGoogleMapApiProvider'];

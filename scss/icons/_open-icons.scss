@@ -29,6 +29,8 @@
 .icon-location:before{content:'\0049';}
 .icon-plus:before{content:'\004A';}
 .icon-more:before{content:'\004B';}
+.icon-less {transform:rotate(180deg);}
+.icon-less:before{content:'\004B';}
 .icon-name:before{content:'\004C';}
 .icon-notes:before{content:'\004D';}
 .icon-validate:before{content:'\004E';}

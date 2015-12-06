@@ -13,26 +13,16 @@
   @include animation-duration(500ms);
 }
 
-#friend-list {
-  .item-icon-right .icon {
-      right: 0px;
-      font-size: 26px;
-      color: $stable;
-  }
-
-  .icon.more-details {
-    color: $balanced;
-    font-size: 22px;
-    position: relative;
-    margin: auto;
-    width: 30px; 
-  }
-
-  .item {
+.friend-list {
+  .friend-item {
     font-family: $PrimaryFont;
     font-weight: 700;
+    border: medium none;
     border-bottom: 1px solid #ededed;
     padding-bottom: 5px;
+    min-height: 48px;
+    text-align: left;
+    position: relative;
 
     h2 {
       margin-top: 8px;
@@ -46,30 +36,55 @@
       font-family: $PrimaryFont; 
     }
 
-    p {
-      color: $stable;
+    h2, h3, p {
+      margin-left: 95px;
     }
+
+    img:first-child {
+        position: absolute;
+        border-radius: 50%;
+        left: 16px;
+        max-height: 40px;
+        max-width: 40px;
+        @include box-shadow(2px 2px 2px 0px rgba( #999, .3 ))
+    }    
 
     .distance {
-      @include display-flex();
-      @include align-items(center);
       position: absolute;
-      top: 0;
-      right: 28px;
-      height: 100%;
+      top: 26px;
+      right: 30px;
       font-size: 11px;
       color: $stable;
-
     }
-  }
 
-  .item-avatar {
-    padding-left: 74px;
-    >img:first-child {
-      max-height: 30px;
-      max-width: 30px;
-      @include box-shadow(2px 2px 2px 0px rgba( #999, .3 ))
+    .open-icon {
+        font-size: 22px; 
+        color: $stable;
     }
+
+    .icon-location {
+      position: absolute;    
+      top: 22px;
+      right: 8px;
+    }
+
+    
+    .more-bloc {
+      text-align: center;
+      p {
+        color: $stable;
+        text-align: left;
+      }
+      .icon-more,
+      .icon-less {
+        color: $balanced;
+        font-size: 22px;
+        position: relative;
+        margin: auto;
+        width: 30px; 
+      }      
+    }
+    
   }
 }
 
@@ -89,7 +104,6 @@
   }
 }
 
-.scroll,
 #friendMap,
 .angular-google-map,
 .angular-google-map-container { 
