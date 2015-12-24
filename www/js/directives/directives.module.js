@@ -2,6 +2,6 @@
     'use strict';
 
     angular
-        .module('Open.directives', []);
+        .module('Open.directives', ['geocoder']);
    
 })();

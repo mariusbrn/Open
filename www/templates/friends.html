@@ -12,7 +12,7 @@
     <ion-content padding="false" scroll="true" has-bouncing="false">
       <div ng-show="vm.$state.includes('friends.nearby') || vm.$state.includes('friends.byname')">  
         <ion-list class="friend-list animate-fade-slide-in-right">
-          <friend-item friend="friend" ng-repeat="friend in vm.friends | orderBy:vm.predicate"></friend-item>
+          <friend-item friend="friend" ng-repeat="friend in vm.friends track by friend.id | orderBy:vm.predicate"></friend-item>
         </ion-list>
       </div>
 <!-- 

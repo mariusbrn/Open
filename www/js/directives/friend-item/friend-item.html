@@ -1,8 +1,8 @@
 <div class="friend-item" ng-click="more = !more">
 	<img ng-src="img/default-user.png">
-	<h3>{{friend.name | uppercase}}</h3>
+	<h3>{{friend.name}}</h3>
 	<p class="distance"><i class="open-icon icon-location"></i> {{friend.distance | distance}}</p>
-	<h2>{{friend.digicode[0].value | digicode}}</h2>
+	<h2>{{friend.codes[0].label | digicode}}</h2>
 	<div class="more-bloc" ng-if="friend.comments">
 		<p ng-show="more" class="animate-show">{{friend.comments}}</p>
 		<i class="open-icon" ng-show="friend.comments" ng-class="(more) ? 'icon-less' : 'icon-more'"></i>

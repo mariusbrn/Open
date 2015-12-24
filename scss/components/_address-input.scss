@@ -1,0 +1,99 @@
+
+.address-input {
+	input[readonly] {
+		background-color: transparent;
+		cursor: text;
+	}
+} 
+
+
+.ion-google-place-container  {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 20;
+    display: none;
+    background-color: $calm;
+ 	border: 0px solid transparent;
+
+	.item-input-inset {
+		height: 58px;
+		background-color: $calm;
+		text-align: center;
+ 		border: 0px solid transparent;
+
+		.form-control {
+			background-color: darken($calm, 5%);
+			border: 0px solid transparent;
+			color: $light;
+			@include border-radius(35px);
+			@include display-flex;
+	  		@include flex-direction(row);
+	  		margin: 2px 20px;
+			padding: 10px 20px;
+	  		width: 100%;
+	  		
+	  		button {
+	  			border: none;
+	  			background: none;
+	  			color: $light;
+	  			min-width: 22px;
+	  			width: 22px;
+	  			min-height: 34px;
+	  			height: 34px;
+	  		}
+
+			input {		
+				background-color: darken($calm, 5%);
+				@include display-flex;
+				@include flex-grow(1);
+				@include placeholder($light, 0.5);
+				align-self: center;
+	  			color: $light;
+	  			margin: 0 10px;
+	  			padding: 0;
+			}
+
+
+	  		.open-icon {
+	  			margin-right: 10px;
+	  			font-size: 22px;
+	  			align-self: center;
+	  			&.untouched {
+	  				opacity: 0.5;
+	  			}
+	  		}
+	  		.icon-cancel {
+	  			font-size: 14px;
+	  		}	  						
+		}		
+	}
+
+	.has-header {
+		top: 58px;
+	}
+	
+	.locations-list {
+	    display: block;
+	    position: absolute;
+	    border: 0px solid transparent;
+	    left: 0;
+	    width: 100%;
+			
+		.location-bloc {
+			background-color: darken($calm, 5%);
+			font-family: $PrimaryFont;
+			font-size: 16px;
+			margin: 4px 0;
+			padding-left: 40px;
+			padding-top: 18px;
+			font-style: italic;
+			height: 55px;
+			min-height: 55px;
+			color: $light;
+		}
+	} 
+}
+

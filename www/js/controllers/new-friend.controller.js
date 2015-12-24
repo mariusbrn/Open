@@ -11,7 +11,7 @@
         var vm = this;
         var emptyFriend = {
             name: '',
-            address: '',
+            location: {},
             codes: [{id: 1, label: ''}],
             notes: ''
         };
@@ -26,6 +26,10 @@
 
         function activate () {
             vm.newFriend = emptyFriend;
+
+            $scope.$watch('newFriend', function(newFriend){
+                console.log('newFriend', vm.newFriend);
+            });
         } 
 
         function addCode () {
@@ -42,7 +46,8 @@
         } 
 
         function save () {
-            FriendsFactory.createFriend(vm.newFriend);
+            console.log(vm.newFriend)
+            FriendsFactory.create(vm.newFriend);
             $ionicHistory.goBack();
         } 
 

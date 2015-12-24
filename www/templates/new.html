@@ -22,24 +22,24 @@
       <form novalidate name="vm.newForm">
         <div class="form-control">
           <i class="open-icon icon-name" ng-class="!vm.newFriend.name ? 'untouched' : ''"></i>
-          <input 
-          type="text" 
-          name="username" 
-          id="username" 
-          placeholder="Name"
-          required
-          ng-model="vm.newFriend.name">            
+          <input
+           type="text" 
+           name="username" 
+           id="username" 
+           placeholder="Name"
+           required
+           ng-model="vm.newFriend.name">            
         </div>
-        <address-input></address-input>    
+        <address-input ng-model="vm.newFriend.location" user-location="vm.newFriend.location"></address-input>    
         <div class="form-control" ng-repeat="code in vm.newFriend.codes track by $index">
           <i class="open-icon icon-code" ng-class="!code.label ? 'untouched' : ''"></i>
           <input 
-          type="text" 
-          name="code" 
-          id="code" 
-          placeholder="Code"
-          required
-          ng-model="code.label">
+           type="text" 
+           name="code" 
+           id="code" 
+           placeholder="Code"
+           required
+           ng-model="code.label">
           <button type="button ng-cloak" ng-show="code.label && !$last" ng-click="vm.removeCode($index)">
             <i class="open-icon icon-minus"></i>
           </button>          

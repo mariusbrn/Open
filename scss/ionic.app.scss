@@ -39,7 +39,7 @@ $RobotoDraftFontVersion: "1.0.0";
 
 @import "../www/lib/robotodraft/sass/robotodraft.scss";
 
-$PrimaryFont: "Montserrat";
+$PrimaryFont: 'RobotoDraft';
 
 .bar.bar-balanced {
  	background-color: $balanced;
@@ -87,6 +87,7 @@ $PrimaryFont: "Montserrat";
 
 
 @import './icons/_open-icons';
+@import './components/_address-input';
 @import './splash/_splash';
 @import './tabs/_tabs';
 @import './friend/_list';

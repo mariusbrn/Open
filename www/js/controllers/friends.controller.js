@@ -67,7 +67,9 @@
             ionicMaterialInk.displayEffect();
 
             vm.friends = FriendsFactory.friends;
-            vm.friends.forEach(function(f) { f.icon = 'img/flo.png';});
+
+            FriendsFactory.calculateDistance(locationFactory.currentPosition.coords);
+           // vm.friends.forEach(function(f) { f.icon = 'img/flo.png';});
 
             $rootScope.$on('$stateChangeStart', 
                 function(event, toState, toParams, fromState, fromParams){ 

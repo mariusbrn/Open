@@ -28,27 +28,27 @@
         function getCurrentPosition(timeout) { 
             var deferred = $q.defer();
 
-            // deviceReady.then(function(){
-            //     navigator.geolocation.getCurrentPosition(function(position){
-            //         this.currentPosition = position;
-            //         deferred.resolve(position);
-            //     }.bind(this), function(error){
-            //         deferred.reject(error);
-            //     },
-            //     { maximumAge: 3000, timeout: timeout, enableHighAccuracy: true }); 
-            // }.bind(service)); 
+            deviceReady.then(function(){
+                navigator.geolocation.getCurrentPosition(function(position){
+                    this.currentPosition = position;
+                    deferred.resolve(position);
+                }.bind(this), function(error){
+                    deferred.reject(error);
+                },
+                { maximumAge: 3000, timeout: timeout, enableHighAccuracy: true }); 
+            }.bind(service)); 
             
-            $timeout(function () {
-              var position = {coords: {latitude: 48.8813872, longitude: 2.3414853}};
-              service.currentPosition = position;
-              deferred.resolve(position);
-            }, 3000);
+            // $timeout(function () {
+            //   var position = {coords: {latitude: 48.8813872, longitude: 2.3414853}};
+            //   service.currentPosition = position;
+            //   deferred.resolve(position);
+            // }, 3000);
 
             return deferred.promise;  
         }
 
         function distanceBetween(loc1, loc2){
-          var distance = distVincenty(loc1.latitude, loc1.longitude, loc2.latitude, loc2.longitude);
+          var distance = distVincenty(loc1.lat, loc1.lng, loc2.latitude, loc2.longitude);
 
           return distance;
         }
@@ -69,6 +69,11 @@
          */
         
         function distVincenty(lat1, lon1, lat2, lon2) {
+          lat1 = Number(lat1);
+          lon1 = Number(lon1);
+          lat2 = Number(lat2);
+          lon2 = Number(lon2);
+
           var a = 6378137,
               b = 6356752.314245,
               f = 1 / 298.257223563; // WGS-84 ellipsoid params
