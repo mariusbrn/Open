@@ -11,9 +11,9 @@
         .module('Open.services')
         .factory('locationFactory', locationFactory);
 
-    locationFactory.$inject = ['$document', '$window', '$q', 'deviceReady'];
+    locationFactory.$inject = ['$document', '$window', '$q', '$timeout', 'deviceReady'];
     /* @ngInject */
-    function locationFactory($document, $window, $q, deviceReady) {
+    function locationFactory($document, $window, $q, $timeout, deviceReady) {
         var service = {
             currentPosition: null,
             getCurrentPosition: getCurrentPosition,
@@ -28,15 +28,21 @@
         function getCurrentPosition(timeout) { 
             var deferred = $q.defer();
 
-            deviceReady.then(function(){
-                navigator.geolocation.getCurrentPosition(function(position){
-                    this.currentPosition = position;
-                    deferred.resolve(position);
-                }.bind(this), function(error){
-                    deferred.reject(error);
-                },
-                { maximumAge: 3000, timeout: timeout, enableHighAccuracy: true }); 
-            }.bind(service)); 
+            // deviceReady.then(function(){
+            //     navigator.geolocation.getCurrentPosition(function(position){
+            //         this.currentPosition = position;
+            //         deferred.resolve(position);
+            //     }.bind(this), function(error){
+            //         deferred.reject(error);
+            //     },
+            //     { maximumAge: 3000, timeout: timeout, enableHighAccuracy: true }); 
+            // }.bind(service)); 
+            
+            $timeout(function () {
+              var position = {coords: {latitude: 48.8813872, longitude: 2.3414853}};
+              service.currentPosition = position;
+              deferred.resolve(position);
+            }, 3000);
 
             return deferred.promise;  
         }

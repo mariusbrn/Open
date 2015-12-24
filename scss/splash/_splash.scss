@@ -2,7 +2,6 @@
 /***************
     LOAD VIEW
 ****************/
-
 @include keyframes(fade) {
   0% { @include opacity(100);}
   100% { @include opacity(0); } 
@@ -45,8 +44,7 @@
 }
 
 .load-view.anim {
-  h1,
-  .dancing-dots {
+  h1 {
     @include animation-name(fade);
     @include animation-duration(2000ms);
     @include opacity(0); 

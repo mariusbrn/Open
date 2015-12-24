@@ -14,45 +14,52 @@
 }
 
 .friend-list {
+  .list {
+    padding: 0 5px;
+  }
   .friend-item {
     font-family: $PrimaryFont;
     font-weight: 700;
-    border: medium none;
-    border-bottom: 1px solid #ededed;
-    padding-bottom: 5px;
-    min-height: 48px;
+    border-top: medium none;
+    border-left: 1px solid rgba($stable, 0.5);
+    border-right: 1px solid rgba($stable, 0.5);
+    border-bottom: 2px solid rgba($stable, 0.5);
+    padding: 10px 0 5px;
+    min-height: 120px;
     text-align: left;
     position: relative;
+    margin: 5px 0 10px;
 
     h2 {
       margin-top: 8px;
-      margin-bottom: 14px;
+    } 
+
+    h3 {
       font-size: 18px;
+      margin-top: 0;
     }
 
-    h2, h3 {
+    h2, h3, {
       color: #000;
-      font-weight: 700;
       font-family: $PrimaryFont; 
+      margin-bottom: 8px;
     }
 
     h2, h3, p {
-      margin-left: 95px;
+      margin-left: 105px;
     }
 
     img:first-child {
         position: absolute;
         border-radius: 50%;
         left: 16px;
-        max-height: 40px;
-        max-width: 40px;
+        max-height: 65px;
+        max-width: 65px;
         @include box-shadow(2px 2px 2px 0px rgba( #999, .3 ))
     }    
 
     .distance {
-      position: absolute;
-      top: 26px;
-      right: 30px;
+      margin-bottom: 0;
       font-size: 11px;
       color: $stable;
     }
@@ -63,11 +70,10 @@
     }
 
     .icon-location {
-      position: absolute;    
-      top: 22px;
-      right: 8px;
+      font-size: 18px;
+      position: relative;
+      bottom: -4px;
     }
-
     
     .more-bloc {
       text-align: center;

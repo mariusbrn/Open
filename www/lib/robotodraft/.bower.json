@@ -20,6 +20,5 @@
   },
   "_source": "git://github.com/raibutera/robotodraft.git",
   "_target": "~1.1.0",
-  "_originalSource": "robotodraft",
-  "_direct": true
+  "_originalSource": "robotodraft"
 }

@@ -1,11 +1,11 @@
-.new-view {
+.new-view  {
 	// height: 100%;
 	background-color: $calm;
 
 	.avatar-logo {	
 		color: $light;
 		text-align: center;
-		margin-top: 20px;
+		padding-top: 20px;
 
 		.icon-avatar {
 			font-size: 90px;
@@ -51,6 +51,10 @@
   			border: none;
   			background: none;
   			color: $light;
+
+			i {
+				margin: 0;
+			}
   		}
 
 		input, textarea {		
