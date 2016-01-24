@@ -16,28 +16,28 @@
             init: init
         };
 
-        return service;
-
-        // ====================================
-
         var appConfig = {
           radius: 50,
           radiusEnabled: true
         };
 
+        return service;
+
+        // ====================================
+
         function setInStorage(config) {
             $localstorage.setObject( 'config', config);           
-        };
+        }
 
         function getFromStorage() {
           var config = $localstorage.getObject( 'config' );
 
           return config;
-        };
+        }
 
         function get() {
           return appConfig;
-        };
+        }
 
         function set(config) {
             if( config !== null && config !== undefined) {

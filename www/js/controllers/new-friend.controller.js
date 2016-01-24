@@ -26,10 +26,6 @@
 
         function activate () {
             vm.newFriend = emptyFriend;
-
-            $scope.$watch('newFriend', function(newFriend){
-                console.log('newFriend', vm.newFriend);
-            });
         } 
 
         function addCode () {
@@ -46,7 +42,6 @@
         } 
 
         function save () {
-            console.log(vm.newFriend)
             FriendsFactory.create(vm.newFriend);
             $ionicHistory.goBack();
         } 

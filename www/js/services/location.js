@@ -49,7 +49,7 @@
 
         function distanceBetween(loc1, loc2){
           var distance = distVincenty(loc1.lat, loc1.lng, loc2.latitude, loc2.longitude);
-
+console.log(distance, loc1, loc2)
           return distance;
         }
 

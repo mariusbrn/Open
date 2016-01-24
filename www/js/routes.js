@@ -20,12 +20,12 @@
 		})
 		.state('friends', {
 			url: '/friends',
-			resolve: {
-			    location:
-			      function(locationFactory) {
-			        return locationFactory.getCurrentPosition(20000);
-			      }
-		    },
+			// resolve: {
+			//     location:
+			//       function(locationFactory) {
+			//         return locationFactory.getCurrentPosition(20000);
+			//       }
+		 //    },
 		 	templateUrl: 'templates/friends.html',
 		 	controller: 'FriendsController as vm'
 		})

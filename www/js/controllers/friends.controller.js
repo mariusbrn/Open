@@ -10,6 +10,7 @@
         '$rootScope', 
         '$state', 
         '$timeout',
+        '$ionicListDelegate',
         '_',
         'ionicMaterialInk',
         'ionicMaterialMotion',
@@ -23,6 +24,7 @@
         $rootScope,
         $state,
         $timeout,
+        $ionicListDelegate,
         _,
         ionicMaterialInk,
         ionicMaterialMotion,
@@ -37,6 +39,9 @@
         vm.predicate = 'distance';
         vm.friends = [];
         vm.showMap = showMap;
+        vm.reload  = reload;
+        vm.edit    = editFriend;
+        vm.delete  = deleteFriend;
         vm.myMarker = {
             coords: {},
             id: "me"
@@ -53,23 +58,27 @@
         activate();
 
         function activate() {
-            if(locationFactory.currentPosition === null) 
-                return $state.go('search'); 
+            // if(locationFactory.currentPosition === null) 
+            //     return $state.go('search'); 
             
             $scope.$parent.dragContent = false;
 
-            //Set Motion
-            $timeout(function () {
-              //if(!_.isEmpty(vm.friends)) ionicMaterialMotion.fadeSlideInRight();
-            }, 400);
 
             // Set Ink
             ionicMaterialInk.displayEffect();
 
+            //FriendsFactory.clear();
             vm.friends = FriendsFactory.friends;
+            console.log("FRIENDS",vm.friends)
+            //             //Set Motion
+            // $timeout(function () {
+            //   if(!_.isEmpty(vm.friends)) ionicMaterialMotion.fadeSlideInRight();
+            // }, 400);
 
-            FriendsFactory.calculateDistance(locationFactory.currentPosition.coords);
-           // vm.friends.forEach(function(f) { f.icon = 'img/flo.png';});
+            $scope.$on('$ionicView.enter', function(e) {
+                console.log(locationFactory.currentPosition.coords)
+                FriendsFactory.calculateDistance(locationFactory.currentPosition.coords);           
+            });        
 
             $rootScope.$on('$stateChangeStart', 
                 function(event, toState, toParams, fromState, fromParams){ 
@@ -81,6 +90,8 @@
                             vm.predicate = 'name';
                             break;
                     }
+
+                    console.log(vm.predicate)
             });
 
             // uiGmapGoogleMapApi.then(function(maps) { 
@@ -98,6 +109,17 @@
             // }                                     
         } 
 
+        function reload() {
+            locationFactory.getCurrentPosition(20000).then( function(position){
+                console.log('reloaded');
+                FriendsFactory.calculateDistance(locationFactory.currentPosition.coords);
+            }, function (msg) {
+                vm.error = msg;
+            })
+            .finally(function () {
+                $scope.$broadcast('scroll.refreshComplete');
+            });
+        }
 
         function showMap() {
 
@@ -110,6 +132,14 @@
             //   controlGmap.setCenter(new mapAPI.LatLng(myLocation.coords.latitude, myLocation.coords.longitude));   
             // },400);  
 
-        }            
+        }
+
+        function deleteFriend (friend) {
+            FriendsFactory.delete(friend);
+        }  
+
+        function editFriend (friend) {
+
+        }          
     }
 })();

@@ -4109,7 +4109,8 @@ body,
   color: #000;
   word-wrap: break-word;
   font-size: 14px;
-  font-family: "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
+  font-family: -apple-system;
+  font-family: "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
   line-height: 20px;
   text-rendering: optimizeLegibility;
   -webkit-backface-visibility: hidden;
@@ -4293,10 +4294,17 @@ ion-infinite-scroll:not(.active) .icon:before {
   left: 0;
   position: absolute;
 }
+.overflow-scroll.pane {
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
 .overflow-scroll .scroll {
   position: static;
   height: 100%;
   -webkit-transform: translate3d(0, 0, 0);
+}
+.overflow-scroll.keyboard-up:not(.keyboard-up-confirm) {
+  overflow: hidden;
 }
 
 /* If you change these, change platform.scss as well */
@@ -4410,7 +4418,7 @@ h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   color: #000;
   font-weight: 500;
-  font-family: "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
+  font-family: "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
   line-height: 1.2;
 }
 h1 small, h2 small, h3 small, h4 small, h5 small, h6 small,
@@ -6176,7 +6184,7 @@ ion-tabs.tabs-color-active-dark .tab-item.tab-item-active, ion-tabs.tabs-color-a
   white-space: nowrap;
   font-weight: 400;
   font-size: 14px;
-  font-family: "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
+  font-family: "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
   opacity: 0.7;
 }
 .tab-item:hover {
@@ -6377,6 +6385,13 @@ ion-tabs.tabs-color-active-dark .tab-item.tab-item-active, ion-tabs.tabs-color-a
 .menu-open .menu-content .pane,
 .menu-open .menu-content .scroll-content {
   pointer-events: none;
+}
+
+.menu-open .menu-content .scroll-content .scroll {
+  pointer-events: none;
+}
+
+.menu-open .menu-content .scroll-content:not(.overflow-scroll) {
   overflow: hidden;
 }
 
@@ -8972,7 +8987,7 @@ input,
 button,
 select,
 textarea {
-  font-family: "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
+  font-family: "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
 }
 
 .item-input {
@@ -11763,6 +11778,42 @@ a.button .icon:before, a.button.icon:before, a.button.icon-left:before, a.button
   content: '\004E';
 }
 
+@font-face {
+  font-family: 'lato';
+  src: url("../fonts/Lato-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'lato';
+  src: url("../fonts/Lato-Italic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'lato';
+  src: url("../fonts/Lato-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'lato';
+  src: url("../fonts/Lato-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'montserrat';
+  src: url("../fonts/Montserrat-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'montserrat';
+  src: url("../fonts/Montserrat-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
 .address-input input[readonly] {
   background-color: transparent;
   cursor: text;
@@ -11874,7 +11925,7 @@ a.button .icon:before, a.button.icon:before, a.button.icon-left:before, a.button
 }
 .ion-google-place-container .locations-list .location-bloc {
   background-color: #27be51;
-  font-family: "RobotoDraft";
+  font-family: "lato";
   font-size: 16px;
   margin: 4px 0;
   padding-left: 40px;
@@ -11991,7 +12042,7 @@ a.button .icon:before, a.button.icon:before, a.button.icon-left:before, a.button
 .load-view .row {
   height: 100%;
   text-align: center;
-  font-family: "RobotoDraft";
+  font-family: "lato";
   color: #fff;
 }
 .load-view .row > div {
@@ -12081,7 +12132,7 @@ a.button .icon:before, a.button.icon:before, a.button.icon-left:before, a.button
 }
 
 .tab-item {
-  font-family: "RobotoDraft";
+  font-family: "lato";
   padding-top: 10px;
 }
 .tab-item span {
@@ -12135,38 +12186,50 @@ a.button .icon:before, a.button.icon:before, a.button.icon-left:before, a.button
   animation-duration: 500ms;
 }
 
-.friend-list .list {
-  padding: 0 5px;
-}
-.friend-list .friend-item {
-  font-family: "RobotoDraft";
+.friend-list .list .friend-item {
+  font-family: "lato";
   font-weight: 700;
   border-top: medium none;
-  border-left: 1px solid rgba(110, 110, 110, 0.5);
-  border-right: 1px solid rgba(110, 110, 110, 0.5);
-  border-bottom: 2px solid rgba(110, 110, 110, 0.5);
-  padding: 10px 0 5px;
+  border-bottom: 1px solid rgba(110, 110, 110, 0.5);
+  margin-bottom: 1px;
   min-height: 120px;
   text-align: left;
   position: relative;
-  margin: 5px 0 10px;
 }
-.friend-list .friend-item h2 {
+.friend-list .list .friend-item .item-content {
+  padding: 10px 0 5px;
+  background-color: #fff;
+}
+.friend-list .list .friend-item .item-content.activated {
+  border-color: transparent;
+  background-color: #fff;
+}
+.friend-list .list .friend-item .item-content.activated.item-complex {
+  border: none;
+}
+.friend-list .list .friend-item .item-content h2 {
   margin-top: 8px;
+  font-size: 42px;
+  font-weight: 900;
 }
-.friend-list .friend-item h3 {
+.friend-list .list .friend-item .item-content h2 span {
+  font-family: 'Helvetica';
+  font-size: 30px;
+  margin: 0 4px;
+}
+.friend-list .list .friend-item .item-content h3 {
   font-size: 18px;
   margin-top: 0;
 }
-.friend-list .friend-item h2, .friend-list .friend-item h3 {
+.friend-list .list .friend-item .item-content h2, .friend-list .list .friend-item .item-content h3 {
   color: #000;
-  font-family: "RobotoDraft";
+  font-family: "lato";
   margin-bottom: 8px;
 }
-.friend-list .friend-item h2, .friend-list .friend-item h3, .friend-list .friend-item p {
+.friend-list .list .friend-item .item-content h2, .friend-list .list .friend-item .item-content h3, .friend-list .list .friend-item .item-content p {
   margin-left: 105px;
 }
-.friend-list .friend-item img:first-child {
+.friend-list .list .friend-item .item-content .friend-img {
   position: absolute;
   border-radius: 50%;
   left: 16px;
@@ -12175,34 +12238,46 @@ a.button .icon:before, a.button.icon:before, a.button.icon-left:before, a.button
   -webkit-box-shadow: 2px 2px 2px 0px rgba(153, 153, 153, 0.3);
   box-shadow: 2px 2px 2px 0px rgba(153, 153, 153, 0.3);
 }
-.friend-list .friend-item .distance {
+.friend-list .list .friend-item .item-content .distance {
   margin-bottom: 0;
   font-size: 11px;
   color: #6e6e6e;
 }
-.friend-list .friend-item .open-icon {
+.friend-list .list .friend-item .item-content .open-icon {
   font-size: 22px;
   color: #6e6e6e;
 }
-.friend-list .friend-item .icon-location {
+.friend-list .list .friend-item .item-content .icon-location {
   font-size: 18px;
   position: relative;
   bottom: -4px;
 }
-.friend-list .friend-item .more-bloc {
+.friend-list .list .friend-item .item-content .more-bloc {
   text-align: center;
 }
-.friend-list .friend-item .more-bloc p {
+.friend-list .list .friend-item .item-content .more-bloc p {
   color: #6e6e6e;
   text-align: left;
 }
-.friend-list .friend-item .more-bloc .icon-more,
-.friend-list .friend-item .more-bloc .icon-less {
+.friend-list .list .friend-item .item-content .more-bloc .icon-more,
+.friend-list .list .friend-item .item-content .more-bloc .icon-less {
   color: #31e461;
   font-size: 22px;
   position: relative;
   margin: auto;
   width: 30px;
+}
+.friend-list .list .friend-item .item-options .button-edit {
+  background-color: #EBEF26;
+  color: #fff;
+  font-family: 'montserrat';
+  font-size: 20px;
+}
+.friend-list .list .friend-item .item-options .button-delete {
+  background-color: #F70A0A;
+  color: #fff;
+  font-family: 'montserrat';
+  font-size: 20px;
 }
 
 .animate-show {
@@ -12327,4 +12402,7 @@ a.button .icon:before, a.button.icon:before, a.button.icon-left:before, a.button
 .new-view .form-control textarea {
   resize: none;
   vertical-align: middle;
+}
+.new-view .code-list input {
+  text-transform: uppercase;
 }

@@ -83,7 +83,10 @@
                     scope.selectLocation = function(location){
                         var infos = {
                             formatted_address: location.formatted_address,
-                            coords: location.geometry.location
+                            coords: { 
+                                lat:location.geometry.location.lat(),
+                                lng:location.geometry.location.lng()
+                            }
                         };
 
                         ngModel.$setViewValue(infos);

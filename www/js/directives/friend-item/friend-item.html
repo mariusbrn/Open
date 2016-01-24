@@ -1,10 +1,18 @@
-<div class="friend-item" ng-click="more = !more">
-	<img ng-src="img/default-user.png">
+<ion-item class="friend-item" ng-click="more = !more">
+    <!-- <ion-delete-button class="ion-minus-circled" ng-click="delete(friend)"></ion-delete-button>	 -->
+	<img class="friend-img" ng-src="img/default-user.png">
 	<h3>{{friend.name}}</h3>
 	<p class="distance"><i class="open-icon icon-location"></i> {{friend.distance | distance}}</p>
-	<h2>{{friend.codes[0].label | digicode}}</h2>
+	<h2 ng-bind-html="friend.codes[0].label | digicode"></h2>
 	<div class="more-bloc" ng-if="friend.comments">
 		<p ng-show="more" class="animate-show">{{friend.comments}}</p>
 		<i class="open-icon" ng-show="friend.comments" ng-class="(more) ? 'icon-less' : 'icon-more'"></i>
 	</div>
-</div>
+    <ion-option-button class="button-edit" ng-click="$parent.vm.edit(friend)">
+      EDIT
+    </ion-option-button>
+    <ion-option-button class="button-delete" ng-click="$parent.vm.delete(friend)">
+      DELETE
+    </ion-option-button>    
+    {{$parent.vm.delete}}
+</ion-item>

@@ -2,14 +2,18 @@
     'use strict';
 
     angular.module('Open.filters', [])
+     .filter('digicode', DigicodeFilter)
+     .filter('distance', DistanceFilter);
 
-    .filter('digicode', function() {
-      return function(input) {
-        return input.toUpperCase().split('').join('.');
+    DigicodeFilter.$inject = ['$sce'];
+    /* @ngInject */
+    function DigicodeFilter ($sce) {
+      return function(input) {    
+        return $sce.trustAsHtml(input.toUpperCase().split('').join('<span>.</span>'));
       };
-    })
+    }
 
-    .filter('distance', function() {
+    function DistanceFilter () {
       return function(input) {
         if(angular.isNumber(input)) {
             if(input < 100) {
@@ -21,6 +25,6 @@
             return input;
         }
       };
-    });
+    }
 
 })();

@@ -4,17 +4,24 @@
     </ion-nav-title>
     <ion-header-bar class="bar bar-subheader">
         <div class="tabs tabs-calm static">
-          <a class="tab-item" ui-sref-active="active" ui-sref="friends.nearby"><span>NearBy</span></a>
-          <a class="tab-item" ui-sref-active="active" ui-sref="friends.byname"><span>By Name</span></a>
-          <a class="tab-item" ui-sref-active="active" ui-sref="friends.map"><span>Map</span></a>
+          <a class="tab-item" ui-sref-active="active" ui-sref="friends.nearby"><span>NEARBY</span></a>
+          <a class="tab-item" ui-sref-active="active" ui-sref="friends.byname"><span>BY NAME</span></a>
+          <a class="tab-item" ui-sref-active="active" ui-sref="friends.map"><span>MAP</span></a>
         </div>
     </ion-header-bar>
     <ion-content padding="false" scroll="true" has-bouncing="false">
-      <div ng-show="vm.$state.includes('friends.nearby') || vm.$state.includes('friends.byname')">  
-        <ion-list class="friend-list animate-fade-slide-in-right">
-          <friend-item friend="friend" ng-repeat="friend in vm.friends track by friend.id | orderBy:vm.predicate"></friend-item>
+      <ion-refresher
+        pulling-text="Pull to refresh..."
+        on-refresh="vm.reload()">
+      </ion-refresher>      
+      <!-- <div ng-show="vm.$state.includes('friends.nearby') || vm.$state.includes('friends.byname')">   -->
+        <ion-list 
+          class="friend-list" 
+          show-reorder="false"          
+          can-swipe="true">
+          <friend-item friend="friend" ng-repeat="friend in vm.friends | orderBy:vm.predicate track by $index"></friend-item>
         </ion-list>
-      </div>
+      <!-- </div> -->
 <!-- 
       <div id="friendMap" data-tap-disabled="true">
         <ui-gmap-google-map ng-cloak ng-show="vm.predicate === 'map'" center='vm.map.center' zoom='vm.map.zoom' options='vm.map.options' control='vm.map.control'>

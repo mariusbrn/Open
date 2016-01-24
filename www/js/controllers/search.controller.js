@@ -5,9 +5,9 @@
         .module('Open.controllers')
         .controller('SearchController', SearchController);
 
-    SearchController.$inject = ['$scope', '$state', '$timeout', 'locationFactory', 'FriendsFactory', 'SettingsFactory'];
+    SearchController.$inject = ['$scope', '$state', '$timeout', 'locationFactory', 'SettingsFactory'];
     /* @ngInject */
-    function SearchController($scope, $state, $timeout, locationFactory, FriendsFactory, SettingsFactory) {
+    function SearchController($scope, $state, $timeout, locationFactory, SettingsFactory) {
         var vm = this;
 
         vm.radius = 50;
@@ -28,8 +28,7 @@
                     $timeout(function(){
                         console.log("gogo");
                         $state.go('friends.nearby', null, {location: 'replace'}); 
-                    },1200);  
-
+                    }, 1200);
                 }, function (msg) {
                     vm.error = msg;
                 });

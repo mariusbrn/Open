@@ -31,7 +31,7 @@
            ng-model="vm.newFriend.name">            
         </div>
         <address-input ng-model="vm.newFriend.location" user-location="vm.newFriend.location"></address-input>    
-        <div class="form-control" ng-repeat="code in vm.newFriend.codes track by $index">
+        <div class="form-control code-list" ng-repeat="code in vm.newFriend.codes track by $index">
           <i class="open-icon icon-code" ng-class="!code.label ? 'untouched' : ''"></i>
           <input 
            type="text" 

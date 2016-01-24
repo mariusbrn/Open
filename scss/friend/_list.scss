@@ -13,84 +13,113 @@
   @include animation-duration(500ms);
 }
 
-.friend-list {
-  .list {
-    padding: 0 5px;
-  }
+.friend-list .list {
   .friend-item {
     font-family: $PrimaryFont;
     font-weight: 700;
     border-top: medium none;
-    border-left: 1px solid rgba($stable, 0.5);
-    border-right: 1px solid rgba($stable, 0.5);
-    border-bottom: 2px solid rgba($stable, 0.5);
-    padding: 10px 0 5px;
+    border-bottom: 1px solid rgba($stable, 0.5);
+    margin-bottom: 1px;
     min-height: 120px;
     text-align: left;
     position: relative;
-    margin: 5px 0 10px;
 
-    h2 {
-      margin-top: 8px;
-    } 
+    .item-content {
+      padding: 10px 0 5px;
+      background-color: $light;
 
-    h3 {
-      font-size: 18px;
-      margin-top: 0;
-    }
+      &.activated {
+        border-color: transparent;
+        background-color: $light;
 
-    h2, h3, {
-      color: #000;
-      font-family: $PrimaryFont; 
-      margin-bottom: 8px;
-    }
+        &.item-complex {
+          border: none;
+        }
+      }
 
-    h2, h3, p {
-      margin-left: 105px;
-    }
+      h2 {
+        margin-top: 8px;
+        font-size: 42px;
+        font-weight: 900;
 
-    img:first-child {
+        span {
+          font-family: 'Helvetica';
+          font-size: 30px;
+          margin: 0 4px;
+        }
+      } 
+
+      h3 {
+        font-size: 18px;
+        margin-top: 0;
+      }
+
+      h2, h3, {
+        color: #000;
+        font-family: $PrimaryFont; 
+        margin-bottom: 8px;
+      }
+
+      h2, h3, p {
+        margin-left: 105px;
+      }
+
+      .friend-img {
         position: absolute;
         border-radius: 50%;
         left: 16px;
         max-height: 65px;
         max-width: 65px;
         @include box-shadow(2px 2px 2px 0px rgba( #999, .3 ))
-    }    
+      }    
 
-    .distance {
-      margin-bottom: 0;
-      font-size: 11px;
-      color: $stable;
-    }
-
-    .open-icon {
-        font-size: 22px; 
+      .distance {
+        margin-bottom: 0;
+        font-size: 11px;
         color: $stable;
-    }
-
-    .icon-location {
-      font-size: 18px;
-      position: relative;
-      bottom: -4px;
-    }
-    
-    .more-bloc {
-      text-align: center;
-      p {
-        color: $stable;
-        text-align: left;
       }
-      .icon-more,
-      .icon-less {
-        color: $balanced;
-        font-size: 22px;
+
+      .open-icon {
+          font-size: 22px; 
+          color: $stable;
+      }
+
+      .icon-location {
+        font-size: 18px;
         position: relative;
-        margin: auto;
-        width: 30px; 
-      }      
+        bottom: -4px;
+      }
+      
+      .more-bloc {
+        text-align: center;
+        p {
+          color: $stable;
+          text-align: left;
+        }
+        .icon-more,
+        .icon-less {
+          color: $balanced;
+          font-size: 22px;
+          position: relative;
+          margin: auto;
+          width: 30px; 
+        }      
+      }
     }
-    
+
+    .item-options .button-edit {
+      background-color: #EBEF26;
+      color: $light;
+      font-family: 'montserrat';
+      font-size: 20px;
+    }
+
+    .item-options .button-delete {
+      background-color: #F70A0A;
+      color: $light;
+      font-family: 'montserrat';
+      font-size: 20px;
+    }    
   }
 }
 
