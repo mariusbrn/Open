@@ -42,16 +42,16 @@
 			url: '/map'
 		})
 
-		.state('single', {
-			url: '/friend/:friendId',
-			templateUrl: 'templates/friend.html',
+		.state('edit', {
+			url: '/friend/:id',
+			templateUrl: 'templates/new.html',
 			controller: 'FriendController as vm'
 		})
 
 		.state('new', {
 			url: '/new',
 			templateUrl: 'templates/new.html',
-			controller: 'NewFriendController as vm'
+			controller: 'FriendController as vm'
 		});		
 		// if none of the above states are matched, use this as the fallback
 		$urlRouterProvider.otherwise('/search');

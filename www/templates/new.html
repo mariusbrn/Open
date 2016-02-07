@@ -6,7 +6,7 @@
       </button>     
     </ion-nav-buttons>
     <ion-nav-title>
-      NEW CONTACT
+      {{ vm.title }}
     </ion-nav-title>
     <ion-nav-buttons side="right">
       <button class="button button-icon button-clear" ng-show="vm.isFormValid()" ng-click="vm.save()">
@@ -54,7 +54,7 @@
           id="moreinfo" 
           rows="2" 
           placeholder="Note anything you need to remember: floor, stairs.."
-          ng-model="vm.user.notes"></textarea>            
+          ng-model="vm.newFriend.notes"></textarea>            
         </div>
       </form>    
     </ion-content>

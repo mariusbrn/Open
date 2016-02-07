@@ -11,9 +11,9 @@
         .module('Open.services')
         .factory('locationFactory', locationFactory);
 
-    locationFactory.$inject = ['$document', '$window', '$q', '$timeout', 'deviceReady'];
+    locationFactory.$inject = ['$document', '$window', '$q', '$timeout', '$ionicPlatform'];
     /* @ngInject */
-    function locationFactory($document, $window, $q, $timeout, deviceReady) {
+    function locationFactory($document, $window, $q, $timeout, $ionicPlatform) {
         var service = {
             currentPosition: null,
             getCurrentPosition: getCurrentPosition,
@@ -28,7 +28,7 @@
         function getCurrentPosition(timeout) { 
             var deferred = $q.defer();
 
-            deviceReady.then(function(){
+            $ionicPlatform.ready(function(){
                 navigator.geolocation.getCurrentPosition(function(position){
                     this.currentPosition = position;
                     deferred.resolve(position);

@@ -13,6 +13,8 @@
             load: loadFriends,
             save: saveFriends,
             create: createFriend,
+            get: getFriend,
+            update: updateFriend,
             clear: clearFriends,
             delete: deleteFriend,
             calculateDistance: calculateDistance,
@@ -26,8 +28,6 @@
         function loadFriends() {
           var storageFriends = $localstorage.getObject('friends');
           service.friends = (_.isEmpty(storageFriends)) ? [] : storageFriends;
-
-          console.log(service.friends)
         }
 
         function saveFriends() {
@@ -36,6 +36,12 @@
 
         function getFriend(id) {
           return _.where(service.friends, { 'id': parseInt(id) })[0];
+        }
+
+        function updateFriend(friend) {
+          var oldFriend = _.where(service.friends, { 'id': parseInt(friend.id) })[0];
+          _.assign(oldFriend, _.omit(friend, 'id'));
+          service.save();
         }
 
         function createFriend(friend) {

@@ -135,11 +135,13 @@
         }
 
         function deleteFriend (friend) {
+            $ionicListDelegate.closeOptionButtons();
             FriendsFactory.delete(friend);
         }  
 
         function editFriend (friend) {
-
+            $ionicListDelegate.closeOptionButtons();
+            $state.go('edit', {id: friend.id}, {location: 'replace'}); 
         }          
     }
 })();

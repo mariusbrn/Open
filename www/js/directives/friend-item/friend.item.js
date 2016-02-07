@@ -9,10 +9,15 @@
     function friendItem() {
         var directive = {
             scope: {
-                'friend' : '='
+                'friend' : '=',
+                'delete' : '=',
+                'edit': '='
             },
             templateUrl: 'js/directives/friend-item/friend-item.html',
             restrict: 'EA',
+            link: function (scope) {
+                scope.more = false;
+            }
         };
         return directive;
     }

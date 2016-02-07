@@ -19,7 +19,11 @@
           class="friend-list" 
           show-reorder="false"          
           can-swipe="true">
-          <friend-item friend="friend" ng-repeat="friend in vm.friends | orderBy:vm.predicate track by $index"></friend-item>
+          <friend-item 
+            friend="friend" 
+            delete="vm.delete" 
+            edit="vm.edit" 
+            ng-repeat="friend in vm.friends | orderBy:vm.predicate track by $index"></friend-item>
         </ion-list>
       <!-- </div> -->
 <!-- 
