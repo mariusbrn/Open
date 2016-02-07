@@ -64,6 +64,11 @@
         margin-left: 105px;
       }
 
+      p:last-of-type {
+        margin-bottom: 8px;
+        line-height: 16px;
+      }
+
       .friend-img {
         position: absolute;
         border-radius: 50%;
@@ -89,37 +94,35 @@
         position: relative;
         bottom: -4px;
       }
-      
-      .more-bloc {
-        text-align: center;
-        p {
-          color: $stable;
-          text-align: left;
-        }
-        .icon-more,
-        .icon-less {
-          color: $balanced;
-          font-size: 22px;
-          position: relative;
+    }
+
+    .item-options {
+      i {
+        display: block;
+        font-size: 2.3em;
+      }
+
+      .button {
+        color: $light;
+        font-family: 'montserrat';
+        font-size: 20px;
+        min-width: 123px;
+        padding: 15px;
+
+        div {
           margin: auto;
-          width: 30px; 
-        }      
+        }
+      }
+
+      .button-edit {
+        background-color: #EBEF26;
+      }
+
+      .button-delete {
+        background-color: #F70A0A;
+
       }
     }
-
-    .item-options .button-edit {
-      background-color: #EBEF26;
-      color: $light;
-      font-family: 'montserrat';
-      font-size: 20px;
-    }
-
-    .item-options .button-delete {
-      background-color: #F70A0A;
-      color: $light;
-      font-family: 'montserrat';
-      font-size: 20px;
-    }    
   }
 }
 

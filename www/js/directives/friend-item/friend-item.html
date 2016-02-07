@@ -4,12 +4,18 @@
 	<h3>{{friend.name}}</h3>
 	<p class="distance"><i class="open-icon icon-location"></i> {{friend.distance | distance}}</p>
 	<h2 ng-cloak ng-show="$first || more" ng-repeat="code in friend.codes track by code.id" ng-bind-html="code.label | digicode"></h2>
-	<p ng-cloak ng-show="more" class="animate-show">{{friend.location.formatted_address}}</p>
-	<p ng-cloak ng-show="more" class="animate-show">{{friend.notes}}</p>
+	<p ng-cloak ng-if="friend.location.formatted_address" ng-show="more" class="animate-show">{{friend.location.formatted_address}}</p>
+	<p ng-cloak ng-if="friend.notes" ng-show="more" class="animate-show">{{friend.notes}}</p>
     <ion-option-button class="button-edit" ng-click="edit(friend)">
-      EDIT
+		<div>
+			<i class="open-icon icon-edit"></i>
+		 	EDIT    		
+		</div>
     </ion-option-button>
     <ion-option-button class="button-delete" ng-click="delete(friend)">
-      DELETE
+		<div>
+			<i class="open-icon icon-delete"></i>
+	  		DELETE    		
+		</div>
     </ion-option-button>
 </ion-item>

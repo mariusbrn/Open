@@ -11,9 +11,9 @@
         .module('Open.services')
         .factory('locationFactory', locationFactory);
 
-    locationFactory.$inject = ['$document', '$window', '$q', '$timeout', '$ionicPlatform'];
+    locationFactory.$inject = ['$document', '$window', '$q', '$timeout', '$ionicPlatform', '$cordovaGeolocation'];
     /* @ngInject */
-    function locationFactory($document, $window, $q, $timeout, $ionicPlatform) {
+    function locationFactory($document, $window, $q, $timeout, $ionicPlatform, $cordovaGeolocation) {
         var service = {
             currentPosition: null,
             getCurrentPosition: getCurrentPosition,
@@ -27,16 +27,19 @@
 
         function getCurrentPosition(timeout) { 
             var deferred = $q.defer();
+            var options = { 
+              maximumAge: 3000, 
+              timeout: timeout, enableHighAccuracy: true
+            };
 
             $ionicPlatform.ready(function(){
-                navigator.geolocation.getCurrentPosition(function(position){
-                    this.currentPosition = position;
+                $cordovaGeolocation.getCurrentPosition(options).then(function(position){
+                    service.currentPosition = position;
                     deferred.resolve(position);
-                }.bind(this), function(error){
+                }, function(error){
                     deferred.reject(error);
-                },
-                { maximumAge: 3000, timeout: timeout, enableHighAccuracy: true }); 
-            }.bind(service)); 
+                }); 
+            }); 
             
             // $timeout(function () {
             //   var position = {coords: {latitude: 48.8813872, longitude: 2.3414853}};
@@ -47,12 +50,15 @@
             return deferred.promise;  
         }
 
+        /**
+        */
         function distanceBetween(loc1, loc2){
           var distance = distVincenty(loc1.lat, loc1.lng, loc2.latitude, loc2.longitude);
-console.log(distance, loc1, loc2)
           return distance;
         }
 
+        /**
+        */
         function isInBounds(loc1, loc2, radius){
           var distance = distVincenty(loc1.latitude, loc1.longitude, loc2.latitude, loc2.longitude);
 
