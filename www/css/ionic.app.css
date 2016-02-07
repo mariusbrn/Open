@@ -11732,6 +11732,7 @@ a.button .icon:before, a.button.icon:before, a.button.icon-left:before, a.button
 
 .icon-delete:before {
   content: '\0045';
+  transform: rotate(0.5turn);
 }
 
 .icon-edit:before {
@@ -12230,7 +12231,8 @@ a.button .icon:before, a.button.icon:before, a.button.icon-left:before, a.button
   margin-left: 105px;
 }
 .friend-list .list .friend-item .item-content p:last-of-type {
-  margin-bottom: 8px;
+  margin-top: 6px;
+  margin-bottom: 14px;
   line-height: 16px;
 }
 .friend-list .list .friend-item .item-content .friend-img {
@@ -12308,6 +12310,13 @@ a.button .icon:before, a.button.icon:before, a.button.icon-left:before, a.button
   color: #fff;
   text-align: center;
   padding-top: 20px;
+}
+.new-view .avatar-logo .friend-picture {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  -webkit-box-shadow: 2px 2px 2px 0px rgba(153, 153, 153, 0.3);
+  box-shadow: 2px 2px 2px 0px rgba(153, 153, 153, 0.3);
 }
 .new-view .avatar-logo .icon-avatar {
   font-size: 90px;

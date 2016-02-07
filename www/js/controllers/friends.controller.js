@@ -145,63 +145,7 @@
                 };
 
                 $scope.scheduleNotification();
-            });
-
-            // $scope.scheduleMultipleNotifications = function () {
-            //   $cordovaLocalNotification.schedule([
-            //     {
-            //       id: 1,
-            //       title: 'Title 1 here',
-            //       text: 'Text 1 here',
-            //       data: {
-            //         customProperty: 'custom 1 value'
-            //       }
-            //     },
-            //     {
-            //       id: 2,
-            //       title: 'Title 2 here',
-            //       text: 'Text 2 here',
-            //       data: {
-            //         customProperty: 'custom 2 value'
-            //       }
-            //     },
-            //     {
-            //       id: 3,
-            //       title: 'Title 3 here',
-            //       text: 'Text 3 here',
-            //       data: {
-            //         customProperty: 'custom 3 value'
-            //       }
-            //     }
-            //   ]).then(function (result) {
-            //     // ...
-            //   });
-            // };
-
-            // $scope.scheduleDelayedNotification = function () {
-            //   var now = new Date().getTime();
-            //   var _10SecondsFromNow = new Date(now + 10 * 1000);
-
-            //   $cordovaLocalNotification.schedule({
-            //     id: 1,
-            //     title: 'Title here',
-            //     text: 'Text here',
-            //     at: _10SecondsFromNow
-            //   }).then(function (result) {
-            //     // ...
-            //   });
-            // };
-
-            // $scope.scheduleEveryMinuteNotification = function () {
-            //   $cordovaLocalNotification.schedule({
-            //     id: 1,
-            //     title: 'Title here',
-            //     text: 'Text here',
-            //     every: 'minute'
-            //   }).then(function (result) {
-            //     // ...
-            //   });
-            // };                              
+            });                        
         } 
 
         function reload() {

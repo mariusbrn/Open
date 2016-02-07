@@ -7,6 +7,13 @@
 		text-align: center;
 		padding-top: 20px;
 
+		.friend-picture {
+			width: 90px;
+			height: 90px;
+	        border-radius: 50%;
+	        @include box-shadow(2px 2px 2px 0px rgba( #999, .3 ));		
+		}
+
 		.icon-avatar {
 			font-size: 90px;
 		}

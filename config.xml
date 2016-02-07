@@ -17,6 +17,8 @@
   <preference name="SplashScreen" value="screen"/>
   <preference name="SplashScreenDelay" value="3000"/>
   <preference name="orientation" value="portrait"/>
+  <allow-navigation href="content:*" />
+  <allow-navigation href="data:*" />
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>

@@ -21,7 +21,7 @@
 
       SettingsFactory.init();
 
-      FriendsFactory.load();  
+      FriendsFactory.load();
     })
 
     .constant('_', window._);
