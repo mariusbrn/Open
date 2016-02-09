@@ -67,6 +67,10 @@ $SecondaryFont: 'montserrat';
 	top: 114px;
 }
 
+.platform-ios .has-subheader {
+	top: 146px;
+}
+
 @mixin placeholder ($color, $opacity) {
 	&::-webkit-input-placeholder { /* WebKit, Blink, Edge */
 	    color: $color;
