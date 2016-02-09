@@ -27,8 +27,7 @@
             name: '',
             location: {},
             codes: [{id: 1, label: ''}],
-            notes: '',
-            picture: 'https://pbs.twimg.com/profile_images/451007105391022080/iu1f7brY_400x400.png'
+            notes: ''
         };
 
         vm.addCode     = addCode;
@@ -66,10 +65,13 @@
 
             var options = {
                 quality: 50,
-                // targetWidth: 120,
-                // targetHeight: 120,
-                destinationType: Camera.DestinationType.FILE_URI,
+                targetWidth: 180,
+                targetHeight: 180,
+                allowEdit : true,
+                correctOrientation : true,
+                destinationType: Camera.DestinationType.DATA_URL,
                 sourceType: Camera.PictureSourceType.SAVEDPHOTOALBUM,
+                encodingType: Camera.EncodingType.JPEG,
                 mediaType: Camera.MediaType.PICTURE,
                 saveToPhotoAlbum: true
             };
@@ -79,7 +81,7 @@
                     console.log("img URI= " + imageData);        
                     vm.newFriend.picture = imageData;
                 }, function(err) {
-                    alert("Failed because: " + err);
+                    //alert("Failed because: " + err);
                     console.log('Failed because: ' + err);
                 });
             });

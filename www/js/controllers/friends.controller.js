@@ -144,7 +144,7 @@
                   });
                 };
 
-                $scope.scheduleNotification();
+                //$scope.scheduleNotification();
             });                        
         } 
 

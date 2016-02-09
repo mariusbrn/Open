@@ -16,7 +16,7 @@
         
     <ion-content class="new-view" padding="false" scroll="true" has-bouncing="false">
       <div class="avatar-logo" ng-click="vm.getPicture()">
-          <img ng-if="vm.newFriend.picture" class="friend-picture" ng-src="{{vm.newFriend.picture}}">
+          <img ng-if="vm.newFriend.picture" class="friend-picture" ng-src="data:image/jpeg;base64,{{vm.newFriend.picture}}">
           <i ng-if="!vm.newFriend.picture" class="open-icon icon-avatar"></i>
           <h4>EDIT</h4>        
       </div>

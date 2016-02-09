@@ -74,9 +74,10 @@
         position: absolute;
         border-radius: 50%;
         left: 16px;
-        max-height: 65px;
-        max-width: 65px;
-        @include box-shadow(2px 2px 2px 0px rgba( #999, .3 ))
+        height: 65px;
+        width: 65px;
+        @include box-shadow(2px 2px 2px 0px rgba( #999, .3 ));
+        object-fit: cover;
       }    
 
       .distance {

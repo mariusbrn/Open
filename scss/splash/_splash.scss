@@ -71,11 +71,9 @@
 
 /* DANCING DOTS */
 .dancing-dots {
-    position: absolute;
-    bottom: 120px;
     width:156px;    
     left: 50%;
-    margin-left: (-156px / 2);
+    margin: 60px auto 0;
 
     span {
         color: $light;

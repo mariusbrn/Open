@@ -11,7 +11,8 @@
 			width: 90px;
 			height: 90px;
 	        border-radius: 50%;
-	        @include box-shadow(2px 2px 2px 0px rgba( #999, .3 ));		
+	        @include box-shadow(2px 2px 2px 0px rgba( #999, .3 ));
+	        object-fit: cover;
 		}
 
 		.icon-avatar {

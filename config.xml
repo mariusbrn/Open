@@ -2,9 +2,9 @@
 <widget id="com.ionicframework.open800343" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Open</name>
   <description>
-        An Ionic Framework and Cordova project.
-    </description>
-  <author email="marius.baron@gmail.com" href="http://ionicframework.com/">
+    An Ionic Framework and Cordova project.
+  </description>
+  <author email="marius.baron@gmail.com" href="http://getopen.co/">
       Open Team
   </author>
   <content src="index.html"/>
@@ -15,10 +15,12 @@
   <preference name="android-minSdkVersion" value="16"/>
   <preference name="BackupWebStorage" value="none"/>
   <preference name="SplashScreen" value="screen"/>
-  <preference name="SplashScreenDelay" value="3000"/>
+  <preference name="SplashScreenDelay" value="1000"/>
   <preference name="orientation" value="portrait"/>
   <allow-navigation href="content:*" />
   <allow-navigation href="data:*" />
+  <allow-navigation href="https://*.googleapis.com/*"/>
+  <allow-navigation href="https://*.gstatic.com/*"/>
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
