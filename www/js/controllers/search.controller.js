@@ -5,9 +5,9 @@
         .module('Open.controllers')
         .controller('SearchController', SearchController);
 
-    SearchController.$inject = ['$scope', '$state', '$timeout', 'locationFactory', 'SettingsFactory'];
+    SearchController.$inject = ['$scope', '$state', '$timeout', '$ionicHistory', 'locationFactory', 'SettingsFactory'];
     /* @ngInject */
-    function SearchController($scope, $state, $timeout, locationFactory, SettingsFactory) {
+    function SearchController($scope, $state, $timeout, $ionicHistory, locationFactory, SettingsFactory) {
         var vm = this;
 
         vm.radius = 50;
@@ -21,18 +21,23 @@
             vm.radius = config.radius;
             vm.radiusEnabled = config.radiusEnabled;
 
+            $ionicHistory.nextViewOptions({
+              disableBack: true,
+              historyRoot: true
+            });
+
             $scope.$on('$ionicView.enter', function(e) {
                 locationFactory.getCurrentPosition(20000).then( function(position){
                     console.log("location found");
                     vm.loaded = true;
                     $timeout(function(){
                         console.log("gogo");
-                        $state.go('friends.nearby', null, {location: 'replace'}); 
+                        $state.go('friends.nearby', null, {location: 'replace'});
                     }, 1200);
                 }, function (msg) {
                     vm.error = msg;
                 });
             });
-        }      
+        }
     }
 })();

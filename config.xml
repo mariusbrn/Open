@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.ionicframework.open800343" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="co.getopen.open" version="0.4.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Open</name>
   <description>
     An Ionic Framework and Cordova project.
@@ -21,6 +21,7 @@
   <allow-navigation href="data:*" />
   <allow-navigation href="https://*.googleapis.com/*"/>
   <allow-navigation href="https://*.gstatic.com/*"/>
+  <preference name="BackgroundColor" value="0x33cd5f"/>
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>

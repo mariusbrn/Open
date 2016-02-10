@@ -7,8 +7,8 @@
 
     FriendsController.$inject = [
         '$scope',
-        '$rootScope', 
-        '$state', 
+        '$rootScope',
+        '$state',
         '$timeout',
         '$window',
         '$ionicPlatform',
@@ -17,7 +17,7 @@
         '_',
         'ionicMaterialInk',
         'ionicMaterialMotion',
-        'locationFactory', 
+        'locationFactory',
         'FriendsFactory',
         'uiGmapGoogleMapApi'];
 
@@ -36,9 +36,9 @@
         ionicMaterialMotion,
         locationFactory,
         FriendsFactory,
-        uiGmapGoogleMapApi) 
+        uiGmapGoogleMapApi)
     {
-        var vm = this;     
+        var vm = this;
         var mapAPI, myLocation, myMarker, map;
 
         vm.$state = $state;
@@ -52,10 +52,10 @@
             coords: {},
             id: "me"
         };
-        vm.map = { 
-          center: {}, 
+        vm.map = {
+          center: {},
           zoom: 14,
-          control: {}, 
+          control: {},
           options: {
                 disableDefaultUI: true
           }
@@ -64,9 +64,7 @@
         activate();
 
         function activate() {
-            // if(locationFactory.currentPosition === null) 
-            //     return $state.go('search'); 
-            
+
             $scope.$parent.dragContent = false;
 
 
@@ -75,7 +73,7 @@
 
             //FriendsFactory.clear();
             vm.friends = FriendsFactory.friends;
-            console.log("FRIENDS",vm.friends)
+
             //             //Set Motion
             // $timeout(function () {
             //   if(!_.isEmpty(vm.friends)) ionicMaterialMotion.fadeSlideInRight();
@@ -83,13 +81,13 @@
 
             $scope.$on('$ionicView.enter', function(e) {
                 console.log(locationFactory.currentPosition.coords)
-                FriendsFactory.calculateDistance(locationFactory.currentPosition.coords);           
-            });        
+                FriendsFactory.calculateDistance(locationFactory.currentPosition.coords);
+            });
 
-            $rootScope.$on('$stateChangeStart', 
-                function(event, toState, toParams, fromState, fromParams){ 
+            $rootScope.$on('$stateChangeStart',
+                function(event, toState, toParams, fromState, fromParams){
                     switch (toState.name) {
-                        case 'friends.nearby': 
+                        case 'friends.nearby':
                             vm.predicate = 'distance';
                             break;
                         case 'friends.byname':
@@ -100,19 +98,19 @@
                     console.log(vm.predicate)
             });
 
-            // uiGmapGoogleMapApi.then(function(maps) { 
-            //     mapAPI = maps;        
+            // uiGmapGoogleMapApi.then(function(maps) {
+            //     mapAPI = maps;
             // });
 
             // myLocation = locationFactory.currentPosition;
 
             // if(!_.isNull(myLocation) ) {
-            //     vm.myMarker.coords.latitude = myLocation.coords.latitude;                       
+            //     vm.myMarker.coords.latitude = myLocation.coords.latitude;
             //     vm.myMarker.coords.longitude = myLocation.coords.longitude;
 
-            //     vm.map.center.latitude = myLocation.coords.latitude;                       
+            //     vm.map.center.latitude = myLocation.coords.latitude;
             //     vm.map.center.longitude = myLocation.coords.longitude;
-            // }   
+            // }
             $ionicPlatform.ready(function () {
 
                 if(! $window.cordova) return;
@@ -145,8 +143,8 @@
                 };
 
                 //$scope.scheduleNotification();
-            });                        
-        } 
+            });
+        }
 
         function reload() {
             locationFactory.getCurrentPosition(20000).then( function(position){
@@ -166,21 +164,21 @@
 
             // var controlGmap = vm.map.control.getGMap();
 
-            // $timeout(function(){    
+            // $timeout(function(){
             //   mapAPI.event.trigger(controlGmap, 'resize');
-            //   controlGmap.setCenter(new mapAPI.LatLng(myLocation.coords.latitude, myLocation.coords.longitude));   
-            // },400);  
+            //   controlGmap.setCenter(new mapAPI.LatLng(myLocation.coords.latitude, myLocation.coords.longitude));
+            // },400);
 
         }
 
         function deleteFriend (friend) {
             $ionicListDelegate.closeOptionButtons();
             FriendsFactory.delete(friend);
-        }  
+        }
 
         function editFriend (friend) {
             $ionicListDelegate.closeOptionButtons();
-            $state.go('edit', {id: friend.id}, {location: 'replace'}); 
-        }          
+            $state.go('edit', {id: friend.id}, {location: 'replace'});
+        }
     }
 })();

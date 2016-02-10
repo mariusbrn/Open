@@ -47,7 +47,7 @@ $SecondaryFont: 'montserrat';
 }
 
 .bar {
- 	border: none;  
+ 	border: none;
  	box-shadow: none !important;
 	.button i {
 		margin-top: 10px;
@@ -67,8 +67,8 @@ $SecondaryFont: 'montserrat';
 	top: 114px;
 }
 
-.platform-ios .has-subheader {
-	top: 146px;
+.platform-ios.platform-cordova:not(.fullscreen) .has-subheader{
+  top:134px;
 }
 
 @mixin placeholder ($color, $opacity) {

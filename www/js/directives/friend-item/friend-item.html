@@ -1,6 +1,6 @@
 <ion-item class="friend-item" ng-click="more = !more">
     <!-- <ion-delete-button class="ion-minus-circled" ng-click="delete(friend)"></ion-delete-button>	 -->
-	<img class="friend-img" ng-src="data:image/jpeg;base64,{{friend.picture || 'img/default-user.png'}}">
+	<img class="friend-img" ng-src="{{friend.picture ? 'data:image/jpeg;base64,' + friend.picture : 'img/default-user.png'}}">
 	<h3>{{friend.name}}</h3>
 	<p class="distance"><i class="open-icon icon-location"></i> {{friend.distance | distance}}</p>
 	<h2 ng-cloak ng-show="$first || more" ng-repeat="code in friend.codes track by code.id" ng-bind-html="code.label | digicode"></h2>
@@ -9,13 +9,13 @@
     <ion-option-button class="button-edit" ng-click="edit(friend)">
 		<div>
 			<i class="open-icon icon-edit"></i>
-		 	EDIT    		
+		 	EDIT
 		</div>
     </ion-option-button>
     <ion-option-button class="button-delete" ng-click="delete(friend)">
 		<div>
 			<i class="open-icon icon-delete"></i>
-	  		DELETE    		
+	  		DELETE
 		</div>
     </ion-option-button>
 </ion-item>
