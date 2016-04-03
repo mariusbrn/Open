@@ -2,18 +2,19 @@
     'use strict';
 
     angular.module('Open.filters', [])
-     .filter('digicode', DigicodeFilter)
-     .filter('distance', DistanceFilter);
+     .filter('digicode', DigicodeFormatter)
+     .filter('distance', DistanceFormatter)
+     .filter('address', AddressFormatter);
 
-    DigicodeFilter.$inject = ['$sce'];
+    DigicodeFormatter.$inject = ['$sce'];
     /* @ngInject */
-    function DigicodeFilter ($sce) {
+    function DigicodeFormatter ($sce) {
       return function(input) {    
         return $sce.trustAsHtml(input.toUpperCase().split('').join('<span>.</span>'));
       };
     }
 
-    function DistanceFilter () {
+    function DistanceFormatter () {
       return function(input) {
         if(angular.isNumber(input)) {
             if(input < 100) {
@@ -27,4 +28,13 @@
       };
     }
 
+    function AddressFormatter () {
+      return function(input) {    
+        return input
+                .split(',')
+                .slice(0,2)
+                .join();
+
+      };
+    }
 })();

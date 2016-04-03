@@ -12240,10 +12240,16 @@ a.button .icon:before, a.button.icon:before, a.button.icon-left:before, a.button
 .friend-list .list .friend-item .item-content h2, .friend-list .list .friend-item .item-content h3, .friend-list .list .friend-item .item-content p {
   margin-left: 105px;
 }
+.friend-list .list .friend-item .item-content p {
+  margin-right: 10px;
+}
 .friend-list .list .friend-item .item-content p:last-of-type {
   margin-top: 6px;
   margin-bottom: 14px;
   line-height: 16px;
+}
+.friend-list .list .friend-item .item-content p.notes {
+  white-space: normal;
 }
 .friend-list .list .friend-item .item-content .friend-img {
   position: absolute;

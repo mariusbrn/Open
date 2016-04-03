@@ -64,10 +64,18 @@
         margin-left: 105px;
       }
 
+      p {
+        margin-right: 10px;
+      }
+
       p:last-of-type {
         margin-top: 6px;
         margin-bottom: 14px;
         line-height: 16px;
+      }
+
+      p.notes{
+        white-space: normal;
       }
 
       .friend-img {

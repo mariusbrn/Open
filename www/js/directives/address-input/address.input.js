@@ -37,6 +37,7 @@
                 var inputElement = element.find('input');
 
                 scope.locations = [];
+                scope.fetchingAdress = false;
 
                 var popupPromise = $ionicTemplateLoader.compile({
                     templateUrl: 'js/directives/address-input/address-input-modal.html',
@@ -77,18 +78,30 @@
                     return inputElement.val().length > 0;
                 };
 
+                scope.locateMe = function () {
+                    scope.fetchingAdress = true;
+                    Geocoder.reverseGeocode().then(function(res){
+                        console.log(res)
+                        if (res.length > 0) {
+                            var infos = formatLocation(res[0]);
+
+                            ngModel.$setViewValue(infos);
+                            ngModel.$render(); 
+                        }                       
+                    }, function (e) {
+                        console.log(e)
+                    })
+                    .finally(function () {
+                        scope.fetchingAdress = false;
+                    })                
+                }
+
                 function activate (el) {
                     var searchInputElement = angular.element(el.element.find('input'));
 
                     scope.selectLocation = function(location){
-                        var infos = {
-                            formatted_address: location.formatted_address,
-                            coords: { 
-                                lat:location.geometry.location.lat(),
-                                lng:location.geometry.location.lng()
-                            }
-                        };
-
+ 
+                        var infos = formatLocation(location);
                         ngModel.$setViewValue(infos);
                         ngModel.$render();
                         el.element.css('display', 'none');
@@ -104,8 +117,10 @@
 
                     scope.$watch('searchQuery', function(query){
                         if(query) {
-                            Geocoder.geocodeAddress(query).then(function(latlng){
-                                scope.locations = latlng;
+                            Geocoder.geocodeAddress(query).then(function(res){
+                                console.log(query)
+                                console.log(res)
+                                scope.locations = res;
                             }, function (e) {
                                 scope.locations = [];   
                             });
@@ -153,7 +168,17 @@
                             unbindBackButtonAction = null;
                         }
                     } 
-                }                   
+                } 
+
+                function formatLocation (location) {
+                    return {
+                        formatted_address: location.formatted_address,
+                        coords: { 
+                            lat:location.geometry.location.lat(),
+                            lng:location.geometry.location.lng()
+                        }
+                    };
+                }                  
             }
         };
 

@@ -8,6 +8,6 @@
   required
   readonly>
   <button type="button" ng-click="locateMe()">
-    <i class="open-icon icon-locate-me"></i>
+    <i class="open-icon" ng-class="(fetchingAdress) ? 'icon-address' : 'icon-locate-me' "></i>
   </button>       
 </div> 

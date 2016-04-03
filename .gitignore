@@ -13,13 +13,13 @@ logs/
 
 # external dependencies #
 #########################
+*/lib/
 bower_components/
 node_modules/
 vendor/
 public/
 platforms/
 plugins/
-www/lib/
 
 # version files #
 #################
