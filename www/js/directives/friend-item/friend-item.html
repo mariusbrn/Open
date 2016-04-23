@@ -1,21 +1,17 @@
 <ion-item class="friend-item" ng-click="more = !more">
-    <!-- <ion-delete-button class="ion-minus-circled" ng-click="delete(friend)"></ion-delete-button>	 -->
-	<img class="friend-img" ng-src="{{friend.picture ? 'data:image/jpeg;base64,' + friend.picture : 'img/default-user.png'}}">
-	<h3>{{friend.name}}</h3>
-	<p class="distance"><i class="open-icon icon-location"></i> {{friend.distance | distance}}</p>
-	<h2 ng-cloak ng-show="$first || more" ng-repeat="code in friend.codes track by code.id" ng-bind-html="code.label | digicode"></h2>
-	<p ng-cloak ng-if="friend.location.formatted_address" ng-show="more" class="animate-show">{{friend.location.formatted_address | address}}</p>
-	<p ng-if="friend.notes" ng-show="more" class="animate-show notes">{{friend.notes}}</p>
-    <ion-option-button class="button-edit" ng-click="edit(friend)">
-		<div>
-			<i class="open-icon icon-edit"></i>
-		 	EDIT
-		</div>
-    </ion-option-button>
-    <ion-option-button class="button-delete" ng-click="delete(friend)">
-		<div>
-			<i class="open-icon icon-delete"></i>
-	  		DELETE
-		</div>
-    </ion-option-button>
+	<div class="thumbnail-col">		
+		<img class="friend-img" ng-src="{{friend.picture ? 'data:image/jpeg;base64,' + friend.picture : 'img/default-user.png'}}">
+		<i class="open-icon" ng-class="(more) ? 'ion-chevron-up' : 'ion-chevron-down' "></i>
+	</div>
+	<div class="content-col">
+		<h3>{{friend.name}}</h3>
+		<p class="distance"><i class="open-icon icon-location"></i> {{friend.distance | distance}}</p>
+		<h2 ng-cloak ng-show="$first || more" ng-repeat="code in friend.codes track by code.id" ng-bind-html="code.label | digicode"></h2>
+		<p ng-cloak ng-if="friend.location.formatted_address" ng-show="more" class="animate-show">{{friend.location.formatted_address | address}}</p>
+		<p ng-if="friend.notes" ng-show="more" class="animate-show notes">{{friend.notes}}</p>
+		<div class="buttons" ng-show="more">
+			<button ng-click="edit(friend)"><i class="open-icon ion-edit"></i> EDIT</button>
+			<button ng-click="share(friend)"><i class="open-icon ion-share"></i> SHARE</button>
+		</div>	
+	</div>
 </ion-item>

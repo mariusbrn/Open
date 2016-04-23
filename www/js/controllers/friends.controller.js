@@ -48,6 +48,7 @@
         vm.reload  = reload;
         vm.edit    = editFriend;
         vm.delete  = deleteFriend;
+        vm.share   = shareFriend;
         vm.myMarker = {
             coords: {},
             id: "me"
@@ -180,5 +181,9 @@
             $ionicListDelegate.closeOptionButtons();
             $state.go('edit', {id: friend.id}, {location: 'replace'});
         }
+
+        function shareFriend (friend) {
+
+        }        
     }
 })();

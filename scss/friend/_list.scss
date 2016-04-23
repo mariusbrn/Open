@@ -22,20 +22,45 @@
     margin-bottom: 1px;
     min-height: 120px;
     text-align: left;
-    position: relative;
+    display: flex;
+    flex-direction: row;
 
-    .item-content {
-      padding: 10px 0 5px;
+    padding: 10px 0 5px;
+    background-color: $light;
+
+    &.activated {
+      border-color: transparent;
       background-color: $light;
 
-      &.activated {
-        border-color: transparent;
-        background-color: $light;
-
-        &.item-complex {
-          border: none;
-        }
+      &.item-complex {
+        border: none;
       }
+    }
+
+    .thumbnail-col {
+      width: 105px;
+      display:flex;
+      flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+
+      .friend-img {
+        border-radius: 50%;
+        left: 16px;
+        height: 65px;
+        width: 65px;
+        @include box-shadow(2px 2px 2px 0px rgba( #999, .3 ));
+        object-fit: cover;
+      } 
+
+      i {
+        color: $balanced;
+        font-size: 18px;
+        margin-top: 8px;
+      }       
+    }
+
+    .content-col {
 
       h2 {
         margin-top: 8px;
@@ -60,10 +85,6 @@
         margin-bottom: 8px;
       }
 
-      h2, h3, p {
-        margin-left: 105px;
-      }
-
       p {
         margin-right: 10px;
       }
@@ -77,17 +98,7 @@
       p.notes{
         white-space: normal;
       }
-
-      .friend-img {
-        position: absolute;
-        border-radius: 50%;
-        left: 16px;
-        height: 65px;
-        width: 65px;
-        @include box-shadow(2px 2px 2px 0px rgba( #999, .3 ));
-        object-fit: cover;
-      }    
-
+  
       .distance {
         margin-bottom: 0;
         font-size: 11px;
@@ -104,33 +115,27 @@
         position: relative;
         bottom: -4px;
       }
-    }
+      
+      .buttons {
+        button {
+          color: $calm;
+          font-size: 14px;
+          margin-left: 60px;
+          background-color: transparent;
+          border: none;
+          font-weight: 700;
+          padding: 0;
+          margin-bottom: 10px;
+          
+          i {
+            margin-right: 10px; 
+            color: $calm;
+          }
 
-    .item-options {
-      i {
-        display: block;
-        font-size: 2.3em;
-      }
-
-      .button {
-        color: $light;
-        font-family: 'montserrat';
-        font-size: 20px;
-        min-width: 123px;
-        padding: 15px;
-
-        div {
-          margin: auto;
-        }
-      }
-
-      .button-edit {
-        background-color: #EBEF26;
-      }
-
-      .button-delete {
-        background-color: #F70A0A;
-
+          &:first-child {
+            margin-left: 0;
+          }
+        } 
       }
     }
   }

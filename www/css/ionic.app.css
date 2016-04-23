@@ -12272,54 +12272,26 @@ a.button .icon:before, a.button.icon:before, a.button.icon-left:before, a.button
   margin-bottom: 1px;
   min-height: 120px;
   text-align: left;
-  position: relative;
-}
-.friend-list .list .friend-item .item-content {
+  display: flex;
+  flex-direction: row;
   padding: 10px 0 5px;
   background-color: #fff;
 }
-.friend-list .list .friend-item .item-content.activated {
+.friend-list .list .friend-item.activated {
   border-color: transparent;
   background-color: #fff;
 }
-.friend-list .list .friend-item .item-content.activated.item-complex {
+.friend-list .list .friend-item.activated.item-complex {
   border: none;
 }
-.friend-list .list .friend-item .item-content h2 {
-  margin-top: 8px;
-  font-size: 42px;
-  font-weight: 900;
+.friend-list .list .friend-item .thumbnail-col {
+  width: 105px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
 }
-.friend-list .list .friend-item .item-content h2 span {
-  font-family: 'Helvetica';
-  font-size: 30px;
-  margin: 0 4px;
-}
-.friend-list .list .friend-item .item-content h3 {
-  font-size: 18px;
-  margin-top: 0;
-}
-.friend-list .list .friend-item .item-content h2, .friend-list .list .friend-item .item-content h3 {
-  color: #000;
-  font-family: "lato";
-  margin-bottom: 8px;
-}
-.friend-list .list .friend-item .item-content h2, .friend-list .list .friend-item .item-content h3, .friend-list .list .friend-item .item-content p {
-  margin-left: 105px;
-}
-.friend-list .list .friend-item .item-content p {
-  margin-right: 10px;
-}
-.friend-list .list .friend-item .item-content p:last-of-type {
-  margin-top: 6px;
-  margin-bottom: 14px;
-  line-height: 16px;
-}
-.friend-list .list .friend-item .item-content p.notes {
-  white-space: normal;
-}
-.friend-list .list .friend-item .item-content .friend-img {
-  position: absolute;
+.friend-list .list .friend-item .thumbnail-col .friend-img {
   border-radius: 50%;
   left: 16px;
   height: 65px;
@@ -12328,39 +12300,71 @@ a.button .icon:before, a.button.icon:before, a.button.icon-left:before, a.button
   box-shadow: 2px 2px 2px 0px rgba(153, 153, 153, 0.3);
   object-fit: cover;
 }
-.friend-list .list .friend-item .item-content .distance {
+.friend-list .list .friend-item .thumbnail-col i {
+  color: #31e461;
+  font-size: 18px;
+  margin-top: 8px;
+}
+.friend-list .list .friend-item .content-col h2 {
+  margin-top: 8px;
+  font-size: 42px;
+  font-weight: 900;
+}
+.friend-list .list .friend-item .content-col h2 span {
+  font-family: 'Helvetica';
+  font-size: 30px;
+  margin: 0 4px;
+}
+.friend-list .list .friend-item .content-col h3 {
+  font-size: 18px;
+  margin-top: 0;
+}
+.friend-list .list .friend-item .content-col h2, .friend-list .list .friend-item .content-col h3 {
+  color: #000;
+  font-family: "lato";
+  margin-bottom: 8px;
+}
+.friend-list .list .friend-item .content-col p {
+  margin-right: 10px;
+}
+.friend-list .list .friend-item .content-col p:last-of-type {
+  margin-top: 6px;
+  margin-bottom: 14px;
+  line-height: 16px;
+}
+.friend-list .list .friend-item .content-col p.notes {
+  white-space: normal;
+}
+.friend-list .list .friend-item .content-col .distance {
   margin-bottom: 0;
   font-size: 11px;
   color: #6e6e6e;
 }
-.friend-list .list .friend-item .item-content .open-icon {
+.friend-list .list .friend-item .content-col .open-icon {
   font-size: 22px;
   color: #6e6e6e;
 }
-.friend-list .list .friend-item .item-content .icon-location {
+.friend-list .list .friend-item .content-col .icon-location {
   font-size: 18px;
   position: relative;
   bottom: -4px;
 }
-.friend-list .list .friend-item .item-options i {
-  display: block;
-  font-size: 2.3em;
+.friend-list .list .friend-item .content-col .buttons button {
+  color: #2bd35a;
+  font-size: 14px;
+  margin-left: 60px;
+  background-color: transparent;
+  border: none;
+  font-weight: 700;
+  padding: 0;
+  margin-bottom: 10px;
 }
-.friend-list .list .friend-item .item-options .button {
-  color: #fff;
-  font-family: 'montserrat';
-  font-size: 20px;
-  min-width: 123px;
-  padding: 15px;
+.friend-list .list .friend-item .content-col .buttons button i {
+  margin-right: 10px;
+  color: #2bd35a;
 }
-.friend-list .list .friend-item .item-options .button div {
-  margin: auto;
-}
-.friend-list .list .friend-item .item-options .button-edit {
-  background-color: #EBEF26;
-}
-.friend-list .list .friend-item .item-options .button-delete {
-  background-color: #F70A0A;
+.friend-list .list .friend-item .content-col .buttons button:first-child {
+  margin-left: 0;
 }
 
 .animate-show {
