@@ -17,10 +17,10 @@
   <preference name="SplashScreen" value="screen"/>
   <preference name="SplashScreenDelay" value="1000"/>
   <preference name="orientation" value="portrait"/>
-  <allow-navigation href="content:*" />
+<!--   <allow-navigation href="content:*" />
   <allow-navigation href="data:*" />
   <allow-navigation href="https://*.googleapis.com/*"/>
-  <allow-navigation href="https://*.gstatic.com/*"/>
+  <allow-navigation href="https://*.gstatic.com/*"/> -->
   <preference name="BackgroundColor" value="0x33cd5f"/>
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>

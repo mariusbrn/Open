@@ -3,10 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <meta http-equiv="Content-Security-Policy" content="default-src &apos;self&apos; data: content: gap: https://*.gstatic.com;
-          script-src &apos;self&apos; https://*.googleapis.com &apos;unsafe-inline&apos; &apos;unsafe-eval&apos;;
-          style-src &apos;self&apos; https://*.googleapis.com https://*.gstatic.com &apos;unsafe-inline&apos;;">
-
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: content: gap: https://*.gstatic.com;
+          script-src 'self' https://*.googleapis.com https://*.gstatic.com 'unsafe-inline' 'unsafe-eval';
+          style-src 'self' https://*.googleapis.com https://*.gstatic.com 'unsafe-inline' 'unsafe-eval'">
+    -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: content: gap:; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    
     <title></title>
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat%3A400%2C700" rel="stylesheet" type="text/css">
@@ -18,7 +20,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
 
     <!-- ionic/angularjs js -->
-    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/ionic/release/js/ionic.bundle.js"></script>
     <script src="lib/ionic-material/dist/ionic.material.min.js"></script>    
     <script src="lib/angular-google-maps/dist/angular-google-maps.js"></script>
     <script src="lib/angular-simple-logger/dist/index.js"></script>

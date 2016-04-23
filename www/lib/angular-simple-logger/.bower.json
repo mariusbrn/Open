@@ -22,7 +22,7 @@
     "tag": "0.0.4",
     "commit": "422d803738f936bf37c70da5701923b859fa0838"
   },
-  "_source": "git://github.com/nmccready/angular-simple-logger.git",
+  "_source": "https://github.com/nmccready/angular-simple-logger.git",
   "_target": "~0.0.1",
   "_originalSource": "angular-simple-logger"
 }
