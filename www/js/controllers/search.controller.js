@@ -29,10 +29,10 @@
             $scope.$on('$ionicView.enter', function(e) {
                 locationFactory.getCurrentPosition(20000).then( function(position){
                     console.log("location found");
-                    $cordovaSplashscreen.hide();
+                    $state.go('friends.nearby', null, {location: 'replace'});
                     $timeout(function(){
-                        $state.go('friends.nearby', null, {location: 'replace'});
-                    }, 1200);
+                        $cordovaSplashscreen.hide();
+                    }, 500);
                 }, function (msg) {
                     vm.error = msg;
                 });
