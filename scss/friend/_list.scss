@@ -57,8 +57,29 @@
         color: $balanced;
         font-size: 18px;
         margin-top: 8px;
-      }       
-    }
+      }
+
+      // .ion-chevron-up-add, .ion-chevron-remove {
+      //   transition:all linear 0.2s;
+      // }
+
+      // .ion-chevron-up-add {
+      //    @include rotate(180deg);
+      // }
+
+      // .ion-chevron-remove {
+      //   @include rotate(0deg);
+      // }
+
+      // .ion-chevron-up,
+      // .ion-chevron-up-add.ion-chevron-up-add-active {
+      //   @include rotate(0deg);
+      // }
+
+      // .ion-chevron-remove.ion-chevron-remove-active {
+      //   @include rotate(180deg);
+      // }            
+   }
 
     .content-col {
 

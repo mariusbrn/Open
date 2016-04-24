@@ -48,7 +48,7 @@
         function activate () {
             if ($stateParams.id) {
                 action = 'edit';
-                vm.newFriend = FriendsFactory.get($stateParams.id);
+                vm.newFriend = angular.copy(FriendsFactory.get($stateParams.id));
                 vm.title = 'EDIT CONTACT';
             } else {
                 vm.newFriend = emptyFriend;
