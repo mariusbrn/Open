@@ -10,6 +10,7 @@
         '$stateParams',
         '$ionicPlatform',
         '$ionicHistory',
+        '$ionicPopup',
         '$cordovaCamera',
         '$cordovaToast',
         'AmplitudeFactory',
@@ -20,13 +21,13 @@
         $stateParams,
         $ionicPlatform,
         $ionicHistory,
+        $ionicPopup,
         $cordovaCamera,
         $cordovaToast,
         AmplitudeFactory,
         FriendsFactory)
     {
         var vm = this;
-        var action = 'new';
         var emptyFriend = {
             name: '',
             location: {},
@@ -34,11 +35,13 @@
             notes: ''
         };
 
+        vm.action = 'new';
         vm.addCode     = addCode;
         vm.removeCode  = removeCode;
         vm.getPicture  = getPicture;
         vm.save        = save;
         vm.cancel      = cancel;
+        vm.delete      = showConfirm;
         vm.isSaving = false;
 
         $scope.$on('$ionicView.enter', function(e) {
@@ -47,7 +50,7 @@
 
         function activate () {
             if ($stateParams.id) {
-                action = 'edit';
+                vm.action = 'edit';
                 vm.newFriend = angular.copy(FriendsFactory.get($stateParams.id));
                 vm.title = 'EDIT CONTACT';
             } else {
@@ -99,7 +102,7 @@
             vm.isSaving = true;
             console.log(vm.newForm.$valid);
             if(vm.newForm.$valid) {                
-                if(action === 'edit'){
+                if(vm.action === 'edit'){
                     FriendsFactory.update(vm.newFriend);
                     AmplitudeFactory.logEvent('user:edit');
                 } else {
@@ -121,6 +124,34 @@
             console.log("cancel");
             vm.newFriend = emptyFriend; 
             $ionicHistory.goBack();
-        }                          
+        } 
+
+        function deleteFriend () {
+            FriendsFactory.delete(vm.newFriend);
+            $ionicHistory.goBack();
+        }  
+
+        function showConfirm () {
+            var confirmPopup = $ionicPopup.confirm({
+                title: 'Delete contact?',
+                buttons: [{
+                    text: 'No', 
+                    type:'button-light'
+                }, { 
+                    text: 'Yes',
+                    type: 'button-balanced', 
+                    onTap: function(e) {
+                        return true}
+                    }
+                ]
+            });
+
+            confirmPopup.then(function(res) {
+                console.log(res);
+             if(res) {
+               deleteFriend();
+             } 
+            });
+        }                             
     }
 })();

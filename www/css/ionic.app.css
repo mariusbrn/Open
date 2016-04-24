@@ -12511,4 +12511,12 @@ a.button .icon:before, a.button.icon:before, a.button.icon-left:before, a.button
   margin: 5px auto 30px;
   display: block;
   color: #fff;
+  min-width: 165px;
+}
+.new-view .button-delete {
+  font-weight: bold;
+  font-size: 24px;
+  padding: 4px;
+  height: 36px;
+  margin-top: 40px;
 }

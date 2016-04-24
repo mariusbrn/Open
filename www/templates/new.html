@@ -38,7 +38,7 @@
            name="code"
            id="code"
            placeholder="Code"
-           required
+           ng-required="($first) ? 'required' : ''"
            ng-model="code.label">
           <button type="button" ng-show="code.label" ng-click="vm.removeCode($index)">
             <i class="open-icon icon-minus"></i>
@@ -58,5 +58,8 @@
           ng-model="vm.newFriend.notes"></textarea>
         </div>
       </form>
+      <button type="button" class="button-bloc button-delete" ng-show="vm.action === 'edit'" ng-click="vm.delete()">
+         <i class="open-icon icon-delete"></i>
+      </button>         
     </ion-content>
 </ion-view>

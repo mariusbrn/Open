@@ -96,5 +96,14 @@
 	    margin: 5px auto 30px;
 	    display: block;
 	    color: $light;	
+	    min-width: 165px;
 	}
+
+	.button-delete {
+	    font-weight: bold;
+	    font-size: 24px;
+	    padding: 4px;
+	    height: 36px;
+	    margin-top: 40px;
+	}	
 }

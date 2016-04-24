@@ -49,7 +49,6 @@
         vm.showMap = showMap;
         vm.reload  = reload;
         vm.edit    = editFriend;
-        vm.delete  = deleteFriend;
         vm.share   = shareFriend;
         vm.myMarker = {
             coords: {},
@@ -172,11 +171,6 @@
             //   controlGmap.setCenter(new mapAPI.LatLng(myLocation.coords.latitude, myLocation.coords.longitude));
             // },400);
 
-        }
-
-        function deleteFriend (friend) {
-            $ionicListDelegate.closeOptionButtons();
-            FriendsFactory.delete(friend);
         }
 
         function editFriend (friend) {
