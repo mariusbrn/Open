@@ -62,8 +62,12 @@
         } 
 
         function removeCode (index) {
-            vm.newFriend.codes.splice(index, 1);
-            vm.newFriend.codes.forEach(function(c, i) {c.id = i+1;});
+            if (index === 0) {
+                vm.newFriend.codes[0].label = '';
+            } else {    
+                vm.newFriend.codes.splice(index, 1);
+                vm.newFriend.codes.forEach(function(c, i) {c.id = i+1;});
+            }
         }  
 
          function getPicture () {

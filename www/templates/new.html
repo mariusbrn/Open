@@ -18,7 +18,7 @@
       <div class="avatar-logo">
           <img ng-if="vm.newFriend.picture" class="friend-picture" ng-src="data:image/jpeg;base64,{{vm.newFriend.picture}}" ng-click="vm.getPicture()">
           <i ng-if="!vm.newFriend.picture" class="open-icon icon-avatar"></i>
-          <h4>EDIT</h4>
+          <h4>Add photo</h4>
       </div>
       <form novalidate name="vm.newForm">
         <div class="form-control">
@@ -40,13 +40,13 @@
            placeholder="Code"
            required
            ng-model="code.label">
-          <button type="button ng-cloak" ng-show="code.label && !$last" ng-click="vm.removeCode($index+1)">
+          <button type="button" ng-show="code.label" ng-click="vm.removeCode($index)">
             <i class="open-icon icon-minus"></i>
           </button>
-          <button type="button ng-cloak" ng-show="code.label && $last" ng-click="vm.addCode()">
-            <i class="open-icon icon-plus" ng-show="code"></i>
-          </button>
         </div>
+        <button type="button" class="button-bloc" ng-show="vm.newFriend.codes[0].label" ng-click="vm.addCode()">
+          Add code
+        </button>        
         <address-input ng-model="vm.newFriend.location" user-location="vm.newFriend.location"></address-input>
         <div class="form-control">
           <i class="open-icon icon-notes" ng-class="!vm.newFriend.notes ? 'untouched' : ''"></i>

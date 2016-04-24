@@ -12501,3 +12501,14 @@ a.button .icon:before, a.button.icon:before, a.button.icon-left:before, a.button
 .new-view .code-list input {
   text-transform: uppercase;
 }
+.new-view .button-bloc {
+  background-color: transparent;
+  border: 1px solid #fff;
+  border-radius: 30px;
+  padding: 5px 20px;
+  margin: auto;
+  padding: 6px 50px;
+  margin: 5px auto 30px;
+  display: block;
+  color: #fff;
+}
