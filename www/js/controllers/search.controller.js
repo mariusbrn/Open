@@ -5,9 +5,9 @@
         .module('Open.controllers')
         .controller('SearchController', SearchController);
 
-    SearchController.$inject = ['$scope', '$state', '$timeout', '$ionicHistory', 'locationFactory', 'SettingsFactory'];
+    SearchController.$inject = ['$scope', '$state', '$timeout', '$ionicHistory', '$cordovaSplashscreen', 'locationFactory', 'SettingsFactory'];
     /* @ngInject */
-    function SearchController($scope, $state, $timeout, $ionicHistory, locationFactory, SettingsFactory) {
+    function SearchController($scope, $state, $timeout, $ionicHistory, $cordovaSplashscreen, locationFactory, SettingsFactory) {
         var vm = this;
 
         vm.radius = 50;
@@ -29,9 +29,8 @@
             $scope.$on('$ionicView.enter', function(e) {
                 locationFactory.getCurrentPosition(20000).then( function(position){
                     console.log("location found");
-                    vm.loaded = true;
+                    $cordovaSplashscreen.hide();
                     $timeout(function(){
-                        console.log("gogo");
                         $state.go('friends.nearby', null, {location: 'replace'});
                     }, 1200);
                 }, function (msg) {
