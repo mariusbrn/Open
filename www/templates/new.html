@@ -9,14 +9,14 @@
       {{ vm.title }}
     </ion-nav-title>
     <ion-nav-buttons side="right">
-      <button class="button button-icon button-clear" ng-show="vm.isFormValid()" ng-click="vm.save()">
+      <button class="button button-icon button-clear" ng-show="!isSaving" ng-click="vm.save()">
         <i class="open-icon icon-validate"></i>
       </button>
     </ion-nav-buttons>
 
     <ion-content class="new-view" padding="false" scroll="true" has-bouncing="false">
-      <div class="avatar-logo" ng-click="vm.getPicture()">
-          <img ng-if="vm.newFriend.picture" class="friend-picture" ng-src="data:image/jpeg;base64,{{vm.newFriend.picture}}">
+      <div class="avatar-logo">
+          <img ng-if="vm.newFriend.picture" class="friend-picture" ng-src="data:image/jpeg;base64,{{vm.newFriend.picture}}" ng-click="vm.getPicture()">
           <i ng-if="!vm.newFriend.picture" class="open-icon icon-avatar"></i>
           <h4>EDIT</h4>
       </div>
@@ -31,7 +31,6 @@
            required
            ng-model="vm.newFriend.name">
         </div>
-        <address-input ng-model="vm.newFriend.location" user-location="vm.newFriend.location"></address-input>
         <div class="form-control code-list" ng-repeat="code in vm.newFriend.codes track by $index">
           <i class="open-icon icon-code" ng-class="!code.label ? 'untouched' : ''"></i>
           <input
@@ -48,6 +47,7 @@
             <i class="open-icon icon-plus" ng-show="code"></i>
           </button>
         </div>
+        <address-input ng-model="vm.newFriend.location" user-location="vm.newFriend.location"></address-input>
         <div class="form-control">
           <i class="open-icon icon-notes" ng-class="!vm.newFriend.notes ? 'untouched' : ''"></i>
           <textarea

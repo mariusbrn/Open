@@ -60,7 +60,7 @@
                 });
 
                 ngModel.$render = function(){
-                    if(!ngModel.$viewValue){
+                    if(!ngModel.$viewValue || _.isEmpty(ngModel.$viewValue)){
                         inputElement.val('');
                     } else {
                         inputElement.val(ngModel.$viewValue.formatted_address || '');
@@ -116,6 +116,7 @@
                     };
 
                     scope.$watch('searchQuery', function(query){
+                        console.log("query", query);
                         if(query) {
                             Geocoder.geocodeAddress(query).then(function(res){
                                 console.log(query)
@@ -125,7 +126,7 @@
                                 scope.locations = [];   
                             });
                         }
-                    });
+                    }, true);
 
                     inputElement.bind('click', onClick);
                     inputElement.bind('touchend', onClick);
@@ -135,6 +136,12 @@
                     function onClick (e){
                         e.preventDefault();
                         e.stopPropagation();
+
+                        if (ngModel.$viewValue) {
+                            scope.searchQuery = ngModel.$viewValue.formatted_address;
+                            console.log(scope.searchQuery);
+                            scope.$digest();
+                        }
 
                         $ionicBackdrop.retain();
                         unbindBackButtonAction = $ionicPlatform.registerBackButtonAction(closeOnBackButton, 250);
@@ -147,6 +154,15 @@
                     }
 
                     function onCancel (e){
+                        close(e);
+                    }
+
+                    function closeOnBackButton (e){
+                        close(e);
+                    } 
+
+                    function close(e) {
+                        if (e) e.preventDefault();
                         scope.searchQuery = '';
                         $ionicBackdrop.release();
                         el.element.css('display', 'none');
@@ -154,20 +170,8 @@
                         if (unbindBackButtonAction){
                             unbindBackButtonAction();
                             unbindBackButtonAction = null;
-                        }
+                        }                        
                     }
-
-                    function closeOnBackButton (e){
-                        e.preventDefault();
-
-                        el.element.css('display', 'none');
-                        $ionicBackdrop.release();
-
-                        if (unbindBackButtonAction){
-                            unbindBackButtonAction();
-                            unbindBackButtonAction = null;
-                        }
-                    } 
                 } 
 
                 function formatLocation (location) {

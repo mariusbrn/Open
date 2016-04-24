@@ -11,6 +11,7 @@
         '$ionicPlatform',
         '$ionicHistory',
         '$cordovaCamera',
+        '$cordovaToast',
         'FriendsFactory'];
     /* @ngInject */
     function FriendController($scope,
@@ -19,6 +20,7 @@
         $ionicPlatform,
         $ionicHistory,
         $cordovaCamera,
+        $cordovaToast,
         FriendsFactory)
     {
         var vm = this;
@@ -33,9 +35,9 @@
         vm.addCode     = addCode;
         vm.removeCode  = removeCode;
         vm.getPicture  = getPicture;
-        vm.isFormValid = isFormValid;
         vm.save        = save;
         vm.cancel      = cancel;
+        vm.isSaving = false;
 
         $scope.$on('$ionicView.enter', function(e) {
             activate();         
@@ -85,20 +87,26 @@
                     console.log('Failed because: ' + err);
                 });
             });
-
         }
 
-        function isFormValid () {
-           return vm.newForm.$valid;
-        } 
-
         function save () {
-            if(action === 'edit'){
-                FriendsFactory.update(vm.newFriend);
+            vm.isSaving = true;
+            console.log(vm.newForm.$valid);
+            if(vm.newForm.$valid) {                
+                if(action === 'edit'){
+                    FriendsFactory.update(vm.newFriend);
+                } else {
+                    FriendsFactory.create(vm.newFriend);
+                }
+                $ionicHistory.goBack();
             } else {
-                FriendsFactory.create(vm.newFriend);
+                vm.isSaving = false;
+                var msg = 'Informations required';
+                if (vm.newForm.$error.required) {
+                    msg = vm.newForm.$error.required[0].$name + ' required';        
+                } 
+                $cordovaToast.showShortBottom(msg);
             }
-            $ionicHistory.goBack();
         } 
 
         function cancel (index) {
