@@ -3,7 +3,7 @@
     'use strict';
 
     angular.module('Open')
-      .run(function($ionicPlatform, FriendsFactory, SettingsFactory) {
+      .run(function($ionicPlatform, FriendsFactory, SettingsFactory, AmplitudeFactory) {
  
       $ionicPlatform.ready(function() {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -21,8 +21,20 @@
 
       SettingsFactory.init();
 
+      AmplitudeFactory.init();
+
       FriendsFactory.load();
     })
 
+    .constant('appConfig', {
+      // app version number
+      'version': '0.6.1',
+
+      // api key for tracking
+      'amplitudeApiKey': '868bce7777d5c7fef2e1cd586a0dc33d'
+    })
+    
+    // lodash
     .constant('_', window._);
+
 })();

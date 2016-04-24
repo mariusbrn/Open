@@ -12,6 +12,7 @@
         '$ionicHistory',
         '$cordovaCamera',
         '$cordovaToast',
+        'AmplitudeFactory',
         'FriendsFactory'];
     /* @ngInject */
     function FriendController($scope,
@@ -21,6 +22,7 @@
         $ionicHistory,
         $cordovaCamera,
         $cordovaToast,
+        AmplitudeFactory,
         FriendsFactory)
     {
         var vm = this;
@@ -56,6 +58,7 @@
 
         function addCode () {
             vm.newFriend.codes.push({id: vm.newFriend.codes.length+1,label: ''});
+            AmplitudeFactory.logEvent('user:add:code');
         } 
 
         function removeCode (index) {
@@ -79,11 +82,10 @@
             };
 
             $ionicPlatform.ready(function () {
-                $cordovaCamera.getPicture(options).then(function(imageData) {
-                    console.log("img URI= " + imageData);        
+                $cordovaCamera.getPicture(options).then(function(imageData) {        
                     vm.newFriend.picture = imageData;
+                    AmplitudeFactory.logEvent('user:add:picture');
                 }, function(err) {
-                    //alert("Failed because: " + err);
                     console.log('Failed because: ' + err);
                 });
             });
@@ -95,8 +97,10 @@
             if(vm.newForm.$valid) {                
                 if(action === 'edit'){
                     FriendsFactory.update(vm.newFriend);
+                    AmplitudeFactory.logEvent('user:edit');
                 } else {
                     FriendsFactory.create(vm.newFriend);
+                    AmplitudeFactory.logEvent('user:new', {'quantity': FriendsFactory.friends.length});
                 }
                 $ionicHistory.goBack();
             } else {

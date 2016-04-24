@@ -16,7 +16,7 @@
             init: init
         };
 
-        var appConfig = {
+        var defaultUserConfig = {
           radius: 50,
           radiusEnabled: true
         };
@@ -36,12 +36,12 @@
         }
 
         function get() {
-          return appConfig;
+          return defaultUserConfig;
         }
 
         function set(config) {
             if( config !== null && config !== undefined) {
-              appConfig = config;   
+              defaultUserConfig = config;   
               setInStorage(config);
             }           
         }
@@ -49,9 +49,9 @@
         function init() {
             var c = getFromStorage();
             if( c === null || c === undefined) {
-              setInStorage(appConfig);
+              setInStorage(defaultUserConfig);
             } else {
-              appConfig = c;
+              defaultUserConfig = c;
             }
         }
     }

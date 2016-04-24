@@ -8,6 +8,10 @@
     "robotodraft": "~1.1.0",
     "lodash": "~3.10.1",
     "ngstorage": "~0.3.10",
-    "ngCordova": "~0.1.24-alpha"
+    "ngCordova": "~0.1.24-alpha",
+    "angular-amplitude": "git@github.com:mounibec/angular-amplitude.git#f01b076"
+  },
+  "resolutions": {
+    "angular": "1.5.3"
   }
 }

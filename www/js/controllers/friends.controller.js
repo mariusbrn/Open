@@ -19,6 +19,7 @@
         'ionicMaterialMotion',
         'locationFactory',
         'FriendsFactory',
+        'AmplitudeFactory',
         'uiGmapGoogleMapApi'];
 
     /* @ngInject */
@@ -36,6 +37,7 @@
         ionicMaterialMotion,
         locationFactory,
         FriendsFactory,
+        AmplitudeFactory,
         uiGmapGoogleMapApi)
     {
         var vm = this;
