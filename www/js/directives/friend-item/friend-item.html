@@ -11,7 +11,7 @@
 		<p ng-if="friend.notes" ng-show="more" class="animate-show notes">{{friend.notes}}</p>
 		<div class="buttons" ng-show="more">
 			<button ng-click="edit(friend)"><i class="open-icon ion-edit"></i> EDIT</button>
-			<button ng-click="share(friend)"><i class="open-icon ion-share"></i> SHARE</button>
+			<button ng-click="share(friend)" ng-show="false"><i class="open-icon ion-share"></i> SHARE</button>
 		</div>	
 	</div>
 </ion-item>

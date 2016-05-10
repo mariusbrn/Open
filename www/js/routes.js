@@ -20,12 +20,15 @@
 		})
 		.state('friends', {
 			url: '/friends',
-			// resolve: {
-			//     location:
-			//       function(locationFactory) {
-			//         return locationFactory.getCurrentPosition(20000);
-			//       }
-		 //    },
+			resolve: {
+			     location:
+			      function($q, locationFactory) {
+					if (locationFactory.currentPosition)
+						return $q.when();
+					else
+						return locationFactory.getCurrentPosition(20000);
+			      }
+		    },
 		 	templateUrl: 'templates/friends.html',
 		 	controller: 'FriendsController as vm'
 		})
@@ -54,7 +57,7 @@
 			controller: 'FriendController as vm'
 		});		
 		// if none of the above states are matched, use this as the fallback
-		$urlRouterProvider.otherwise('/search');
+		$urlRouterProvider.otherwise('/friends');
 	});
 
 })();

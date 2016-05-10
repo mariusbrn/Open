@@ -15,10 +15,10 @@
     </ion-nav-buttons>
 
     <ion-content class="new-view" padding="false" scroll="true" has-bouncing="false">
-      <div class="avatar-logo">
-          <img ng-if="vm.newFriend.picture" class="friend-picture" ng-src="data:image/jpeg;base64,{{vm.newFriend.picture}}" ng-click="vm.getPicture()">
-          <i ng-if="!vm.newFriend.picture" class="open-icon icon-avatar"></i>
-          <h4>Add photo</h4>
+      <div class="avatar-logo" ng-click="vm.getPicture()">
+        <img ng-if="vm.newFriend.picture" class="friend-picture" ng-src="data:image/jpeg;base64,{{vm.newFriend.picture}}">
+        <i ng-if="!vm.newFriend.picture" class="open-icon icon-avatar"></i>
+        <div>Add photo</div>
       </div>
       <form novalidate name="vm.newForm">
         <div class="form-control">
@@ -44,7 +44,7 @@
             <i class="open-icon icon-minus"></i>
           </button>
         </div>
-        <button type="button" class="button-bloc" ng-show="vm.newFriend.codes[0].label" ng-click="vm.addCode()">
+        <button type="button" class="button-bloc" ng-cloak ng-show="vm.newFriend.codes[0].label" ng-click="vm.addCode()">
           Add code
         </button>        
         <address-input ng-model="vm.newFriend.location" user-location="vm.newFriend.location"></address-input>
@@ -58,7 +58,7 @@
           ng-model="vm.newFriend.notes"></textarea>
         </div>
       </form>
-      <button type="button" class="button-bloc button-delete" ng-show="vm.action === 'edit'" ng-click="vm.delete()">
+      <button type="button" class="button-bloc button-delete" ng-cloak ng-show="vm.action === 'edit'" ng-click="vm.delete()">
          <i class="open-icon icon-delete"></i>
       </button>         
     </ion-content>

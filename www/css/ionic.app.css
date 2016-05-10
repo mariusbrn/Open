@@ -12284,6 +12284,9 @@ a.button .icon:before, a.button.icon:before, a.button.icon-left:before, a.button
 .friend-list .list .friend-item.activated.item-complex {
   border: none;
 }
+.friend-list .list .friend-item:last-child {
+  margin-bottom: 20px;
+}
 .friend-list .list .friend-item .thumbnail-col {
   width: 105px;
   display: flex;
@@ -12398,6 +12401,8 @@ a.button .icon:before, a.button.icon:before, a.button.icon-left:before, a.button
   color: #fff;
   text-align: center;
   padding-top: 20px;
+  width: 90px;
+  margin: 0 auto 10px;
 }
 .new-view .avatar-logo .friend-picture {
   width: 90px;
@@ -12409,10 +12414,6 @@ a.button .icon:before, a.button.icon:before, a.button.icon-left:before, a.button
 }
 .new-view .avatar-logo .icon-avatar {
   font-size: 90px;
-}
-.new-view .avatar-logo h4 {
-  color: #fff;
-  margin-top: 0;
 }
 .new-view .form-control {
   background-color: #27be51;
@@ -12519,4 +12520,5 @@ a.button .icon:before, a.button.icon:before, a.button.icon-left:before, a.button
   padding: 4px;
   height: 36px;
   margin-top: 40px;
+  margin-bottom: 30px;
 }

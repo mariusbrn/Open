@@ -37,6 +37,10 @@
       }
     }
 
+    &:last-child {
+      margin-bottom:20px;
+    }
+
     .thumbnail-col {
       width: 105px;
       display:flex;

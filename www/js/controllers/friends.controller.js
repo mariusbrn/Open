@@ -14,6 +14,7 @@
         '$ionicPlatform',
         '$ionicListDelegate',
         '$cordovaLocalNotification',
+        '$cordovaSplashscreen',
         '_',
         'ionicMaterialInk',
         'ionicMaterialMotion',
@@ -32,6 +33,7 @@
         $ionicPlatform,
         $ionicListDelegate,
         $cordovaLocalNotification,
+        $cordovaSplashscreen,
         _,
         ionicMaterialInk,
         ionicMaterialMotion,
@@ -70,16 +72,9 @@
             $scope.$parent.dragContent = false;
 
 
-            // Set Ink
-            ionicMaterialInk.displayEffect();
 
             //FriendsFactory.clear();
             vm.friends = FriendsFactory.friends;
-
-            //             //Set Motion
-            // $timeout(function () {
-            //   if(!_.isEmpty(vm.friends)) ionicMaterialMotion.fadeSlideInRight();
-            // }, 400);
 
             $scope.$on('$ionicView.enter', function(e) {
                 console.log(locationFactory.currentPosition.coords)
@@ -146,6 +141,15 @@
 
                 //$scope.scheduleNotification();
             });
+
+            if (navigator.splashscreen) {
+                $timeout(function () {
+                    $cordovaSplashscreen.hide();
+                    // Set Ink
+                    ionicMaterialInk.displayEffect();
+                    ionicMaterialMotion.fadeSlideInRight();
+                }, 600);
+            }
         }
 
         function reload() {
