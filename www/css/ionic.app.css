@@ -12397,6 +12397,9 @@ a.button .icon:before, a.button.icon:before, a.button.icon-left:before, a.button
 .new-view {
   background-color: #2bd35a;
 }
+.new-view .scroll {
+  padding-bottom: 10px;
+}
 .new-view .avatar-logo {
   color: #fff;
   text-align: center;

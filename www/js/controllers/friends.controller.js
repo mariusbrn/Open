@@ -71,18 +71,15 @@
 
             $scope.$parent.dragContent = false;
 
-
-
             //FriendsFactory.clear();
             vm.friends = FriendsFactory.friends;
 
             $scope.$on('$ionicView.enter', function(e) {
-                console.log(locationFactory.currentPosition.coords)
                 FriendsFactory.calculateDistance(locationFactory.currentPosition.coords);
             });
 
             $rootScope.$on('$stateChangeStart',
-                function(event, toState, toParams, fromState, fromParams){
+                function(event, toState, toParams, fromState, fromParams) {
                     switch (toState.name) {
                         case 'friends.nearby':
                             vm.predicate = 'distance';
@@ -140,16 +137,15 @@
                 };
 
                 //$scope.scheduleNotification();
+                if (navigator.splashscreen) {
+                    $timeout(function () {
+                        $cordovaSplashscreen.hide();
+                        // Set Ink
+                        ionicMaterialInk.displayEffect();
+                        ionicMaterialMotion.fadeSlideInRight();
+                    }, 600);
+                }                
             });
-
-            if (navigator.splashscreen) {
-                $timeout(function () {
-                    $cordovaSplashscreen.hide();
-                    // Set Ink
-                    ionicMaterialInk.displayEffect();
-                    ionicMaterialMotion.fadeSlideInRight();
-                }, 600);
-            }
         }
 
         function reload() {
