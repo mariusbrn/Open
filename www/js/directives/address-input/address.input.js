@@ -78,15 +78,18 @@
                     return inputElement.val().length > 0;
                 };
 
-                scope.locateMe = function () {
+                scope.locateMe = function (modal) {
                     scope.fetchingAdress = true;
                     Geocoder.reverseGeocode().then(function(res){
-                        console.log(res)
                         if (res.length > 0) {
                             var infos = formatLocation(res[0]);
 
-                            ngModel.$setViewValue(infos);
-                            ngModel.$render(); 
+                            if (modal) {
+                                scope.searchQuery = infos.formatted_address;
+                            } else {
+                                ngModel.$setViewValue(infos);
+                                ngModel.$render(); 
+                            }
                         }                       
                     }, function (e) {
                         console.log(e)
@@ -117,7 +120,7 @@
 
                     scope.$watch('searchQuery', function(query){
                         console.log("query", query);
-                        if(query) {
+                        if (query) {
                             Geocoder.geocodeAddress(query).then(function(res){
                                 console.log(query)
                                 console.log(res)
@@ -131,8 +134,6 @@
                     inputElement.bind('click', onClick);
                     inputElement.bind('touchend', onClick);
 
-                    el.element.find('button').bind('click', onCancel);
-                
                     function onClick (e){
                         e.preventDefault();
                         e.stopPropagation();
@@ -153,8 +154,13 @@
                         },0);
                     }
 
-                    function onCancel (e){
+                    scope.cancel = function (e) {
                         close(e);
+                    }
+
+                    scope.clear = function (e) {
+                        console.log("clear");
+                        scope.searchQuery = '';
                     }
 
                     function closeOnBackButton (e){

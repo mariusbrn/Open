@@ -1,7 +1,7 @@
 <ion-item class="friend-item" ng-click="more = !more">
 	<div class="thumbnail-col">		
 		<img class="friend-img" ng-src="{{friend.picture ? 'data:image/jpeg;base64,' + friend.picture : 'img/default-user.png'}}">
-		<i class="open-icon" ng-class="(more) ? 'ion-chevron-up' : 'ion-chevron-down' "></i>
+		<i class="open-icon" ng-class="(more) ? 'icon-reduce' : 'icon-expand' "></i>
 	</div>
 	<div class="content-col">
 		<h3>{{friend.name}}</h3>
@@ -10,8 +10,8 @@
 		<p ng-cloak ng-if="friend.location.formatted_address" ng-show="more" class="animate-show">{{friend.location.formatted_address | address}}</p>
 		<p ng-if="friend.notes" ng-show="more" class="animate-show notes">{{friend.notes}}</p>
 		<div class="buttons" ng-show="more">
-			<button ng-click="edit(friend)"><i class="open-icon ion-edit"></i> EDIT</button>
-			<button ng-click="share(friend)" ng-show="false"><i class="open-icon ion-share"></i> SHARE</button>
+			<button ng-click="edit(friend)"><i class="open-icon icon-pen"></i> EDIT</button>
+			<button ng-click="share(friend)" ng-show="true"><i class="open-icon icon-share"></i> SHARE</button>
 		</div>	
 	</div>
 </ion-item>

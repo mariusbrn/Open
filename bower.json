@@ -12,6 +12,8 @@
     "angular-amplitude": "git@github.com:mounibec/angular-amplitude.git#f01b076"
   },
   "resolutions": {
-    "angular": "1.5.3"
+    "angular": "1.5.3",
+    "angular-sanitize": "1.5.3",
+    "angular-animate": "1.5.3"
   }
 }

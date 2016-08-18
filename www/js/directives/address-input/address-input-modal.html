@@ -1,18 +1,31 @@
 <div class="ion-google-place-container modal">
-    <div class="bar bar-header item-input-inset">
-      <div class="form-control">
-        <i class="open-icon icon-address" ng-class="!searchQuery ? 'untouched' : ''"></i>
+  <ion-header-bar class="bar-balanced bar bar-header"> 
+    <div class="left-buttons">
+      <button class="button button-previous" ng-click="cancel()">
+        <i class="open-icon icon-previous"></i>
+      </button>
+    </div>
+    <div class="title title-center header-item">
+      ADDRESS
+    </div>
+  </ion-header-bar>  
+  <ion-content class="has-header">
+    <div class="form-control">
+      <i class="open-icon icon-address" ng-class="!searchQuery ? 'untouched' : ''"></i>
+      <div class="input-wrapper">       
         <input class="google-place-search" type="search" ng-model="searchQuery" placeholder="Address">
-        <button class="button button-clear">
+        <button class="button button-clear" ng-click="clear()" ng-show="searchQuery">
           <i class="open-icon icon-cancel"></i>
         </button>
-      </div>  
-    </div>
-    <ion-content class="has-header has-header">
-      <ion-list class="locations-list">
-          <ion-item class="location-bloc" type="item-text-wrap" ng-repeat="location in locations" ng-click="selectLocation(location)">
-            {{ location.formatted_address }}
-          </ion-item>
-      </ion-list>
-    </ion-content>
+        <button class="button button-locate" ng-click="locateMe(true)" ng-hide="searchQuery">
+          <i class="open-icon" ng-class="(fetchingAdress) ? 'icon-clock' : 'icon-locate-me' "></i>
+        </button>         
+      </div>
+    </div>      
+    <ion-list class="locations-list">
+        <ion-item class="location-bloc" type="item-text-wrap" ng-repeat="location in locations" ng-click="selectLocation(location)">
+          {{ location.formatted_address }}
+        </ion-item>
+    </ion-list>
+  </ion-content>
 </div>
