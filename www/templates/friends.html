@@ -4,9 +4,12 @@
     </ion-nav-title>
     <ion-header-bar class="bar bar-subheader">
         <div class="tabs tabs-calm static">
-          <a class="tab-item" ui-sref-active="active" ui-sref="friends.nearby"><span>NEARBY</span></a>
-          <a class="tab-item" ui-sref-active="active" ui-sref="friends.byname"><span>BY NAME</span></a>
-          <!-- <a class="tab-item" ui-sref-active="active" ui-sref="friends.map"><span>MAP</span></a> -->
+          <a class="tab-item" ng-class="{active: vm.predicate=='distance'}" ng-click="vm.predicate='distance'">
+            <span>NEARBY</span>
+          </a>
+          <a class="tab-item" ng-class="{active: vm.predicate=='name'}" ng-click="vm.predicate='name'">
+            <span>BY NAME</span>
+          </a>
         </div>
     </ion-header-bar>
     <ion-content padding="false" scroll="true" has-bouncing="false">
@@ -14,7 +17,6 @@
         pulling-text="Pull to refresh..."
         on-refresh="vm.reload()">
       </ion-refresher>      
-      <!-- <div ng-show="vm.$state.includes('friends.nearby') || vm.$state.includes('friends.byname')">   -->
         <ion-list 
           class="friend-list" 
           show-reorder="false"          
@@ -25,17 +27,6 @@
             edit="vm.edit" 
             ng-repeat="friend in vm.friends | orderBy:vm.predicate track by $index"></friend-item>
         </ion-list>
-      <!-- </div> -->
-<!-- 
-      <div id="friendMap" data-tap-disabled="true">
-        <ui-gmap-google-map ng-cloak ng-show="vm.predicate === 'map'" center='vm.map.center' zoom='vm.map.zoom' options='vm.map.options' control='vm.map.control'>
-          <ui-gmap-markers models="vm.friends" coords="'location'" icon="'icon'">
-          </ui-gmap-markers>
-          <ui-gmap-marker coords="vm.myMarker.coords" idKey="vm.myMarker.id" options="vm.myMarker.options">
-          </ui-gmap-marker>
-        </ui-gmap-google-map>
-      </div> -->
-
     </ion-content>
-    <button id="fab" ui-sref="new" class="button button-balanced button-fab button-fab-bottom-right"><i class="icon ion-android-add"></i></button>
+    <button id="fab" ui-sref="new.details" class="button button-balanced button-fab button-fab-bottom-right"><i class="icon ion-android-add"></i></button>
 </ion-view>

@@ -83,6 +83,13 @@
 		}
 	}
 
+  .address-input {
+    input[readonly] {
+      background-color: transparent;
+      cursor: text;
+    }
+  } 
+
 	.code-list input {
 		text-transform: uppercase;
 	}

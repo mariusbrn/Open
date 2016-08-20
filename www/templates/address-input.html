@@ -1,0 +1,42 @@
+<ion-view class="bubble-background">
+
+    <ion-nav-buttons side="left">
+      <button class="button button-icon button-previous" ng-click="vm.cancel()">
+        <i class="open-icon icon-previous"></i>
+      </button>
+    </ion-nav-buttons>
+    <ion-nav-title>
+      ADDRESS
+    </ion-nav-title>
+
+    <ion-content class="address-view" padding="false" scroll="true" has-bouncing="false">
+      
+      <div class="form-control">
+        <i class="open-icon icon-address" ng-class="!vm.searchQuery ? 'untouched' : ''"></i>
+        <div class="input-wrapper">       
+          <input 
+            class="google-place-search" 
+            type="search" 
+            ng-model="vm.searchQuery" 
+            ng-change="vm.onSearchQuery()" 
+            placeholder="Address">
+          <button class="button button-clear" ng-click="vm.clear()" ng-show="vm.searchQuery">
+            <i class="open-icon icon-cancel"></i>
+          </button>
+          <button class="button button-locate" ng-click="vm.locateMe(true)" ng-hide="vm.searchQuery">
+            <i class="open-icon" ng-class="(vm.fetchingAdress) ? 'icon-clock' : 'icon-locate-me' "></i>
+          </button>         
+        </div>
+      </div>      
+      <ion-list class="locations-list">
+          <ion-item 
+            class="location-bloc" 
+            type="item-text-wrap" 
+            ng-repeat="location in vm.locations" 
+            ng-click="vm.selectLocation(location)">
+            {{ location.formatted_address }}
+          </ion-item>
+      </ion-list>
+
+    </ion-content>
+</ion-view>

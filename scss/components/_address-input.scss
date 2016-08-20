@@ -1,29 +1,14 @@
 
-.address-input {
-	input[readonly] {
-		background-color: transparent;
-		cursor: text;
-	}
-} 
-
-
-.ion-google-place-container  {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 20;
-    display: none;
-    background-color: $calm;
- 	border: 0px solid transparent;
+.address-view {
+	background-color: $calm;
 
 	.form-control {
 		border: 0px solid transparent;
+		background-color: transparent;
 		color: $light;
 		@include display-flex;
-  		@include flex-direction(row);
-  		margin: 2px 34px;
+		@include flex-direction(row);
+		margin: 2px 34px;
 		padding: 10px 20px;
 
 		.input-wrapper {
@@ -45,7 +30,7 @@
 			button {
 				box-shadow: none;
 			}
-	
+
 		  	.button-locate {
 	  			border: none;
 	  			background: none;
@@ -74,14 +59,14 @@
 	  		}
 		}
 
-  		.open-icon {
-  			font-size: 22px;
-  			align-self: center;
-  		}
+			.open-icon {
+				font-size: 22px;
+				align-self: center;
+			}
 
-  		.icon-cancel {
-  			font-size: 14px;
-  		}	  						
+			.icon-cancel {
+				font-size: 14px;
+			}	  						
 	}		
 
 	.locations-list {

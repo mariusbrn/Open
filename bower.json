@@ -2,11 +2,11 @@
   "name": "Open",
   "private": "true",
   "dependencies": {
-    "ionic": "~1.3.0",
+    "ionic": "1.3.1",
     "ionic-material": "~0.4.2",
     "angular-google-maps": "~2.2.0",
     "robotodraft": "~1.1.0",
-    "lodash": "~3.10.1",
+    "lodash": "^4.15.0",
     "ngstorage": "~0.3.10",
     "ngCordova": "~0.1.24-alpha",
     "angular-amplitude": "git@github.com:mounibec/angular-amplitude.git#f01b076"
@@ -14,6 +14,7 @@
   "resolutions": {
     "angular": "1.5.3",
     "angular-sanitize": "1.5.3",
-    "angular-animate": "1.5.3"
+    "angular-animate": "1.5.3",
+    "ionic": "1.3.1"
   }
 }

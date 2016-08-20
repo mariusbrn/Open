@@ -42,13 +42,12 @@
         AmplitudeFactory,
         uiGmapGoogleMapApi)
     {
-        var vm = this;
-        var mapAPI, myLocation, myMarker, map;
+        let vm = this;
+        let mapAPI, myLocation, myMarker, map;
 
         vm.$state = $state;
         vm.predicate = 'distance';
         vm.friends = [];
-        vm.showMap = showMap;
         vm.reload  = reload;
         vm.edit    = editFriend;
         vm.share   = shareFriend;
@@ -74,71 +73,44 @@
             //FriendsFactory.clear();
             vm.friends = FriendsFactory.friends;
 
-            $scope.$on('$ionicView.enter', function(e) {
+            $scope.$on('$ionicParentView.enter', (e) => {
                 FriendsFactory.calculateDistance(locationFactory.currentPosition.coords);
             });
 
-            $rootScope.$on('$stateChangeStart',
-                function(event, toState, toParams, fromState, fromParams) {
-                    switch (toState.name) {
-                        case 'friends.nearby':
-                            vm.predicate = 'distance';
-                            break;
-                        case 'friends.byname':
-                            vm.predicate = 'name';
-                            break;
-                    }
-
-                    console.log(vm.predicate)
-            });
-
-            // uiGmapGoogleMapApi.then(function(maps) {
-            //     mapAPI = maps;
-            // });
-
-            // myLocation = locationFactory.currentPosition;
-
-            // if(!_.isNull(myLocation) ) {
-            //     vm.myMarker.coords.latitude = myLocation.coords.latitude;
-            //     vm.myMarker.coords.longitude = myLocation.coords.longitude;
-
-            //     vm.map.center.latitude = myLocation.coords.latitude;
-            //     vm.map.center.longitude = myLocation.coords.longitude;
-            // }
-            $ionicPlatform.ready(function () {
+            $ionicPlatform.ready(() => {
 
                 if(! $window.cordova) return;
 
                 console.log('check permission');
-                $cordovaLocalNotification.hasPermission().then(function (result) {
-                    console.log(result)
+                $cordovaLocalNotification.hasPermission().then((result) => {
+                    console.log(result);
                 });
 
                 $rootScope.$on('$cordovaLocalNotification:schedule',
-                function (event, notification, state) {
+                (event, notification, state) => {
                   console.log('schedule');
                 });
 
                 $rootScope.$on('$cordovaLocalNotification:trigger',
-                function (event, notification, state) {
+                (event, notification, state) => {
                   console.log('trigger');
                 });
 
                 // ========== Scheduling
-                $scope.scheduleNotification = function () {
+                $scope.scheduleNotification = () => {
                   $cordovaLocalNotification.schedule({
                     id: 1,
                     title: 'My notification title 71A37',
                     text: 'bla bla bla... Zzz...Zzz..',
                     icon: 'file://img/ionic.png'
-                  }).then(function (result) {
-                    console.log('gogo notif')
+                  }).then((result) => {
+                    console.log('gogo notif');
                   });
                 };
 
                 //$scope.scheduleNotification();
                 if (navigator.splashscreen) {
-                    $timeout(function () {
+                    $timeout(() => {
                         $cordovaSplashscreen.hide();
                         // Set Ink
                         ionicMaterialInk.displayEffect();
@@ -149,33 +121,19 @@
         }
 
         function reload() {
-            locationFactory.getCurrentPosition(20000).then( function(position){
-                console.log('reloaded');
+            locationFactory.getCurrentPosition(20000).then((position) => {
                 FriendsFactory.calculateDistance(locationFactory.currentPosition.coords);
-            }, function (msg) {
+            }, (msg) => {
                 vm.error = msg;
             })
-            .finally(function () {
+            .finally(() => {
                 $scope.$broadcast('scroll.refreshComplete');
             });
         }
 
-        function showMap() {
-
-            vm.predicate = 'map';
-
-            // var controlGmap = vm.map.control.getGMap();
-
-            // $timeout(function(){
-            //   mapAPI.event.trigger(controlGmap, 'resize');
-            //   controlGmap.setCenter(new mapAPI.LatLng(myLocation.coords.latitude, myLocation.coords.longitude));
-            // },400);
-
-        }
-
         function editFriend (friend) {
             $ionicListDelegate.closeOptionButtons();
-            $state.go('edit', {id: friend.id}, {location: 'replace'});
+            $state.go('edit.details', {id: friend.id}, {location: 'replace'});
         }
 
         function shareFriend (friend) {

@@ -11778,6 +11778,9 @@ a.button .icon:before, a.button.icon:before, a.button.icon-left:before, a.button
 .bar .button i {
   margin-top: 10px;
 }
+.bar .button.button-previous {
+  box-shadow: none;
+}
 
 .nav-bar-title img {
   height: 20px;
@@ -11949,24 +11952,12 @@ a.button .icon:before, a.button.icon:before, a.button.icon-left:before, a.button
   font-weight: 700;
   font-style: normal;
 }
-.address-input input[readonly] {
-  background-color: transparent;
-  cursor: text;
-}
-
-.ion-google-place-container {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 20;
-  display: none;
+.address-view {
   background-color: #2bd35a;
-  border: 0px solid transparent;
 }
-.ion-google-place-container .form-control {
+.address-view .form-control {
   border: 0px solid transparent;
+  background-color: transparent;
   color: #fff;
   display: -webkit-box;
   display: -webkit-flex;
@@ -11983,7 +11974,7 @@ a.button .icon:before, a.button.icon:before, a.button.icon-left:before, a.button
   margin: 2px 34px;
   padding: 10px 20px;
 }
-.ion-google-place-container .form-control .input-wrapper {
+.address-view .form-control .input-wrapper {
   border-bottom: 1px solid #fff;
   display: -webkit-box;
   display: -webkit-flex;
@@ -11995,7 +11986,7 @@ a.button .icon:before, a.button.icon:before, a.button.icon-left:before, a.button
   flex-grow: 1;
   margin-left: 26px;
 }
-.ion-google-place-container .form-control .input-wrapper input {
+.address-view .form-control .input-wrapper input {
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -12009,30 +12000,30 @@ a.button .icon:before, a.button.icon:before, a.button.icon-left:before, a.button
   color: #fff;
   padding: 0;
 }
-.ion-google-place-container .form-control .input-wrapper input::-webkit-input-placeholder {
+.address-view .form-control .input-wrapper input::-webkit-input-placeholder {
   /* WebKit, Blink, Edge */
   color: #fff;
   opacity: 0.5;
 }
-.ion-google-place-container .form-control .input-wrapper input:-moz-placeholder {
+.address-view .form-control .input-wrapper input:-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
   color: #fff;
   opacity: 0.5;
 }
-.ion-google-place-container .form-control .input-wrapper input::-moz-placeholder {
+.address-view .form-control .input-wrapper input::-moz-placeholder {
   /* Mozilla Firefox 19+ */
   color: #fff;
   opacity: 0.5;
 }
-.ion-google-place-container .form-control .input-wrapper input:-ms-input-placeholder {
+.address-view .form-control .input-wrapper input:-ms-input-placeholder {
   /* Internet Explorer 10-11 */
   color: #fff;
   opacity: 0.5;
 }
-.ion-google-place-container .form-control .input-wrapper button {
+.address-view .form-control .input-wrapper button {
   box-shadow: none;
 }
-.ion-google-place-container .form-control .input-wrapper .button-locate {
+.address-view .form-control .input-wrapper .button-locate {
   border: none;
   background: none;
   color: #fff;
@@ -12042,7 +12033,7 @@ a.button .icon:before, a.button.icon:before, a.button.icon-left:before, a.button
   height: 34px;
   padding: 0;
 }
-.ion-google-place-container .form-control .input-wrapper .button-clear {
+.address-view .form-control .input-wrapper .button-clear {
   border: none;
   background: none;
   color: #fff;
@@ -12052,25 +12043,25 @@ a.button .icon:before, a.button.icon:before, a.button.icon-left:before, a.button
   height: 34px;
   padding: 0;
 }
-.ion-google-place-container .form-control .input-wrapper .button-clear i {
+.address-view .form-control .input-wrapper .button-clear i {
   font-size: 10px;
   margin-bottom: 10px;
 }
-.ion-google-place-container .form-control .open-icon {
+.address-view .form-control .open-icon {
   font-size: 22px;
   align-self: center;
 }
-.ion-google-place-container .form-control .icon-cancel {
+.address-view .form-control .icon-cancel {
   font-size: 14px;
 }
-.ion-google-place-container .locations-list {
+.address-view .locations-list {
   display: block;
   position: absolute;
   border: 0px solid transparent;
   left: 0;
   width: 100%;
 }
-.ion-google-place-container .locations-list .location-bloc {
+.address-view .locations-list .location-bloc {
   background-color: #27be51;
   font-family: "lato";
   font-size: 16px;
@@ -12568,6 +12559,10 @@ a.button .icon:before, a.button.icon:before, a.button.icon-left:before, a.button
 .new-view .form-control textarea {
   resize: none;
   vertical-align: middle;
+}
+.new-view .address-input input[readonly] {
+  background-color: transparent;
+  cursor: text;
 }
 .new-view .code-list input {
   text-transform: uppercase;

@@ -18,7 +18,6 @@ angular
     };
 
     uiGmapGoogleMapApi.then(function(maps) {
-      console.log(maps);
         service.maps = maps;
         service.geocoder = new maps.Geocoder();        
     });

@@ -9,8 +9,6 @@
 		if (ionic.Platform.isAndroid())
 		    $ionicConfigProvider.scrolling.jsScrolling(false);
 
-		$urlRouterProvider.when('/friends', '/friends/nearby');
-
 		$stateProvider
 
 		.state('search', {
@@ -33,29 +31,44 @@
 		 	controller: 'FriendsController as vm'
 		})
 
-		.state('friends.nearby', {
-			url: '/nearby'
-		})
-
-		.state('friends.byname', {
-			url: '/byname'
-		})
-
-		.state('friends.map', {
-			url: '/map'
-		})
-
 		.state('edit', {
+			url: '', 
+			abstract: true, 
+			template: '<ion-nav-view/>', 
+		})
+
+		.state('edit.details', {
 			url: '/friend/:id',
 			templateUrl: 'templates/new.html',
 			controller: 'FriendController as vm'
 		})
 
+		.state('edit.address', {
+			url: '/friend/:id/address',
+			parent:'edit',
+			templateUrl: 'templates/address-input.html',
+			controller: 'AddressController as vm'
+		})		
+
 		.state('new', {
+			url: '', 
+			abstract: true, 
+			template: '<ion-nav-view/>', 
+		})
+
+		.state('new.details', {
 			url: '/new',
 			templateUrl: 'templates/new.html',
 			controller: 'FriendController as vm'
+		})		
+
+		.state('new.address', {
+			url: '/new/address',
+			parent:'new',
+			templateUrl: 'templates/address-input.html',
+			controller: 'AddressController as vm'
 		});		
+
 		// if none of the above states are matched, use this as the fallback
 		$urlRouterProvider.otherwise('/friends');
 	});

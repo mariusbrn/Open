@@ -52,6 +52,10 @@ $SecondaryFont: 'montserrat';
 	.button i {
 		margin-top: 10px;
 	}
+
+	.button.button-previous {
+		box-shadow: none;
+	}	
 }
 
 .nav-bar-title img {
