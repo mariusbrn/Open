@@ -12519,9 +12519,9 @@ a.button .icon:before, a.button.icon:before, a.button.icon-left:before, a.button
 .new-view .form-control .open-icon.untouched {
   opacity: 0.5;
 }
-.new-view .form-control .icon-minus,
-.new-view .form-control .icon-plus {
-  font-size: 14px;
+.new-view .form-control .icon-cancel {
+  font-size: 10px;
+  margin-bottom: 10px;
 }
 .new-view .form-control button {
   border: none;

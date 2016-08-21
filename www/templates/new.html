@@ -42,7 +42,7 @@
            ng-required="($first) ? 'required' : ''"
            ng-model="code.label">
           <button type="button" ng-show="code.label" ng-click="vm.removeCode($index)">
-            <i class="open-icon icon-minus"></i>
+            <i class="open-icon icon-cancel"></i>
           </button>
         </div>
         <button type="button" class="button-bloc" ng-cloak ng-show="vm.newFriend.codes[0].label" ng-click="vm.addCode()">
