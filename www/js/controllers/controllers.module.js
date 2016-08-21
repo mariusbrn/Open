@@ -9,7 +9,7 @@
     /* @ngInject */
     function configAppCtrl (uiGmapGoogleMapApiProvider) {
         uiGmapGoogleMapApiProvider.configure({
-            //    key: 'your api key',
+            //key: 'AIzaSyA7JP2MbIs7uzp5fQtglkkZ9FFdfbWoy7E',
             v: '3.22',
             libraries: 'weather,geometry,visualization'
         });
