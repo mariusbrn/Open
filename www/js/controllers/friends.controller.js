@@ -73,7 +73,7 @@
             //FriendsFactory.clear();
             vm.friends = FriendsFactory.friends;
 
-            $scope.$on('$ionicParentView.enter', (e) => {
+            $scope.$on('$ionicView.enter', (e) => {
                 FriendsFactory.calculateDistance(locationFactory.currentPosition.coords);
             });
 
@@ -81,9 +81,8 @@
 
                 if(! $window.cordova) return;
 
-                console.log('check permission');
                 $cordovaLocalNotification.hasPermission().then((result) => {
-                    console.log(result);
+                    //console.log(result);
                 });
 
                 $rootScope.$on('$cordovaLocalNotification:schedule',
@@ -110,12 +109,14 @@
 
                 //$scope.scheduleNotification();
                 if (navigator.splashscreen) {
-                    $timeout(() => {
-                        $cordovaSplashscreen.hide();
-                        // Set Ink
-                        ionicMaterialInk.displayEffect();
-                        ionicMaterialMotion.fadeSlideInRight();
-                    }, 600);
+                    $scope.$on('$ionicView.loaded', (e) => {
+                        $timeout(() => {
+                            $cordovaSplashscreen.hide();
+                            // Set Ink
+                            ionicMaterialInk.displayEffect();
+                            ionicMaterialMotion.fadeSlideInRight();
+                        }, 600);
+                    });                        
                 }                
             });
         }

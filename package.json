@@ -1,6 +1,6 @@
 {
   "name": "open",
-  "version": "0.6.0",
+  "version": "0.6.3",
   "description": "Open: An Ionic project",
   "dependencies": {
     "gulp": "^3.5.6",
