@@ -12487,7 +12487,8 @@ a.button .icon:before, a.button.icon:before, a.button.icon-left:before, a.button
   font-size: 90px;
 }
 .new-view .form-control {
-  background-color: #27be51;
+  border: 0px solid transparent;
+  background-color: transparent;
   color: #fff;
   -webkit-border-radius: 35px;
   border-radius: 35px;
@@ -12524,16 +12525,39 @@ a.button .icon:before, a.button.icon:before, a.button.icon-left:before, a.button
   font-size: 10px;
   margin-bottom: 10px;
 }
-.new-view .form-control button {
+.new-view .form-control .input-wrapper {
+  border-bottom: 1px solid #fff;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+  margin-left: 26px;
+}
+.new-view .form-control .input-wrapper .button-locate-me {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-grow: 0;
+  flex-grow: 0;
+}
+.new-view .form-control .input-wrapper button {
   border: none;
   background: none;
   color: #fff;
 }
-.new-view .form-control button i {
+.new-view .form-control .input-wrapper button i {
   margin: 0;
 }
-.new-view .form-control input, .new-view .form-control textarea {
-  background-color: #27be51;
+.new-view .form-control .input-wrapper input, .new-view .form-control .input-wrapper textarea {
+  width: 50px;
+  background-color: transparent;
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -12546,36 +12570,34 @@ a.button .icon:before, a.button.icon:before, a.button.icon-left:before, a.button
   color: #fff;
   margin: 0 10px;
 }
-.new-view .form-control input::-webkit-input-placeholder, .new-view .form-control textarea::-webkit-input-placeholder {
+.new-view .form-control .input-wrapper input::-webkit-input-placeholder, .new-view .form-control .input-wrapper textarea::-webkit-input-placeholder {
   /* WebKit, Blink, Edge */
   color: #fff;
   opacity: 0.5;
 }
-.new-view .form-control input:-moz-placeholder, .new-view .form-control textarea:-moz-placeholder {
+.new-view .form-control .input-wrapper input:-moz-placeholder, .new-view .form-control .input-wrapper textarea:-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
   color: #fff;
   opacity: 0.5;
 }
-.new-view .form-control input::-moz-placeholder, .new-view .form-control textarea::-moz-placeholder {
+.new-view .form-control .input-wrapper input::-moz-placeholder, .new-view .form-control .input-wrapper textarea::-moz-placeholder {
   /* Mozilla Firefox 19+ */
   color: #fff;
   opacity: 0.5;
 }
-.new-view .form-control input:-ms-input-placeholder, .new-view .form-control textarea:-ms-input-placeholder {
+.new-view .form-control .input-wrapper input:-ms-input-placeholder, .new-view .form-control .input-wrapper textarea:-ms-input-placeholder {
   /* Internet Explorer 10-11 */
   color: #fff;
   opacity: 0.5;
 }
-.new-view .form-control textarea {
+.new-view .form-control .input-wrapper textarea {
   resize: none;
   vertical-align: middle;
+  margin-bottom: 8px;
 }
 .new-view .address-input input[readonly] {
   background-color: transparent;
   cursor: text;
-}
-.new-view .code-list input {
-  text-transform: uppercase;
 }
 .new-view .button-bloc {
   background-color: transparent;
@@ -12591,9 +12613,8 @@ a.button .icon:before, a.button.icon:before, a.button.icon-left:before, a.button
 }
 .new-view .button-delete {
   font-weight: bold;
-  font-size: 24px;
-  padding: 4px;
-  height: 36px;
-  margin-top: 40px;
+  font-size: 16px;
+  margin-top: 36px;
   margin-bottom: 30px;
+  margin-left: 26px;
 }

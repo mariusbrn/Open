@@ -43,6 +43,7 @@ function FriendController($scope,
     vm.action = 'new';
     vm.addCode     = addCode;
     vm.removeCode  = removeCode;
+    vm.onCodeChange = onCodeChange;
     vm.getPicture  = getPicture;
     vm.save        = save;
     vm.cancel      = cancel;
@@ -57,18 +58,22 @@ function FriendController($scope,
     }); 
 
     function activate () {
+
         if ($stateParams.id) {
             vm.action = 'edit';
             vm.newFriend = _.cloneDeep(FriendsFactory.get($stateParams.id));
+            onCodeChange(_.last(vm.newFriend.codes));
             vm.title = 'EDIT CONTACT';
         } else {
             vm.newFriend = _.cloneDeep(emptyFriend);
             vm. title = 'NEW CONTACT';
         }
 
+        console.log(vm.newFriend.codes);
+
         if (TemporaryFriend.store) {
            vm.newFriend = TemporaryFriend.store;
-        }     
+        }  
     } 
 
     function addCode () {
@@ -84,6 +89,24 @@ function FriendController($scope,
             vm.newFriend.codes.forEach((c, i) => {c.id = i+1;});
         }
     }  
+
+    function onCodeChange(code) {
+        console.log(code);
+        if (code.label) {
+            toUpperCode(code);
+
+            if (_.last(vm.newFriend.codes).label.length > 0) {
+                vm.addCode();
+            }
+        } else {
+            vm.removeCode(vm.newFriend.codes.length-1);
+        }  
+    }
+
+    function toUpperCode(code) {
+        if (code.label)
+            code.label = code.label.toUpperCase();            
+    }
 
     function getPicture () {
 
@@ -113,7 +136,10 @@ function FriendController($scope,
     function save () {
         console.log('save');
         vm.isSaving = true;
-        if(vm.newForm.$valid) {                
+        if(vm.newForm.$valid) {
+            if (_.last(vm.newFriend.codes).label.length === 0) {
+                vm.removeCode(vm.newFriend.codes.length-1);
+            }        
             if(vm.action === 'edit'){
                 FriendsFactory.update(vm.newFriend);
                 AmplitudeFactory.logEvent('user:edit');

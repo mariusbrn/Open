@@ -19,64 +19,74 @@
       <div class="avatar-logo" ng-click="vm.getPicture()">
         <img ng-if="vm.newFriend.picture" class="friend-picture" ng-src="data:image/jpeg;base64,{{vm.newFriend.picture}}">
         <i ng-if="!vm.newFriend.picture" class="open-icon icon-avatar"></i>
-        <div>Add photo</div>
+        <div>{{ vm.newFriend.picture ? 'Edit' : 'Add'}} photo</div>
       </div>
       <form novalidate name="vm.newForm">
         <div class="form-control">
-          <i class="open-icon icon-name" ng-class="!vm.newFriend.name ? 'untouched' : ''"></i>
-          <input
-           type="text"
-           name="username"
-           id="username"
-           placeholder="Name"
-           required
+          <i class="open-icon icon-name" ng-class="{untouched: !vm.newFriend.name}""></i>
+          <div class="input-wrapper"> 
+            <input
+             type="text"
+             name="username"
+             id="username"
+             placeholder="Name"
+             required
            ng-model="vm.newFriend.name">
+          </div>
         </div>
         <div class="form-control code-list" ng-repeat="code in vm.newFriend.codes track by $index">
-          <i class="open-icon icon-code" ng-class="!code.label ? 'untouched' : ''"></i>
-          <input
-           type="text"
-           name="code"
-           id="code"
-           placeholder="Code"
-           ng-required="($first) ? 'required' : ''"
-           ng-model="code.label">
-          <button type="button" ng-show="code.label" ng-click="vm.removeCode($index)">
-            <i class="open-icon icon-cancel"></i>
-          </button>
+          <i class="open-icon icon-code" ng-class="{hidden: !$first, untouched: !code.label}"></i>
+          <div class="input-wrapper"> 
+            <input
+             type="text"
+             name="code"
+             id="code"
+             placeholder="{{$first ? 'Door Code' : 'Add code'}}"
+             ng-required="($first) ? 'required' : ''"
+             ng-change="vm.onCodeChange(code)"
+             ng-model="code.label">
+            <button type="button" ng-show="code.label && !$first" ng-click="vm.removeCode($index)">
+              <i class="open-icon icon-cancel"></i>
+            </button>
+          </div>     
         </div>
-        <button type="button" class="button-bloc" ng-cloak ng-show="vm.newFriend.codes[0].label" ng-click="vm.addCode()">
-          Add code
-        </button>        
         <!-- <address-input ng-model="vm.newFriend.location" user-location="vm.newFriend.location"></address-input> -->
         <div class="form-control address-input">
-          <i class="open-icon icon-address" ng-class="!isSet() ? 'untouched' : ''"></i>
-          <input 
-          type="text" 
-          name="address" 
-          id="address" 
-          placeholder="Address"
-          ng-model="vm.newFriend.location.formatted_address"
-          ng-click="vm.editAddress()"
-          required
-          readonly>
-          <button type="button" ng-click="vm.locateMe()">
-            <i class="open-icon" ng-class="(vm.fetchingAddress) ? 'icon-clock' : 'icon-locate-me' "></i>
-          </button>       
+          <i class="open-icon icon-address" ng-class="{untouched: !vm.newFriend.location.formatted_address}"></i>
+          <div class="input-wrapper">
+            <input 
+            type="text" 
+            name="address" 
+            id="address" 
+            placeholder="Address"
+            ng-model="vm.newFriend.location.formatted_address"
+            ng-click="vm.editAddress()"
+            required
+            readonly>
+            <button type="button" class="button-locate-me" ng-click="vm.locateMe()">
+              <i class="open-icon" ng-class="(vm.fetchingAddress) ? 'icon-clock' : 'icon-locate-me' "></i>
+            </button>       
+          </div>
         </div>
         <div class="form-control">
-          <i class="open-icon icon-notes" ng-class="!vm.newFriend.notes ? 'untouched' : ''"></i>
-          <textarea
-          name="moreinfo"
-          id="moreinfo"
-          rows="2"
-          placeholder="Note anything you need to remember: floor, stairs.."
-          ng-model="vm.newFriend.notes"></textarea>
+          <i class="open-icon icon-notes" ng-class="{untouched: !vm.newFriend.notes}"></i>
+          <div class="input-wrapper">
+            <textarea
+            name="moreinfo"
+            id="moreinfo"
+            rows="2"
+            placeholder="Note anything you need to remember: floor, stairs.."
+            ng-model="vm.newFriend.notes"></textarea>
+          </div>
         </div>
       </form>
-      <button type="button" class="button-bloc button-delete" ng-cloak ng-show="vm.action === 'edit'" ng-click="vm.delete()">
-         <i class="open-icon icon-trash"></i>
-      </button>  
+
+      <div class="form-control" ng-show="vm.action === 'edit'" ng-click="vm.delete()">
+        <i class="open-icon icon-trash" ng-class="!vm.newFriend.name ? 'untouched' : ''"></i>
+        <div class="button-delete">
+        DELETE CONTACT
+        </div>
+      </div>
       </ion-list >       
     </ion-content>
 </ion-view>
