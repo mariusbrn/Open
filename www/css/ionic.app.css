@@ -12452,6 +12452,11 @@ a.button .icon:before, a.button.icon:before, a.button.icon-left:before, a.button
   visibility: hidden;
 }
 
+.spinner svg {
+  stroke: #31e461;
+  fill: #31e461;
+}
+
 .new-view {
   background-color: #2bd35a;
 }

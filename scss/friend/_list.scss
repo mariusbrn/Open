@@ -191,3 +191,9 @@
 .hidden {
   visibility: hidden
 }
+
+.spinner svg {
+  stroke: $balanced;
+  fill: $balanced;
+}
+
