@@ -12267,6 +12267,10 @@ a.button .icon:before, a.button.icon:before, a.button.icon-left:before, a.button
   height: 70px;
 }
 
+.tabs.tabs-calm {
+  background-image: none;
+}
+
 .tab-item {
   font-family: "lato";
   padding-top: 10px;
