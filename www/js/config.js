@@ -1,6 +1,6 @@
 
 angular.module('Open')
-  .run(($ionicPlatform, $state, FriendsFactory, SettingsFactory, AmplitudeFactory) => {
+  .run(($ionicPlatform, $state, $ionicHistory, FriendsFactory, SettingsFactory, AmplitudeFactory) => {
 
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -20,7 +20,7 @@ angular.module('Open')
         backAsHome.trigger();
         e.preventDefault();
       } else {
-        navigator.app.backHistory();
+        $ionicHistory.goBack();
       }
     },101);     
   });
