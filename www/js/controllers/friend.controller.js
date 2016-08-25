@@ -14,7 +14,7 @@ FriendController.$inject = ['$scope',
     'AmplitudeFactory',
     'Geocoder',
     'FriendsFactory',
-    'locationFactory',    
+    'locationFactory',
     'TemporaryFriend'];
 /* @ngInject */
 function FriendController($scope,
@@ -29,11 +29,11 @@ function FriendController($scope,
     AmplitudeFactory,
     Geocoder,
     FriendsFactory,
-    locationFactory,    
+    locationFactory,
     TemporaryFriend)
 {
-    let vm = this;
-    const emptyFriend = {
+    var vm = this;
+    var emptyFriend = {
         name: '',
         location: {},
         codes: [{id: 1, label: ''}],
@@ -53,9 +53,9 @@ function FriendController($scope,
     vm.fetchingAddress = false;
     vm.isSaving = false;
 
-    $scope.$on('$ionicView.enter', (e) => {
-        activate();         
-    }); 
+    $scope.$on('$ionicView.enter', function(e) {
+        activate();
+    });
 
     function activate () {
 
@@ -73,22 +73,22 @@ function FriendController($scope,
 
         if (TemporaryFriend.store) {
            vm.newFriend = TemporaryFriend.store;
-        }  
-    } 
+        }
+    }
 
     function addCode () {
         vm.newFriend.codes.push({ id: vm.newFriend.codes.length + 1, label: '' });
         AmplitudeFactory.logEvent('user:add:code');
-    } 
+    }
 
     function removeCode (index) {
         if (index === 0) {
             vm.newFriend.codes[0].label = '';
-        } else {    
+        } else {
             vm.newFriend.codes.splice(index, 1);
-            vm.newFriend.codes.forEach((c, i) => {c.id = i+1;});
+            vm.newFriend.codes.forEach(function(c, i) {c.id = i+1;});
         }
-    }  
+    }
 
     function onCodeChange(code) {
         console.log(code);
@@ -100,17 +100,17 @@ function FriendController($scope,
             }
         } else {
             vm.removeCode(vm.newFriend.codes.length-1);
-        }  
+        }
     }
 
     function toUpperCode(code) {
         if (code.label)
-            code.label = code.label.toUpperCase();            
+            code.label = code.label.toUpperCase();
     }
 
     function getPicture () {
 
-        const options = {
+        var options = {
             quality: 50,
             targetWidth: 180,
             targetHeight: 180,
@@ -123,11 +123,11 @@ function FriendController($scope,
             saveToPhotoAlbum: true
         };
 
-        $ionicPlatform.ready(() => {
-            $cordovaCamera.getPicture(options).then((imageData) => {        
+        $ionicPlatform.ready(function() {
+            $cordovaCamera.getPicture(options).then(function(imageData) {
                 vm.newFriend.picture = imageData;
                 AmplitudeFactory.logEvent('user:add:picture');
-            }, (err) => {
+            }, function(err) {
                 console.log('Failed because: ' + err);
             });
         });
@@ -139,7 +139,7 @@ function FriendController($scope,
         if(vm.newForm.$valid) {
             if (_.last(vm.newFriend.codes).label.length === 0) {
                 vm.removeCode(vm.newFriend.codes.length-1);
-            }        
+            }
             if(vm.action === 'edit'){
                 FriendsFactory.update(vm.newFriend);
                 AmplitudeFactory.logEvent('user:edit');
@@ -151,60 +151,60 @@ function FriendController($scope,
             $ionicHistory.goBack();
         } else {
             vm.isSaving = false;
-            let msg = 'Informations required';
+            var msg = 'Informations required';
             if (vm.newForm.$error.required) {
-                msg = vm.newForm.$error.required[0].$name + ' required';        
-            } 
+                msg = vm.newForm.$error.required[0].$name + ' required';
+            }
             $cordovaToast.showShortBottom(msg);
         }
-    } 
+    }
 
     function cancel (index) {
         console.log("cancel");
-        vm.newFriend = _.cloneDeep(emptyFriend); 
+        vm.newFriend = _.cloneDeep(emptyFriend);
         TemporaryFriend.store = null;
         $ionicHistory.goBack();
-    } 
+    }
 
     function deleteFriend () {
         FriendsFactory.delete(vm.newFriend);
         $ionicHistory.goBack();
-    }  
+    }
 
     function editAddress() {
-        let params = { location: vm.newFriend.location };
+        var params = { location: vm.newFriend.location };
 
         if ($stateParams.id) params.id = $stateParams.id;
 
-        TemporaryFriend.store = vm.newFriend;       
+        TemporaryFriend.store = vm.newFriend;
 
         $state.go('^.address', params);
     }
 
     function locateMe() {
         vm.fetchingAddress = true;
-        Geocoder.reverseGeocode().then((res) => {
+        Geocoder.reverseGeocode().then(function(res) {
             if (res.length > 0) {
                 vm.newFriend.location = locationFactory.formatLocation(res[0]);
-            }                       
-        }, (e) => {
+            }
+        }, function(e) {
             console.log(e);
         })
-        .finally(() => {
+        .finally(function() {
             vm.fetchingAddress = false;
-        });               
+        });
     }
 
     function showConfirm () {
         var confirmPopup = $ionicPopup.confirm({
             title: 'Delete contact?',
             buttons: [{
-                text: 'No', 
+                text: 'No',
                 type:'button-light'
             },
-            { 
+            {
                 text: 'Yes',
-                type: 'button-balanced', 
+                type: 'button-balanced',
                 onTap: function(e) {
                     return true;
                 }
@@ -214,7 +214,7 @@ function FriendController($scope,
         confirmPopup.then(function(res) {
             if(res) {
                 deleteFriend();
-            } 
+            }
         });
-    }                             
+    }
 }

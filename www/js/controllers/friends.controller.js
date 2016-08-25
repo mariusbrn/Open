@@ -42,8 +42,8 @@ function FriendsController(
     AmplitudeFactory,
     uiGmapGoogleMapApi)
 {
-    let vm = this;
-    let mapAPI, myLocation, myMarker, map;
+    var vm = this;
+    var mapAPI, myLocation, myMarker, map;
 
     vm.$state = $state;
     vm.predicate = 'distance';
@@ -73,61 +73,61 @@ function FriendsController(
         //FriendsFactory.clear();
         vm.friends = FriendsFactory.friends;
 
-        $scope.$on('$ionicView.enter', (e) => {
+        $scope.$on('$ionicView.enter', function(e) {
             FriendsFactory.calculateDistance(locationFactory.currentPosition.coords);
         });
 
-        $ionicPlatform.ready(() => {
+        $ionicPlatform.ready(function() {
 
             if(! $window.cordova) return;
 
-            $cordovaLocalNotification.hasPermission().then((result) => {
+            $cordovaLocalNotification.hasPermission().then(function(result) {
                 //console.log(result);
             });
 
             $rootScope.$on('$cordovaLocalNotification:schedule',
-            (event, notification, state) => {
+            function(event, notification, state) {
               console.log('schedule');
             });
 
             $rootScope.$on('$cordovaLocalNotification:trigger',
-            (event, notification, state) => {
+            function(event, notification, state) {
               console.log('trigger');
             });
 
             // ========== Scheduling
-            $scope.scheduleNotification = () => {
+            $scope.scheduleNotification = function() {
               $cordovaLocalNotification.schedule({
                 id: 1,
                 title: 'My notification title 71A37',
                 text: 'bla bla bla... Zzz...Zzz..',
                 icon: 'file://img/ionic.png'
-              }).then((result) => {
+              }).then(function(result) {
                 console.log('gogo notif');
               });
             };
 
             //$scope.scheduleNotification();
             if (navigator.splashscreen) {
-                $scope.$on('$ionicView.loaded', (e) => {
-                    $timeout(() => {
+                $scope.$on('$ionicView.loaded', function(e) {
+                    $timeout(function() {
                         $cordovaSplashscreen.hide();
                         // Set Ink
                         ionicMaterialInk.displayEffect();
                         ionicMaterialMotion.fadeSlideInRight();
                     }, 600);
-                });                        
-            }                
+                });
+            }
         });
     }
 
     function reload() {
-        locationFactory.getCurrentPosition(20000).then((position) => {
+        locationFactory.getCurrentPosition(20000).then(function(position) {
             FriendsFactory.calculateDistance(locationFactory.currentPosition.coords);
-        }, (msg) => {
+        }, function(msg) {
             vm.error = msg;
         })
-        .finally(() => {
+        .finally(function() {
             $scope.$broadcast('scroll.refreshComplete');
         });
     }
@@ -138,19 +138,19 @@ function FriendsController(
     }
 
     function shareFriend (friend) {
-        let formattedSharingContent = formatForSharing(friend);
+        var formattedSharingContent = formatForSharing(friend);
 
         $cordovaSocialSharing
         .share(formattedSharingContent.content, formattedSharingContent.subject)
-        .then((result) => {
+        .then(function(result) {
             console.log(result);
-        }, (err) => {
+        }, function(err) {
             console.log('Sharing', err);
         });
     }
 
     function formatForSharing (friend) {
-        let contentInfos = [
+        var contentInfos = [
             friend.name,
             friend.location.formatted_address,
             'Codes: ' + _(friend.codes).map('label').join(' - '),
@@ -159,14 +159,14 @@ function FriendsController(
         if (friend.notes) contentInfos.push('Notes: ' + friend.notes);
         contentInfos.push('Shared with Open http://getopen.co/');
 
-        let content = contentInfos.join('\n');
+        var content = contentInfos.join('\n');
 
-        let subject = friend.name + '\'s code  - shared with Open';
+        var subject = friend.name + '\'s code  - shared with Open';
 
         return {
             subject: subject,
             content: content
         };
-    } 
+    }
 }
 

@@ -18,7 +18,7 @@ angular.module('Open')
 		url: '/friends',
 		resolve: {
 	     location:
-	      ($q, locationFactory) => {
+	      function($q, locationFactory) {
 						if (locationFactory.currentPosition) {
 							return $q.when();
 						}	else {
@@ -31,9 +31,9 @@ angular.module('Open')
 	})
 
 	.state('edit', {
-		url: '', 
-		abstract: true, 
-		template: '<ion-nav-view/>', 
+		url: '',
+		abstract: true,
+		template: '<ion-nav-view/>',
 	})
 
 	.state('edit.details', {
@@ -47,26 +47,26 @@ angular.module('Open')
 		parent:'edit',
 		templateUrl: 'templates/address-input.html',
 		controller: 'AddressController as vm'
-	})		
+	})
 
 	.state('new', {
-		url: '', 
-		abstract: true, 
-		template: '<ion-nav-view/>', 
+		url: '',
+		abstract: true,
+		template: '<ion-nav-view/>',
 	})
 
 	.state('new.details', {
 		url: '/new',
 		templateUrl: 'templates/new.html',
 		controller: 'FriendController as vm'
-	})		
+	})
 
 	.state('new.address', {
 		url: '/new/address',
 		parent:'new',
 		templateUrl: 'templates/address-input.html',
 		controller: 'AddressController as vm'
-	});		
+	});
 
 	// if none of the above states are matched, use this as the fallback
 	$urlRouterProvider.otherwise('/friends');

@@ -19,6 +19,7 @@ vendor/
 public/
 platforms/
 plugins/
+www/lib/
 
 # version files #
 #################

@@ -12,7 +12,7 @@ angular
 locationFactory.$inject = ['$document', '$window', '$q', '$timeout', '$ionicPlatform', '$cordovaGeolocation'];
 /* @ngInject */
 function locationFactory($document, $window, $q, $timeout, $ionicPlatform, $cordovaGeolocation) {
-    let service = {
+    var service = {
         currentPosition: null,
         getCurrentPosition: getCurrentPosition,
         distanceBetween: distanceBetween,
@@ -24,29 +24,29 @@ function locationFactory($document, $window, $q, $timeout, $ionicPlatform, $cord
 
     // ====================================
 
-    function getCurrentPosition(timeout) { 
-        let deferred = $q.defer();
-        const options = { 
-          maximumAge: 3000, 
+    function getCurrentPosition(timeout) {
+        var deferred = $q.defer();
+        var options = {
+          maximumAge: 3000,
           timeout: timeout, enableHighAccuracy: true
         };
 
-        $ionicPlatform.ready(() => {
-            $cordovaGeolocation.getCurrentPosition(options).then((position) => {
+        $ionicPlatform.ready(function() {
+            $cordovaGeolocation.getCurrentPosition(options).then(function(position) {
                 service.currentPosition = position;
                 deferred.resolve(position);
-            }, (error) => {
+            }, function(error) {
                 deferred.reject(error);
-            }); 
-        }); 
-        
+            });
+        });
+
         // $timeout(function () {
         //   var position = {coords: {latitude: 48.8813872, longitude: 2.3414853}};
         //   service.currentPosition = position;
         //   deferred.resolve(position);
         // }, 3000);
 
-        return deferred.promise;  
+        return deferred.promise;
     }
 
     /**
@@ -69,22 +69,22 @@ function locationFactory($document, $window, $q, $timeout, $ionicPlatform, $cord
     function formatLocation (location) {
         return {
             formatted_address: location.formatted_address,
-            coords: { 
+            coords: {
                 lat:location.geometry.location.lat(),
                 lng:location.geometry.location.lng()
             }
         };
-    } 
+    }
 
     /**
-     * Calculates geodetic distance between two points specified by latitude/longitude using 
+     * Calculates geodetic distance between two points specified by latitude/longitude using
      * Vincenty inverse formula for ellipsoids
      *
      * @param   {Number} lat1, lon1: first point in decimal degrees
      * @param   {Number} lat2, lon2: second point in decimal degrees
      * @returns (Number} distance in metres between points
      */
-    
+
     function distVincenty(lat1, lon1, lat2, lon2) {
       lat1 = Number(lat1);
       lon1 = Number(lon1);
@@ -101,15 +101,15 @@ function locationFactory($document, $window, $q, $timeout, $ionicPlatform, $cord
           cosU1 = Math.cos(U1);
       var sinU2 = Math.sin(U2),
           cosU2 = Math.cos(U2);
-    
+
       var lambda = L, iterLimit = 100,
           lambdaP, sigma, cosSigma, cosSqAlpha, cos2SigmaM, sinSigma;
 
       do {
         var sinLambda = Math.sin(lambda),
             cosLambda = Math.cos(lambda);
-        sinSigma = Math.sqrt((cosU2 * sinLambda) * (cosU2 * sinLambda) + 
-            (cosU1 * sinU2 - sinU1 * cosU2 * cosLambda) * 
+        sinSigma = Math.sqrt((cosU2 * sinLambda) * (cosU2 * sinLambda) +
+            (cosU1 * sinU2 - sinU1 * cosU2 * cosLambda) *
             (cosU1 * sinU2 - sinU1 * cosU2 * cosLambda));
         if (sinSigma === 0) {
           return 0; // co-incident points
@@ -124,23 +124,23 @@ function locationFactory($document, $window, $q, $timeout, $ionicPlatform, $cord
         }
         var C = f / 16 * cosSqAlpha * (4 + f * (4 - 3 * cosSqAlpha));
         lambdaP = lambda;
-        lambda = L + (1 - C) * f * sinAlpha * (sigma + C * sinSigma * 
+        lambda = L + (1 - C) * f * sinAlpha * (sigma + C * sinSigma *
             (cos2SigmaM + C * cosSigma * (-1 + 2 * cos2SigmaM * cos2SigmaM)));
       } while (Math.abs(lambda - lambdaP) > 1e-12 && --iterLimit > 0);
-    
+
       if (iterLimit === 0) {
         return NaN;// formula failed to converge
       }
       var uSq = cosSqAlpha * (a * a - b * b) / (b * b);
       var A = 1 + uSq / 16384 * (4096 + uSq * (-768 + uSq * (320 - 175 * uSq)));
       var B = uSq / 1024 * (256 + uSq * (-128 + uSq * (74 - 47 * uSq)));
-      var deltaSigma = B * sinSigma * (cos2SigmaM + B / 4 * (cosSigma * 
-        (-1 + 2 * cos2SigmaM * cos2SigmaM) - B / 6 * 
-        cos2SigmaM * (-3 + 4 * sinSigma * sinSigma) * 
+      var deltaSigma = B * sinSigma * (cos2SigmaM + B / 4 * (cosSigma *
+        (-1 + 2 * cos2SigmaM * cos2SigmaM) - B / 6 *
+        cos2SigmaM * (-3 + 4 * sinSigma * sinSigma) *
         (-3 + 4 * cos2SigmaM * cos2SigmaM)));
       var s = b * A * (sigma - deltaSigma);
-    
+
       s = s.toFixed(3); // round to 1mm precision
       return parseFloat(s);
-    }         
+    }
 }

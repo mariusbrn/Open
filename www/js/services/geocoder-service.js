@@ -4,21 +4,21 @@ angular
   .factory('Geocoder', GeocoderFactory);
 
 GeocoderFactory.$inject = ['$q', '$timeout', 'uiGmapGoogleMapApi', 'locationFactory'];
-/* @ngInject */  
+/* @ngInject */
 function GeocoderFactory ($q, $timeout, uiGmapGoogleMapApi, locationFactory) {
-  
-  let searchEventTimeout;
-  const QUERY_PAUSE = 350;
-  const MAPS_BOUNDS_RADIUS = 7000;
-    
-  let service = {
+
+  var searchEventTimeout;
+  var QUERY_PAUSE = 350;
+  var MAPS_BOUNDS_RADIUS = 7000;
+
+  var service = {
       geocodeAddress: geocodeAddress,
       reverseGeocode: reverseGeocode
   };
 
-  uiGmapGoogleMapApi.then((maps) => {
+  uiGmapGoogleMapApi.then(function(maps) {
       service.maps = maps;
-      service.geocoder = new maps.Geocoder();        
+      service.geocoder = new maps.Geocoder();
   });
 
   // var dummyResult = [
@@ -34,12 +34,12 @@ function GeocoderFactory ($q, $timeout, uiGmapGoogleMapApi, locationFactory) {
   // ====================================
 
   function geocodeAddress (query) {
-    let d = $q.defer();
+    var d = $q.defer();
 
-    let req = {};
+    var req = {};
 
     if (searchEventTimeout) $timeout.cancel(searchEventTimeout);
-    searchEventTimeout = $timeout(() => {
+    searchEventTimeout = $timeout(function() {
 
       if(!query || query.length < 3)  {
         d.reject("too short");
@@ -48,8 +48,8 @@ function GeocoderFactory ($q, $timeout, uiGmapGoogleMapApi, locationFactory) {
 
       //d.resolve(dummyResult);
 
-      locationFactory.getCurrentPosition(20000).then((position) => {
-        let center = new service.maps.LatLng(position.coords.latitude, position.coords.longitude);
+      locationFactory.getCurrentPosition(20000).then(function(position) {
+        var center = new service.maps.LatLng(position.coords.latitude, position.coords.longitude);
         //var center = new service.maps.LatLng(48.8813872, 2.3414853);
 
         req.address = query;
@@ -58,7 +58,7 @@ function GeocoderFactory ($q, $timeout, uiGmapGoogleMapApi, locationFactory) {
          radius: MAPS_BOUNDS_RADIUS
         }).getBounds();
 
-        geocodeRequest(req).then((res) => { 
+        geocodeRequest(req).then(function(res) {
           d.resolve(res);
         });
       });
@@ -69,23 +69,23 @@ function GeocoderFactory ($q, $timeout, uiGmapGoogleMapApi, locationFactory) {
   }
 
   function reverseGeocode () {
-    let d = $q.defer();
+    var d = $q.defer();
 
-    locationFactory.getCurrentPosition(20000).then((position) => {
-      let latlng = new service.maps.LatLng(position.coords.latitude, position.coords.longitude);
-      
-      geocodeRequest({ 'latLng': latlng }).then((res) => { 
+    locationFactory.getCurrentPosition(20000).then(function(position) {
+      var latlng = new service.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+      geocodeRequest({ 'latLng': latlng }).then(function(res) {
         d.resolve(res);
       });
     });
 
-    return d.promise; 
+    return d.promise;
   }
 
   function geocodeRequest (req) {
-    let d = $q.defer();
+    var d = $q.defer();
 
-    service.geocoder.geocode(req, (results, status) => {
+    service.geocoder.geocode(req, function(results, status) {
 
       if (status == service.maps.GeocoderStatus.OK) {
         d.resolve(results);
@@ -98,7 +98,7 @@ function GeocoderFactory ($q, $timeout, uiGmapGoogleMapApi, locationFactory) {
         d.reject({
           type: 'busy',
           message: 'Geocoding server is busy can not process: ' + req.address || req.latLng
-        });            
+        });
       } else if (status === service.maps.GeocoderStatus.REQUEST_DENIED) {
         d.reject({
           type: 'denied',
@@ -112,7 +112,7 @@ function GeocoderFactory ($q, $timeout, uiGmapGoogleMapApi, locationFactory) {
       }
     });
 
-    return d.promise;    
+    return d.promise;
   }
-  
+
 }

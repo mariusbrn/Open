@@ -8,8 +8,8 @@
     TemporaryFriend.$inject = [];
     /* @ngInject */
     function TemporaryFriend() {
-        let tempFriend;
-        let service = {
+        var tempFriend;
+        var service = {
             store: tempFriend
         };
 

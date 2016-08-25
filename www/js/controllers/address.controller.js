@@ -4,9 +4,9 @@ angular
     .controller('AddressController', AddressController);
 
 AddressController.$inject = [
-    '$scope', 
-    '$state', 
-    '$stateParams', 
+    '$scope',
+    '$state',
+    '$stateParams',
     '_',
     '$timeout',
     '$ionicHistory',
@@ -16,22 +16,22 @@ AddressController.$inject = [
 ];
 /* @ngInject */
 function AddressController(
-    $scope, 
-    $state, 
-    $stateParams, 
+    $scope,
+    $state,
+    $stateParams,
     _,
-    $timeout, 
+    $timeout,
     $ionicHistory,
     Geocoder,
     locationFactory,
     TemporaryFriend
 ) {
-    let vm = this;
+    var vm = this;
 
     vm.locations = [];
     vm.fetchingAddress = false;
     vm.searchQuery = '';
-    vm.locations = [];   
+    vm.locations = [];
     vm.locateMe = locateMe;
     vm.selectLocation = selectLocation;
     vm.onSearchQuery = onSearchQuery;
@@ -44,23 +44,23 @@ function AddressController(
         if (TemporaryFriend.store && !_.isEmpty(TemporaryFriend.store.location)) {
             vm.searchQuery = TemporaryFriend.store.location.formatted_address;
             onSearchQuery();
-        }           
+        }
     }
 
     function locateMe() {
         vm.fetchingAddress = true;
-        Geocoder.reverseGeocode().then((res) => {
+        Geocoder.reverseGeocode().then(function(res) {
             if (res.length > 0) {
-                let infos = locationFactory.formatLocation(res[0]);
+                var infos = locationFactory.formatLocation(res[0]);
                 vm.searchQuery = infos.formatted_address;
                 onSearchQuery();
-            }                       
-        }, (e) => {
+            }
+        }, function(e) {
             console.log(e);
         })
-        .finally(() => {
+        .finally(function() {
             vm.fetchingAddress = false;
-        });          
+        });
     }
 
     function selectLocation(location) {
@@ -71,10 +71,10 @@ function AddressController(
 
     function onSearchQuery() {
         if (vm.searchQuery.length > 2) {
-            Geocoder.geocodeAddress(vm.searchQuery).then((res) => {
+            Geocoder.geocodeAddress(vm.searchQuery).then(function(res) {
                 vm.locations = res;
-            }, (e) => {
-                vm.locations = [];   
+            }, function(e) {
+                vm.locations = [];
             });
         }
     }
@@ -88,5 +88,6 @@ function AddressController(
         console.log("clear");
         vm.searchQuery = '';
         vm.locations = [];
-    }                                          
+    }
 }
+
