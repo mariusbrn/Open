@@ -24,16 +24,13 @@
     "cordova-plugin-splashscreen",
     "cordova-plugin-app-event",
     "cordova-plugin-x-toast",
+    "cordova-plugin-x-socialsharing",
     "de.appplant.cordova.plugin.local-notification",
     "ionic-plugin-keyboard",
     {
-      "locator": "https://github.com/driftyco/cordova-plugin-wkwebview-engine.git",
-      "id": "cordova-plugin-wkwebview-engine"
-    },
-    {
       "locator": "https://github.com/amitsinha559/cordova-plugin-back-as-home.git",
       "id": "com.amitsinha.backashome"
-    }    
+    }
   ],
   "cordovaPlatforms": [
     "android",
